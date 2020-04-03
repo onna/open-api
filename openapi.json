@@ -1,0 +1,3703 @@
+{
+    "components": {
+        "schemas": {
+            "ACL": {
+                "properties": {
+                    "@id": {
+                        "type": "string"
+                    },
+                    "prinperm": {
+                        "type": "object"
+                    },
+                    "prinrole": {
+                        "type": "object"
+                    },
+                    "roleperm": {
+                        "type": "object"
+                    }
+                },
+                "title": "A set of permissions",
+                "type": "object"
+            },
+            "AddableResource": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/BaseResource"
+                    },
+                    {
+                        "$ref": "#/components/schemas/WritableResource"
+                    }
+                ],
+                "title": "Writable resource data",
+                "type": "object"
+            },
+            "Addon": {
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id"
+                ],
+                "title": "Addon data",
+                "type": "object"
+            },
+            "AddonResponse": {
+                "properties": {
+                    "available": {
+                        "items": {
+                            "$ref": "#/components/schemas/Addon",
+                            "type": "object"
+                        },
+                        "type": "array"
+                    },
+                    "installed": {
+                        "items": {
+                            "$ref": "#/components/schemas/Addon",
+                            "type": "object"
+                        },
+                        "type": "array"
+                    }
+                },
+                "title": "Addons response data",
+                "type": "object"
+            },
+            "AllPermissions": {
+                "items": {
+                    "$ref": "#/components/schemas/Permissions",
+                    "type": "object"
+                },
+                "type": "array"
+            },
+            "Application": {
+                "properties": {
+                    "databases": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "static_directory": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "static_file": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    }
+                },
+                "title": "Application data",
+                "type": "object"
+            },
+            "BaseResource": {
+                "properties": {
+                    "@type": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id"
+                ],
+                "title": "Base resource data",
+                "type": "object"
+            },
+            "BatchQueryRequest": {
+                "additionalProperties": false,
+                "properties": {
+                    "operation": {
+                        "additionalProperties": false,
+                        "properties": {
+                            "endpoint": {
+                                "description": "relative path for operation",
+                                "type": "string"
+                            },
+                            "method": {
+                                "enum": [
+                                    "PATCH",
+                                    "POST"
+                                ],
+                                "type": "string"
+                            },
+                            "payload": {
+                                "type": "object"
+                            }
+                        },
+                        "required": [
+                            "method",
+                            "payload"
+                        ],
+                        "type": "object"
+                    },
+                    "query": {
+                        "$ref": "#/components/schemas/Query",
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "operation",
+                    "query"
+                ],
+                "title": "@batchOnQuery payload",
+                "type": "object"
+            },
+            "Behavior": {
+                "properties": {
+                    "behavior": {
+                        "title": "Dotted name to interface",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "behavior"
+                ],
+                "title": "Behavior",
+                "type": "object"
+            },
+            "BehaviorsResponse": {
+                "properties": {
+                    "available": {
+                        "items": {
+                            "title": "Dotted name to interface",
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "dynamic": {
+                        "items": {
+                            "title": "Dotted name to interface",
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "static": {
+                        "items": {
+                            "title": "Dotted name to interface",
+                            "type": "string"
+                        },
+                        "type": "array"
+                    }
+                },
+                "title": "Behavior data on a resource",
+                "type": "object"
+            },
+            "ChannelDeleteMessage": {
+                "additionalProperties": false,
+                "properties": {
+                    "idx": {
+                        "description": "What message to delete",
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "idx"
+                ],
+                "title": "Delete message at given idx",
+                "type": "object"
+            },
+            "ChannelEditMessage": {
+                "additionalProperties": false,
+                "properties": {
+                    "idx": {
+                        "description": "What message to delete",
+                        "type": "number"
+                    },
+                    "text": {
+                        "description": "New text for message",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "idx"
+                ],
+                "title": "Edit message at given idx",
+                "type": "object"
+            },
+            "ChannelMessage": {
+                "additionalProperties": false,
+                "properties": {
+                    "text": {
+                        "maxLength": 2000,
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "text"
+                ],
+                "title": "Channel message",
+                "type": "object"
+            },
+            "ChannelMessageResponse": {
+                "additionalProperties": false,
+                "properties": {
+                    "author": {
+                        "maxLength": 200,
+                        "type": "string"
+                    },
+                    "created": {
+                        "type": "number"
+                    },
+                    "idx": {
+                        "type": "number"
+                    },
+                    "modified": {
+                        "type": "number"
+                    },
+                    "text": {
+                        "maxLength": 2000,
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "text"
+                ],
+                "title": "Channel message",
+                "type": "object"
+            },
+            "ChannelRecentMessagesPayload": {
+                "additionalProperties": false,
+                "properties": {
+                    "channels": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "maxItems": 15,
+                        "type": "array"
+                    },
+                    "number": {
+                        "maximum": 5,
+                        "minimum": 1,
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "channels"
+                ],
+                "title": "Aggregate recent channel activity",
+                "type": "object"
+            },
+            "ChannelRecentMessagesResponse": {
+                "additionalProperties": {
+                    "properties": {
+                        "messages": {
+                            "items": {
+                                "$ref": "#/components/schemas/ChannelMessageResponse"
+                            },
+                            "type": "array"
+                        },
+                        "reason": {
+                            "description": "Reason for response if empty. For example, if channel not found",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "properties": {},
+                "title": "Channel recent messages",
+                "type": "object"
+            },
+            "ChannelSearch": {
+                "additionalProperties": false,
+                "properties": {
+                    "count": {
+                        "type": "number"
+                    },
+                    "query": {
+                        "description": "String to search for",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "query"
+                ],
+                "title": "Edit message at given idx",
+                "type": "object"
+            },
+            "ChannelSearchResponse": {
+                "items": {
+                    "$ref": "#/components/schemas/ChannelMessageResponse"
+                },
+                "title": "Response from search request",
+                "type": "object"
+            },
+            "ChannelTake": {
+                "additionalProperties": false,
+                "properties": {
+                    "count": {
+                        "description": "Number of messages to consume from this index",
+                        "maximum": 50,
+                        "minimum": 1,
+                        "type": "number"
+                    },
+                    "idx": {
+                        "description": "Where to seek from",
+                        "minimum": -1,
+                        "type": "number"
+                    }
+                },
+                "title": "Take from a desired index in REVERSE order",
+                "type": "object"
+            },
+            "ChannelTakeResponse": {
+                "items": {
+                    "$ref": "#/components/schemas/ChannelMessageResponse"
+                },
+                "title": "Response from channel take request",
+                "type": "array"
+            },
+            "ChannelUnread": {
+                "additionalProperties": false,
+                "properties": {
+                    "channel": {
+                        "type": "number"
+                    },
+                    "count": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "count"
+                ],
+                "title": "Channel unread count",
+                "type": "object"
+            },
+            "DataAPIResult": {
+                "additionalProperties": false,
+                "properties": {
+                    "cursor": {
+                        "type": "string"
+                    },
+                    "deleted": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "total": {
+                        "type": "number"
+                    },
+                    "updates": {
+                        "items": {
+                            "$ref": "#/components/schemas/DataAPIResultItem",
+                            "type": "object"
+                        },
+                        "type": "array"
+                    }
+                },
+                "type": "object"
+            },
+            "DataAPIResultItem": {
+                "additionalProperties": true,
+                "properties": {
+                    "@assigned-roles": {
+                        "additionalProperties": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "type": "object"
+                    },
+                    "@id": {
+                        "type": "string"
+                    },
+                    "@timestamp": {
+                        "description": "Can be used for since param",
+                        "type": "string"
+                    },
+                    "@type": {
+                        "type": "string"
+                    },
+                    "@uid": {
+                        "type": "string"
+                    },
+                    "@users-permissions": {
+                        "additionalProperties": {
+                            "type": "boolean"
+                        },
+                        "type": "object"
+                    },
+                    "creation_date": {
+                        "type": "string"
+                    },
+                    "creators": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "modification_date": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "EmptyWSBody": {
+                "additionalProperties": false,
+                "properties": {},
+                "title": "Notify others that you are typing",
+                "type": "object"
+            },
+            "LegalHold": {
+                "properties": {
+                    "active": {
+                        "default": true,
+                        "type": "boolean"
+                    },
+                    "configuration": {
+                        "oneOf": [
+                            {
+                                "additionalProperties": true,
+                                "properties": {
+                                    "datasources": {
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "maxItems": 1000,
+                                        "type": "array"
+                                    },
+                                    "hold_type": {
+                                        "enum": [
+                                            "datasources"
+                                        ],
+                                        "type": "string"
+                                    },
+                                    "principals": {
+                                        "default": [],
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "maxItems": 1000,
+                                        "type": "array"
+                                    }
+                                },
+                                "required": [
+                                    "datasources",
+                                    "hold_type"
+                                ],
+                                "type": "object"
+                            },
+                            {
+                                "additionalProperties": true,
+                                "properties": {
+                                    "hold_type": {
+                                        "enum": [
+                                            "identities"
+                                        ],
+                                        "type": "string"
+                                    },
+                                    "principals": {
+                                        "default": [],
+                                        "description": "Principal ids that will get legal hold notifications",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "maxItems": 1000,
+                                        "type": "array"
+                                    },
+                                    "source_accounts": {
+                                        "description": "Source accounts to put on hold",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "maxItems": 1000,
+                                        "type": "array"
+                                    }
+                                },
+                                "required": [
+                                    "source_accounts",
+                                    "hold_type"
+                                ],
+                                "type": "object"
+                            }
+                        ]
+                    },
+                    "finished": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "notify": {
+                        "default": false,
+                        "type": "boolean"
+                    },
+                    "started": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    }
+                },
+                "title": "Legal hold",
+                "type": "object"
+            },
+            "Permissions": {
+                "properties": {
+                    "prinperm": {
+                        "items": {
+                            "$ref": "#/components/schemas/PrincipalPermission",
+                            "type": "object"
+                        },
+                        "type": "array"
+                    },
+                    "prinrole": {
+                        "items": {
+                            "$ref": "#/components/schemas/PrincipalRole",
+                            "type": "object"
+                        },
+                        "type": "array"
+                    },
+                    "roleperm": {
+                        "items": {
+                            "$ref": "#/components/schemas/RolePermission",
+                            "type": "object"
+                        },
+                        "type": "array"
+                    }
+                },
+                "title": "Permissions defined for a resource ACL",
+                "type": "object"
+            },
+            "PrincipalPermission": {
+                "properties": {
+                    "permission": {
+                        "type": "string"
+                    },
+                    "principal": {
+                        "type": "string"
+                    },
+                    "setting": {
+                        "enum": [
+                            "Allow",
+                            "Deny",
+                            "AllowSingle",
+                            "Unset"
+                        ]
+                    }
+                },
+                "required": [
+                    "principal",
+                    "permission",
+                    "setting"
+                ],
+                "title": "Permission assigned to principal",
+                "type": "object"
+            },
+            "PrincipalPermissions": {
+                "additionalProperties": false,
+                "properties": {
+                    "permissions": {
+                        "items": {
+                            "enum": [
+                                "onna.GetUserActivity",
+                                "onna.permission:ManageLegalHolds",
+                                "onna.CreateAccountFields",
+                                "onna.permission:ManageIdentities"
+                            ],
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "principal": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "principal",
+                    "permissions"
+                ],
+                "title": "Principal permissions setting",
+                "type": "object"
+            },
+            "PrincipalRole": {
+                "properties": {
+                    "principal": {
+                        "type": "string"
+                    },
+                    "role": {
+                        "type": "string"
+                    },
+                    "setting": {
+                        "enum": [
+                            "Allow",
+                            "Deny",
+                            "AllowSingle",
+                            "Unset"
+                        ]
+                    }
+                },
+                "required": [
+                    "principal",
+                    "role",
+                    "setting"
+                ],
+                "title": "Role assigned to principal",
+                "type": "object"
+            },
+            "Query": {
+                "additionalProperties": false,
+                "properties": {
+                    "advanced": {
+                        "type": "object"
+                    },
+                    "aggs_includes": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "cursor": {
+                        "type": "string"
+                    },
+                    "excludes": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "facets": {
+                        "items": {
+                            "type": "object"
+                        },
+                        "type": "array"
+                    },
+                    "filters": {
+                        "items": {
+                            "properties": {
+                                "filterType": {
+                                    "type": "string"
+                                },
+                                "filtersSelected": {
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "required": [
+                                "filterType"
+                            ],
+                            "type": "object"
+                        },
+                        "type": "array"
+                    },
+                    "from": {
+                        "type": "number"
+                    },
+                    "hide_children": {
+                        "default": true,
+                        "type": "boolean"
+                    },
+                    "includes": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "paginate": {
+                        "type": "boolean"
+                    },
+                    "participants": {
+                        "properties": {
+                            "groups": {
+                                "items": {
+                                    "properties": {
+                                        "name": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "required": [
+                                    "name"
+                                ],
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "search_after": {
+                        "type": "array"
+                    },
+                    "size": {
+                        "default": 10,
+                        "type": "number"
+                    },
+                    "sort": {
+                        "properties": {
+                            "direction": {
+                                "type": "string"
+                            },
+                            "field": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "field",
+                            "direction"
+                        ],
+                        "type": "object"
+                    },
+                    "terms": {
+                        "items": {
+                            "properties": {
+                                "term": {
+                                    "type": "string"
+                                },
+                                "term_type": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "term",
+                                "term_type"
+                            ],
+                            "type": "object"
+                        },
+                        "type": "array"
+                    }
+                },
+                "title": "Query payload",
+                "type": "object"
+            },
+            "RealIdentity": {
+                "additionalProperties": false,
+                "properties": {
+                    "id": {
+                        "title": "Identity id",
+                        "type": "string"
+                    },
+                    "onna_user": {
+                        "title": "Onna user",
+                        "type": "string"
+                    },
+                    "source_accounts": {
+                        "items": {
+                            "title": "Source account id",
+                            "type": "string"
+                        },
+                        "title": "Source accounts",
+                        "type": "array"
+                    },
+                    "title": {
+                        "title": "Identity name",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "title"
+                ],
+                "title": "Create a new identity",
+                "type": "object"
+            },
+            "RealIdentityPATCH": {
+                "additionalProperties": false,
+                "properties": {
+                    "onna_user": {
+                        "title": "Onna user",
+                        "type": "string"
+                    },
+                    "source_accounts": {
+                        "items": {
+                            "title": "Source account id",
+                            "type": "string"
+                        },
+                        "title": "Source accounts",
+                        "type": "array"
+                    },
+                    "title": {
+                        "title": "Identity name",
+                        "type": "string"
+                    }
+                },
+                "title": "Modify an existing identity",
+                "type": "object"
+            },
+            "Resource": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/WritableResource"
+                    },
+                    {
+                        "properties": {
+                            "@id": {
+                                "type": "string"
+                            },
+                            "@type": {
+                                "type": "string"
+                            },
+                            "parent": {
+                                "properties": {
+                                    "@id": {
+                                        "type": "string"
+                                    },
+                                    "@type": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "required": [
+                            "@id",
+                            "@type"
+                        ],
+                        "type": "object"
+                    }
+                ],
+                "title": "Resource data",
+                "type": "object"
+            },
+            "ResourceACL": {
+                "properties": {
+                    "inherit": {
+                        "items": {
+                            "$ref": "#/components/schemas/ACL",
+                            "type": "object"
+                        },
+                        "type": "array"
+                    },
+                    "local": {
+                        "$ref": "#/components/schemas/ACL",
+                        "type": "object"
+                    }
+                },
+                "title": "All permissions for an object",
+                "type": "object"
+            },
+            "ResourceFolder": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Resource"
+                    },
+                    {
+                        "properties": {
+                            "items": {
+                                "$ref": "#/components/schemas/Resource",
+                                "type": "object"
+                            },
+                            "length": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                ],
+                "title": "Resource folder data",
+                "type": "object"
+            },
+            "RolePermission": {
+                "properties": {
+                    "permission": {
+                        "type": "string"
+                    },
+                    "role": {
+                        "type": "string"
+                    },
+                    "setting": {
+                        "enum": [
+                            "Allow",
+                            "Deny",
+                            "AllowSingle",
+                            "Unset"
+                        ]
+                    }
+                },
+                "required": [
+                    "role",
+                    "permission",
+                    "setting"
+                ],
+                "title": "Permission assigned to role",
+                "type": "object"
+            },
+            "SearchQuery": {
+                "properties": {
+                    "__eq": {
+                        "type": "string"
+                    },
+                    "__gt": {
+                        "type": "string"
+                    },
+                    "__gte": {
+                        "type": "string"
+                    },
+                    "__in": {
+                        "type": "string"
+                    },
+                    "__lt": {
+                        "type": "string"
+                    },
+                    "__lte": {
+                        "type": "string"
+                    },
+                    "__not": {
+                        "type": "string"
+                    },
+                    "_from": {
+                        "type": "string"
+                    },
+                    "_metadata": {
+                        "type": "string"
+                    },
+                    "_metadata_not": {
+                        "type": "string"
+                    },
+                    "_size": {
+                        "type": "string"
+                    },
+                    "_sort_asc": {
+                        "type": "string"
+                    },
+                    "_sort_des": {
+                        "type": "string"
+                    },
+                    "term": {
+                        "type": "string"
+                    }
+                },
+                "title": "Search Query",
+                "type": "object"
+            },
+            "SearchResult": {
+                "properties": {},
+                "title": "Search result",
+                "type": "object"
+            },
+            "SearchResults": {
+                "properties": {
+                    "items_count": {
+                        "type": "integer"
+                    },
+                    "member": {
+                        "items": {
+                            "$ref": "#/components/schemas/SearchResult",
+                            "type": "object"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "member"
+                ],
+                "title": "Search results",
+                "type": "object"
+            },
+            "SourceAccount": {
+                "additionalProperties": false,
+                "properties": {
+                    "address": {
+                        "title": "Address",
+                        "type": "string"
+                    },
+                    "city": {
+                        "title": "City",
+                        "type": "string"
+                    },
+                    "company_name": {
+                        "title": "Company name",
+                        "type": "string"
+                    },
+                    "country": {
+                        "title": "Country",
+                        "type": "string"
+                    },
+                    "display_name": {
+                        "title": "Display name",
+                        "type": "string"
+                    },
+                    "email": {
+                        "title": "Email",
+                        "type": "string"
+                    },
+                    "first_name": {
+                        "title": "First name",
+                        "type": "string"
+                    },
+                    "full_name": {
+                        "title": "Full name",
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "title": "Last name",
+                        "type": "string"
+                    },
+                    "origin_id": {
+                        "description": "Identifier for an source account existing at a source",
+                        "title": "SourceAccount identifier at the origin",
+                        "type": "string"
+                    },
+                    "other_metadata": {
+                        "description": "Other source account's generic metadata",
+                        "properties": {},
+                        "title": "Source account other metadata",
+                        "type": "object"
+                    },
+                    "phone": {
+                        "title": "Phone",
+                        "type": "string"
+                    },
+                    "signature": {
+                        "description": "Source account signature/hash. Can be used by spyder to identify whether the source account data has changed",
+                        "title": "Source account signature",
+                        "type": "string"
+                    },
+                    "state": {
+                        "title": "State",
+                        "type": "string"
+                    },
+                    "zipcode": {
+                        "title": "Zip code",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "signature",
+                    "origin_id"
+                ],
+                "title": "SourceAccount",
+                "type": "object"
+            },
+            "UpdatePrincipalPermissions": {
+                "items": {
+                    "$ref": "#/components/schemas/PrincipalPermissions",
+                    "type": "object"
+                },
+                "title": "Update a set of principals permissions",
+                "type": "array"
+            },
+            "UpdateRegistry": {
+                "properties": {
+                    "value": {}
+                },
+                "required": [
+                    "value"
+                ],
+                "title": "Update registry",
+                "type": "object"
+            },
+            "UserSearchResult": {
+                "properties": {
+                    "num_x_page": {
+                        "description": "Number per page",
+                        "type": "number"
+                    },
+                    "page": {
+                        "description": "Page of results",
+                        "type": "number"
+                    },
+                    "result": {
+                        "items": {
+                            "properties": {
+                                "blocked": {
+                                    "type": "boolean"
+                                },
+                                "cn": {
+                                    "type": "string"
+                                },
+                                "id": {
+                                    "type": "string"
+                                },
+                                "mail": {
+                                    "type": "string"
+                                },
+                                "sn": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "type": "array"
+                    },
+                    "total": {
+                        "description": "Number number of results",
+                        "type": "number"
+                    }
+                },
+                "title": "User Search Result",
+                "type": "object"
+            },
+            "WebsocketChannelMessage": {
+                "additionalProperties": false,
+                "properties": {
+                    "t": {
+                        "description": "Type of websocket message",
+                        "enum": [
+                            "message",
+                            "take",
+                            "edit",
+                            "delete",
+                            "typing",
+                            "search",
+                            "flush"
+                        ],
+                        "type": "string"
+                    },
+                    "v": {
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "t",
+                    "v"
+                ],
+                "title": "Websocket chat message",
+                "type": "object"
+            },
+            "WebsocketChannelResponse": {
+                "additionalProperties": false,
+                "properties": {
+                    "e": {
+                        "description": "Error code associated with payload",
+                        "type": "string"
+                    },
+                    "m": {
+                        "description": "Message associated with payload",
+                        "type": "string"
+                    },
+                    "t": {
+                        "description": "Type of websocket message",
+                        "enum": [
+                            "message",
+                            "take",
+                            "delete",
+                            "edit",
+                            "typing",
+                            "search",
+                            "e"
+                        ],
+                        "type": "string"
+                    },
+                    "v": {
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "t",
+                    "v"
+                ],
+                "title": "Websocket chat message",
+                "type": "object"
+            },
+            "WritableResource": {
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    }
+                },
+                "title": "Writable resource data",
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "basicAuth": {
+                "scheme": "basic",
+                "type": "http"
+            },
+            "bearerAuth": {
+                "bearerFormat": "JWT",
+                "scheme": "bearer",
+                "type": "http"
+            }
+        }
+    },
+    "externalDocs": {
+        "description": "Onna Developer Documentation",
+        "url": "https://developers.onna.com"
+    },
+    "info": {
+        "description": "REST API for Onna Platform\n\n# Introduction\nThe Canonical REST API is the central hub for access and updating data related to Onna.\n\nIt is built on top of the [Guillotina](https://guillotina.readthedocs.io/en/latest/) framework, which is a REST Resource API.",
+        "title": "Onna",
+        "version": "1.0.0"
+    },
+    "openapi": "3.0.3",
+    "paths": {
+        "/{account_id}/@frontsearch": {
+            "post": {
+                "description": "permission: guillotina.SearchContent",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Query"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully moved resource"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.SearchContent"
+                        ]
+                    }
+                ],
+                "summary": "",
+                "tags": [
+                    ""
+                ]
+            }
+        },
+        "/{account_id}/@groups": {
+            "get": {
+                "description": "permission: guillotina.AccessContent",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "groupType",
+                        "schema": {
+                            "default": "PEOPLE_GROUP",
+                            "enum": [
+                                "PEOPLE_GROUP",
+                                "WORK_SPACE",
+                                "ALL"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.AccessContent"
+                        ]
+                    }
+                ],
+                "summary": "",
+                "tags": [
+                    ""
+                ]
+            }
+        },
+        "/{account_id}/@groups/{group_id}": {
+            "get": {
+                "description": "permission: guillotina.AccessContent",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "group_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.AccessContent"
+                        ]
+                    }
+                ],
+                "summary": "",
+                "tags": [
+                    ""
+                ]
+            }
+        },
+        "/{account_id}/workspaces": {
+            "post": {
+                "description": "permission: guillotina.AddContent",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AddableResource"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResourceFolder"
+                                }
+                            }
+                        },
+                        "description": "Resource data"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.AddContent"
+                        ]
+                    }
+                ],
+                "summary": "Add new resouce inside this container resource",
+                "tags": [
+                    ""
+                ]
+            }
+        },
+        "/{account_id}/workspaces/{workspace_name}/@sharing": {
+            "get": {
+                "description": "permission: guillotina.SeePermissions",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Workspace",
+                        "in": "path",
+                        "name": "workspace_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResourceACL"
+                                }
+                            }
+                        },
+                        "description": "All the sharing defined on this resource"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.SeePermissions"
+                        ]
+                    }
+                ],
+                "summary": "Get sharing settings for this resource",
+                "tags": [
+                    ""
+                ]
+            },
+            "post": {
+                "description": "permission: guillotina.ChangePermissions",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Workspace",
+                        "in": "path",
+                        "name": "workspace_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Permissions"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully changed permission"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.ChangePermissions"
+                        ]
+                    }
+                ],
+                "summary": "Change permissions for a resource",
+                "tags": [
+                    ""
+                ]
+            }
+        },
+        "/{account_id}/workspaces/{workspace_name}/{datasource_name}": {
+            "get": {
+                "description": "permission: guillotina.ViewContent",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "include",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "omit",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Workspace",
+                        "in": "path",
+                        "name": "workspace_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/ResourceFolder"
+                                        },
+                                        {
+                                            "properties": {
+                                                "guillotina.behaviors.dublincore.IDublinCore": {
+                                                    "properties": {
+                                                        "contributors": {
+                                                            "description": "The unqualified Dublin Core 'Contributor' element values",
+                                                            "items": {
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 10000,
+                                                            "title": "Contributors",
+                                                            "type": "array"
+                                                        },
+                                                        "creation_date": {
+                                                            "description": "The date and time that an object is created. \nThis is normally set automatically.",
+                                                            "format": "date-time",
+                                                            "title": "Added to Onna",
+                                                            "type": "string"
+                                                        },
+                                                        "creators": {
+                                                            "description": "The unqualified Dublin Core 'Creator' element values",
+                                                            "items": {
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 1000,
+                                                            "title": "Creators",
+                                                            "type": "array"
+                                                        },
+                                                        "description": {
+                                                            "description": "The first unqualified Dublin Core 'Description' element value.",
+                                                            "title": "Description",
+                                                            "type": "string"
+                                                        },
+                                                        "effective_date": {
+                                                            "description": "The date and time that an object should be published. ",
+                                                            "format": "date-time",
+                                                            "title": "Effective date",
+                                                            "type": "string"
+                                                        },
+                                                        "expiration_date": {
+                                                            "description": "The date and time that the object should become unpublished.",
+                                                            "format": "date-time",
+                                                            "title": "Expiration date",
+                                                            "type": "string"
+                                                        },
+                                                        "modification_date": {
+                                                            "description": "The date and time that the object was last modified in a\nmeaningful way.",
+                                                            "format": "date-time",
+                                                            "title": "Last update",
+                                                            "type": "string"
+                                                        },
+                                                        "publisher": {
+                                                            "description": "The first unqualified Dublin Core 'Publisher' element value.",
+                                                            "title": "Publisher",
+                                                            "type": "string"
+                                                        },
+                                                        "tags": {
+                                                            "description": "The unqualified Dublin Core 'Tags' element values",
+                                                            "items": {
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 10000,
+                                                            "title": "Tags",
+                                                            "type": "array"
+                                                        },
+                                                        "title": {
+                                                            "description": "The first unqualified Dublin Core 'Title' element value.",
+                                                            "title": "Title",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "onna.canonical.behaviors.following.IFollowing": {
+                                                    "properties": {
+                                                        "favorite": {
+                                                            "title": "Current user has it favorited",
+                                                            "type": "boolean"
+                                                        },
+                                                        "favorites": {
+                                                            "items": {
+                                                                "title": "follower",
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 10000,
+                                                            "title": "favorites",
+                                                            "type": "array"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "description": "Resource data"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.ViewContent"
+                        ]
+                    }
+                ],
+                "summary": "Retrieves serialization of resource",
+                "tags": [
+                    ""
+                ]
+            }
+        },
+        "/{account_id}/workspaces/{workspace_name}/{datasource_name}/@sharing": {
+            "get": {
+                "description": "permission: guillotina.SeePermissions",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Workspace",
+                        "in": "path",
+                        "name": "workspace_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResourceACL"
+                                }
+                            }
+                        },
+                        "description": "All the sharing defined on this resource"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.SeePermissions"
+                        ]
+                    }
+                ],
+                "summary": "Get sharing settings for this resource",
+                "tags": [
+                    ""
+                ]
+            },
+            "post": {
+                "description": "permission: guillotina.ChangePermissions",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Workspace",
+                        "in": "path",
+                        "name": "workspace_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Permissions"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully changed permission"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.ChangePermissions"
+                        ]
+                    }
+                ],
+                "summary": "Change permissions for a resource",
+                "tags": [
+                    ""
+                ]
+            }
+        },
+        "/{account_id}/workspaces/{workspace_name}/{datasource_name}/{resource_name}": {
+            "get": {
+                "description": "permission: guillotina.ViewContent",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "include",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "omit",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Workspace",
+                        "in": "path",
+                        "name": "workspace_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Resource name",
+                        "in": "path",
+                        "name": "resource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/ResourceFolder"
+                                        },
+                                        {
+                                            "properties": {
+                                                "guillotina.behaviors.dublincore.IDublinCore": {
+                                                    "properties": {
+                                                        "contributors": {
+                                                            "description": "The unqualified Dublin Core 'Contributor' element values",
+                                                            "items": {
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 10000,
+                                                            "title": "Contributors",
+                                                            "type": "array"
+                                                        },
+                                                        "creation_date": {
+                                                            "description": "The date and time that an object is created. \nThis is normally set automatically.",
+                                                            "format": "date-time",
+                                                            "title": "Added to Onna",
+                                                            "type": "string"
+                                                        },
+                                                        "creators": {
+                                                            "description": "The unqualified Dublin Core 'Creator' element values",
+                                                            "items": {
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 1000,
+                                                            "title": "Creators",
+                                                            "type": "array"
+                                                        },
+                                                        "description": {
+                                                            "description": "The first unqualified Dublin Core 'Description' element value.",
+                                                            "title": "Description",
+                                                            "type": "string"
+                                                        },
+                                                        "effective_date": {
+                                                            "description": "The date and time that an object should be published. ",
+                                                            "format": "date-time",
+                                                            "title": "Effective date",
+                                                            "type": "string"
+                                                        },
+                                                        "expiration_date": {
+                                                            "description": "The date and time that the object should become unpublished.",
+                                                            "format": "date-time",
+                                                            "title": "Expiration date",
+                                                            "type": "string"
+                                                        },
+                                                        "modification_date": {
+                                                            "description": "The date and time that the object was last modified in a\nmeaningful way.",
+                                                            "format": "date-time",
+                                                            "title": "Last update",
+                                                            "type": "string"
+                                                        },
+                                                        "publisher": {
+                                                            "description": "The first unqualified Dublin Core 'Publisher' element value.",
+                                                            "title": "Publisher",
+                                                            "type": "string"
+                                                        },
+                                                        "tags": {
+                                                            "description": "The unqualified Dublin Core 'Tags' element values",
+                                                            "items": {
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 10000,
+                                                            "title": "Tags",
+                                                            "type": "array"
+                                                        },
+                                                        "title": {
+                                                            "description": "The first unqualified Dublin Core 'Title' element value.",
+                                                            "title": "Title",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "onna.canonical.behaviors.conversation.IConversation": {
+                                                    "properties": {
+                                                        "created_by": {
+                                                            "items": {
+                                                                "properties": {},
+                                                                "title": "Thread created by",
+                                                                "type": "object"
+                                                            },
+                                                            "maxItems": 100,
+                                                            "title": "JSON Message",
+                                                            "type": "array"
+                                                        },
+                                                        "thread_id": {
+                                                            "title": "Conversation ID",
+                                                            "type": "string"
+                                                        },
+                                                        "thread_name": {
+                                                            "title": "Conversation name",
+                                                            "type": "string"
+                                                        },
+                                                        "thread_type": {
+                                                            "title": "Conversation type",
+                                                            "type": "string"
+                                                        },
+                                                        "updated_by": {
+                                                            "items": {
+                                                                "properties": {},
+                                                                "title": "Thread updated by",
+                                                                "type": "object"
+                                                            },
+                                                            "maxItems": 100,
+                                                            "title": "JSON Message",
+                                                            "type": "array"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "onna.canonical.behaviors.following.IFollowing": {
+                                                    "properties": {
+                                                        "favorite": {
+                                                            "title": "Current user has it favorited",
+                                                            "type": "boolean"
+                                                        },
+                                                        "favorites": {
+                                                            "items": {
+                                                                "title": "follower",
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 10000,
+                                                            "title": "favorites",
+                                                            "type": "array"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "onna.canonical.behaviors.machine_learning.IMachineLearning": {
+                                                    "properties": {
+                                                        "classification": {
+                                                            "items": {
+                                                                "properties": {
+                                                                    "model_version": {
+                                                                        "type": "number"
+                                                                    },
+                                                                    "proba": {
+                                                                        "type": "number"
+                                                                    },
+                                                                    "term": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "title": "term",
+                                                                "type": "object"
+                                                            },
+                                                            "maxItems": 500,
+                                                            "title": "Classification",
+                                                            "type": "array"
+                                                        },
+                                                        "entities_company": {
+                                                            "items": {
+                                                                "title": "company",
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 1000,
+                                                            "title": "Company entities",
+                                                            "type": "array"
+                                                        },
+                                                        "entities_email": {
+                                                            "items": {
+                                                                "title": "email",
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 1000,
+                                                            "title": "Email entities",
+                                                            "type": "array"
+                                                        },
+                                                        "entities_location": {
+                                                            "items": {
+                                                                "title": "location",
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 1000,
+                                                            "title": "Location entities",
+                                                            "type": "array"
+                                                        },
+                                                        "entities_other": {
+                                                            "items": {
+                                                                "additionalProperties": false,
+                                                                "properties": {
+                                                                    "end": {
+                                                                        "type": "integer"
+                                                                    },
+                                                                    "entity": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "score": {
+                                                                        "type": "number"
+                                                                    },
+                                                                    "start": {
+                                                                        "type": "integer"
+                                                                    },
+                                                                    "type": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "required": [
+                                                                    "entity",
+                                                                    "type",
+                                                                    "score",
+                                                                    "start",
+                                                                    "end"
+                                                                ],
+                                                                "type": "object"
+                                                            },
+                                                            "maxItems": 1000,
+                                                            "title": "Other Entities",
+                                                            "type": "array"
+                                                        },
+                                                        "entities_person": {
+                                                            "items": {
+                                                                "title": "person",
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 500,
+                                                            "title": "Person entities",
+                                                            "type": "array"
+                                                        },
+                                                        "extra_fields": {
+                                                            "additionalProperties": {
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "boolean": {
+                                                                            "type": "boolean"
+                                                                        },
+                                                                        "comment": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "confirmed": {
+                                                                            "type": "boolean"
+                                                                        },
+                                                                        "date": {
+                                                                            "format": "date-time",
+                                                                            "type": "string"
+                                                                        },
+                                                                        "float": {
+                                                                            "type": "number"
+                                                                        },
+                                                                        "integer": {
+                                                                            "type": "number"
+                                                                        },
+                                                                        "keyword": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "text": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    },
+                                                                    "type": "object"
+                                                                },
+                                                                "maxItems": 100,
+                                                                "type": "array"
+                                                            },
+                                                            "maxProperties": 500,
+                                                            "properties": {},
+                                                            "type": "object"
+                                                        },
+                                                        "labels": {
+                                                            "items": {
+                                                                "properties": {
+                                                                    "confirmed": {
+                                                                        "type": "boolean"
+                                                                    },
+                                                                    "label": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "proba": {
+                                                                        "type": "number"
+                                                                    },
+                                                                    "type": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "title": "label",
+                                                                "type": "object"
+                                                            },
+                                                            "maxItems": 500,
+                                                            "title": "Labels",
+                                                            "type": "array"
+                                                        },
+                                                        "language": {
+                                                            "title": "Detected language",
+                                                            "type": "string"
+                                                        },
+                                                        "nist": {
+                                                            "title": "NIST file",
+                                                            "type": "boolean"
+                                                        },
+                                                        "sentiment": {
+                                                            "title": "Sentiment polarity",
+                                                            "type": "number"
+                                                        },
+                                                        "sentiment_subjectivity": {
+                                                            "title": "Sentiment subjectivity",
+                                                            "type": "number"
+                                                        },
+                                                        "summary": {
+                                                            "title": "Summary text extraction",
+                                                            "type": "string"
+                                                        },
+                                                        "text_addition": {
+                                                            "title": "Image recognition",
+                                                            "type": "string"
+                                                        },
+                                                        "topification": {
+                                                            "items": {
+                                                                "properties": {
+                                                                    "model_version": {
+                                                                        "type": "number"
+                                                                    },
+                                                                    "proba": {
+                                                                        "type": "number"
+                                                                    },
+                                                                    "term": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "title": "term",
+                                                                "type": "object"
+                                                            },
+                                                            "maxItems": 500,
+                                                            "title": "Topification",
+                                                            "type": "array"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "onna.canonical.behaviors.metadata.IMetadata": {
+                                                    "properties": {
+                                                        "application_name": {
+                                                            "title": "Application name",
+                                                            "type": "string"
+                                                        },
+                                                        "author": {
+                                                            "title": "Author",
+                                                            "type": "string"
+                                                        },
+                                                        "company": {
+                                                            "title": "Company",
+                                                            "type": "string"
+                                                        },
+                                                        "content_hash": {
+                                                            "title": "Content hash",
+                                                            "type": "string"
+                                                        },
+                                                        "content_length": {
+                                                            "title": "File size",
+                                                            "type": "number"
+                                                        },
+                                                        "content_type": {
+                                                            "title": "Content type",
+                                                            "type": "string"
+                                                        },
+                                                        "date_created": {
+                                                            "format": "date-time",
+                                                            "title": "File creation",
+                                                            "type": "string"
+                                                        },
+                                                        "date_modified": {
+                                                            "format": "date-time",
+                                                            "title": "File last modified",
+                                                            "type": "string"
+                                                        },
+                                                        "duration": {
+                                                            "title": "Duration",
+                                                            "type": "number"
+                                                        },
+                                                        "extension": {
+                                                            "title": "Extension",
+                                                            "type": "string"
+                                                        },
+                                                        "extracted_text": {
+                                                            "title": "Extracted text",
+                                                            "type": "string"
+                                                        },
+                                                        "first_sync_last": {
+                                                            "title": "Last file of first sync",
+                                                            "type": "boolean"
+                                                        },
+                                                        "md5": {
+                                                            "title": "MD5 hash",
+                                                            "type": "string"
+                                                        },
+                                                        "other_metadata": {
+                                                            "properties": {},
+                                                            "title": "Other document metadata",
+                                                            "type": "object",
+                                                            "x-dynamic": false
+                                                        },
+                                                        "processing_date": {
+                                                            "title": "Processed in Onna",
+                                                            "type": "string"
+                                                        },
+                                                        "processing_exception": {
+                                                            "title": "Processing exception",
+                                                            "type": "string"
+                                                        },
+                                                        "processing_title": {
+                                                            "title": "File title",
+                                                            "type": "string"
+                                                        },
+                                                        "resource_name": {
+                                                            "title": "File name",
+                                                            "type": "string"
+                                                        },
+                                                        "screenshot": {
+                                                            "properties": {
+                                                                "content_type": {
+                                                                    "description": "The content type identifies the type of data.",
+                                                                    "title": "Content Type",
+                                                                    "type": "string"
+                                                                },
+                                                                "extension": {
+                                                                    "title": "Extension of the file",
+                                                                    "type": "string"
+                                                                },
+                                                                "filename": {
+                                                                    "title": "Filename",
+                                                                    "type": "string"
+                                                                },
+                                                                "md5": {
+                                                                    "title": "MD5",
+                                                                    "type": "string"
+                                                                },
+                                                                "size": {
+                                                                    "title": "Size",
+                                                                    "type": "number"
+                                                                }
+                                                            },
+                                                            "title": "Screenshot",
+                                                            "type": "object"
+                                                        },
+                                                        "thumbnail": {
+                                                            "title": "Thumbnail",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "onna.canonical.behaviors.origin.IOrigin": {
+                                                    "properties": {
+                                                        "filter": {
+                                                            "title": "Synced folder or label in source",
+                                                            "type": "string"
+                                                        },
+                                                        "origin": {
+                                                            "title": "URL to original file",
+                                                            "type": "string"
+                                                        },
+                                                        "origin_created_by": {
+                                                            "items": {
+                                                                "properties": {},
+                                                                "title": "Created by",
+                                                                "type": "object"
+                                                            },
+                                                            "maxItems": 1000,
+                                                            "title": "List of creators in source",
+                                                            "type": "array"
+                                                        },
+                                                        "origin_date_created": {
+                                                            "format": "date-time",
+                                                            "title": "Source {{type}} created on",
+                                                            "type": "string"
+                                                        },
+                                                        "origin_date_modified": {
+                                                            "format": "date-time",
+                                                            "title": "Source {{type}} updated on",
+                                                            "type": "string"
+                                                        },
+                                                        "origin_display_id": {
+                                                            "title": "Source display id",
+                                                            "type": "string"
+                                                        },
+                                                        "origin_exception": {
+                                                            "title": "Exception",
+                                                            "type": "string"
+                                                        },
+                                                        "origin_has_deletions": {
+                                                            "title": "The resource includes deletions",
+                                                            "type": "boolean"
+                                                        },
+                                                        "origin_has_editions": {
+                                                            "title": "The resource includes editions",
+                                                            "type": "boolean"
+                                                        },
+                                                        "origin_id": {
+                                                            "title": "Source {{type}} ID",
+                                                            "type": "string"
+                                                        },
+                                                        "origin_is_archived": {
+                                                            "title": "The resource was archived",
+                                                            "type": "boolean"
+                                                        },
+                                                        "origin_label_ids": {
+                                                            "items": {
+                                                                "title": "Folder or label id",
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 5000,
+                                                            "title": "Synced folder or label ID in source",
+                                                            "type": "array"
+                                                        },
+                                                        "origin_md5": {
+                                                            "title": "Source {{type}} MD5",
+                                                            "type": "string"
+                                                        },
+                                                        "origin_modified_by": {
+                                                            "items": {
+                                                                "properties": {},
+                                                                "title": "Modified by",
+                                                                "type": "object"
+                                                            },
+                                                            "maxItems": 1000,
+                                                            "title": "List of modifiers in source",
+                                                            "type": "array"
+                                                        },
+                                                        "origin_other_metadata": {
+                                                            "properties": {},
+                                                            "title": "Other source metadata",
+                                                            "type": "object",
+                                                            "x-dynamic": false
+                                                        },
+                                                        "origin_related_users": {
+                                                            "items": {
+                                                                "properties": {},
+                                                                "title": "Related user",
+                                                                "type": "object"
+                                                            },
+                                                            "maxItems": 5000,
+                                                            "title": "Origin list of related users",
+                                                            "type": "array"
+                                                        },
+                                                        "origin_resource_kind": {
+                                                            "enum": [
+                                                                "ticket/github.issue",
+                                                                "ticket/github.pr",
+                                                                "ticket/zendesk",
+                                                                "conversation/slack.im",
+                                                                "conversation/slack.mpim",
+                                                                "conversation/slack.channel",
+                                                                "conversation/slack.group",
+                                                                "conversation/hangouts",
+                                                                "conversation/twitter",
+                                                                "post/workplace",
+                                                                "post/twitter"
+                                                            ],
+                                                            "title": "Type of resource",
+                                                            "type": "string"
+                                                        },
+                                                        "origin_server_modified": {
+                                                            "format": "date-time",
+                                                            "title": "Last modified in source",
+                                                            "type": "string"
+                                                        },
+                                                        "origin_state": {
+                                                            "title": "Source state",
+                                                            "type": "string"
+                                                        },
+                                                        "origin_targeted_users": {
+                                                            "items": {
+                                                                "title": "User",
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 5000,
+                                                            "title": "List of users collected for",
+                                                            "type": "array"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "description": "Resource data"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.ViewContent"
+                        ]
+                    }
+                ],
+                "summary": "Retrieves serialization of resource",
+                "tags": [
+                    ""
+                ]
+            }
+        },
+        "/{account_id}/{username}/@enabledDSTypes": {
+            "get": {
+                "description": "permission: guillotina.AccessContent",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.AccessContent"
+                        ]
+                    }
+                ],
+                "summary": "",
+                "tags": [
+                    ""
+                ]
+            }
+        },
+        "/{account_id}/{username}/@exports": {
+            "get": {
+                "description": "permission: guillotina.ViewContent",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.ViewContent"
+                        ]
+                    }
+                ],
+                "summary": "",
+                "tags": [
+                    ""
+                ]
+            }
+        },
+        "/{account_id}/{username}/@rules": {
+            "get": {
+                "description": "permission: guillotina.ViewContent",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.ViewContent"
+                        ]
+                    }
+                ],
+                "summary": "",
+                "tags": [
+                    ""
+                ]
+            }
+        },
+        "/{account_id}/{username}/{datasource_name}/@sharing": {
+            "get": {
+                "description": "permission: guillotina.SeePermissions",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResourceACL"
+                                }
+                            }
+                        },
+                        "description": "All the sharing defined on this resource"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.SeePermissions"
+                        ]
+                    }
+                ],
+                "summary": "Get sharing settings for this resource",
+                "tags": [
+                    ""
+                ]
+            },
+            "post": {
+                "description": "permission: guillotina.ChangePermissions",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Permissions"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully changed permission"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.ChangePermissions"
+                        ]
+                    }
+                ],
+                "summary": "Change permissions for a resource",
+                "tags": [
+                    ""
+                ]
+            }
+        },
+        "/{account_id}/{username}/{datasource_name}/ed024e9224aa438f802b234d7b0bf057/{resource_name}": {
+            "get": {
+                "description": "permission: guillotina.SeePermissions",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Resource name",
+                        "in": "path",
+                        "name": "resource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResourceACL"
+                                }
+                            }
+                        },
+                        "description": "All the sharing defined on this resource"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.SeePermissions"
+                        ]
+                    }
+                ],
+                "summary": "Get sharing settings for this resource",
+                "tags": [
+                    ""
+                ]
+            },
+            "post": {
+                "description": "permission: guillotina.ChangePermissions",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Resource name",
+                        "in": "path",
+                        "name": "resource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Permissions"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully changed permission"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.ChangePermissions"
+                        ]
+                    }
+                ],
+                "summary": "Change permissions for a resource",
+                "tags": [
+                    ""
+                ]
+            }
+        },
+        "/{account_id}/{username}/{datasource_name}/{resource_name}": {
+            "get": {
+                "description": "permission: guillotina.ViewContent",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "include",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "omit",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Resource name",
+                        "in": "path",
+                        "name": "resource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/ResourceFolder"
+                                        },
+                                        {
+                                            "properties": {
+                                                "guillotina.behaviors.dublincore.IDublinCore": {
+                                                    "properties": {
+                                                        "contributors": {
+                                                            "description": "The unqualified Dublin Core 'Contributor' element values",
+                                                            "items": {
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 10000,
+                                                            "title": "Contributors",
+                                                            "type": "array"
+                                                        },
+                                                        "creation_date": {
+                                                            "description": "The date and time that an object is created. \nThis is normally set automatically.",
+                                                            "format": "date-time",
+                                                            "title": "Added to Onna",
+                                                            "type": "string"
+                                                        },
+                                                        "creators": {
+                                                            "description": "The unqualified Dublin Core 'Creator' element values",
+                                                            "items": {
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 1000,
+                                                            "title": "Creators",
+                                                            "type": "array"
+                                                        },
+                                                        "description": {
+                                                            "description": "The first unqualified Dublin Core 'Description' element value.",
+                                                            "title": "Description",
+                                                            "type": "string"
+                                                        },
+                                                        "effective_date": {
+                                                            "description": "The date and time that an object should be published. ",
+                                                            "format": "date-time",
+                                                            "title": "Effective date",
+                                                            "type": "string"
+                                                        },
+                                                        "expiration_date": {
+                                                            "description": "The date and time that the object should become unpublished.",
+                                                            "format": "date-time",
+                                                            "title": "Expiration date",
+                                                            "type": "string"
+                                                        },
+                                                        "modification_date": {
+                                                            "description": "The date and time that the object was last modified in a\nmeaningful way.",
+                                                            "format": "date-time",
+                                                            "title": "Last update",
+                                                            "type": "string"
+                                                        },
+                                                        "publisher": {
+                                                            "description": "The first unqualified Dublin Core 'Publisher' element value.",
+                                                            "title": "Publisher",
+                                                            "type": "string"
+                                                        },
+                                                        "tags": {
+                                                            "description": "The unqualified Dublin Core 'Tags' element values",
+                                                            "items": {
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 10000,
+                                                            "title": "Tags",
+                                                            "type": "array"
+                                                        },
+                                                        "title": {
+                                                            "description": "The first unqualified Dublin Core 'Title' element value.",
+                                                            "title": "Title",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "onna.canonical.behaviors.conversation.IConversation": {
+                                                    "properties": {
+                                                        "created_by": {
+                                                            "items": {
+                                                                "properties": {},
+                                                                "title": "Thread created by",
+                                                                "type": "object"
+                                                            },
+                                                            "maxItems": 100,
+                                                            "title": "JSON Message",
+                                                            "type": "array"
+                                                        },
+                                                        "thread_id": {
+                                                            "title": "Conversation ID",
+                                                            "type": "string"
+                                                        },
+                                                        "thread_name": {
+                                                            "title": "Conversation name",
+                                                            "type": "string"
+                                                        },
+                                                        "thread_type": {
+                                                            "title": "Conversation type",
+                                                            "type": "string"
+                                                        },
+                                                        "updated_by": {
+                                                            "items": {
+                                                                "properties": {},
+                                                                "title": "Thread updated by",
+                                                                "type": "object"
+                                                            },
+                                                            "maxItems": 100,
+                                                            "title": "JSON Message",
+                                                            "type": "array"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "onna.canonical.behaviors.following.IFollowing": {
+                                                    "properties": {
+                                                        "favorite": {
+                                                            "title": "Current user has it favorited",
+                                                            "type": "boolean"
+                                                        },
+                                                        "favorites": {
+                                                            "items": {
+                                                                "title": "follower",
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 10000,
+                                                            "title": "favorites",
+                                                            "type": "array"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "onna.canonical.behaviors.machine_learning.IMachineLearning": {
+                                                    "properties": {
+                                                        "classification": {
+                                                            "items": {
+                                                                "properties": {
+                                                                    "model_version": {
+                                                                        "type": "number"
+                                                                    },
+                                                                    "proba": {
+                                                                        "type": "number"
+                                                                    },
+                                                                    "term": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "title": "term",
+                                                                "type": "object"
+                                                            },
+                                                            "maxItems": 500,
+                                                            "title": "Classification",
+                                                            "type": "array"
+                                                        },
+                                                        "entities_company": {
+                                                            "items": {
+                                                                "title": "company",
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 1000,
+                                                            "title": "Company entities",
+                                                            "type": "array"
+                                                        },
+                                                        "entities_email": {
+                                                            "items": {
+                                                                "title": "email",
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 1000,
+                                                            "title": "Email entities",
+                                                            "type": "array"
+                                                        },
+                                                        "entities_location": {
+                                                            "items": {
+                                                                "title": "location",
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 1000,
+                                                            "title": "Location entities",
+                                                            "type": "array"
+                                                        },
+                                                        "entities_other": {
+                                                            "items": {
+                                                                "additionalProperties": false,
+                                                                "properties": {
+                                                                    "end": {
+                                                                        "type": "integer"
+                                                                    },
+                                                                    "entity": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "score": {
+                                                                        "type": "number"
+                                                                    },
+                                                                    "start": {
+                                                                        "type": "integer"
+                                                                    },
+                                                                    "type": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "required": [
+                                                                    "entity",
+                                                                    "type",
+                                                                    "score",
+                                                                    "start",
+                                                                    "end"
+                                                                ],
+                                                                "type": "object"
+                                                            },
+                                                            "maxItems": 1000,
+                                                            "title": "Other Entities",
+                                                            "type": "array"
+                                                        },
+                                                        "entities_person": {
+                                                            "items": {
+                                                                "title": "person",
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 500,
+                                                            "title": "Person entities",
+                                                            "type": "array"
+                                                        },
+                                                        "extra_fields": {
+                                                            "additionalProperties": {
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "boolean": {
+                                                                            "type": "boolean"
+                                                                        },
+                                                                        "comment": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "confirmed": {
+                                                                            "type": "boolean"
+                                                                        },
+                                                                        "date": {
+                                                                            "format": "date-time",
+                                                                            "type": "string"
+                                                                        },
+                                                                        "float": {
+                                                                            "type": "number"
+                                                                        },
+                                                                        "integer": {
+                                                                            "type": "number"
+                                                                        },
+                                                                        "keyword": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "text": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    },
+                                                                    "type": "object"
+                                                                },
+                                                                "maxItems": 100,
+                                                                "type": "array"
+                                                            },
+                                                            "maxProperties": 500,
+                                                            "properties": {},
+                                                            "type": "object"
+                                                        },
+                                                        "labels": {
+                                                            "items": {
+                                                                "properties": {
+                                                                    "confirmed": {
+                                                                        "type": "boolean"
+                                                                    },
+                                                                    "label": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "proba": {
+                                                                        "type": "number"
+                                                                    },
+                                                                    "type": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "title": "label",
+                                                                "type": "object"
+                                                            },
+                                                            "maxItems": 500,
+                                                            "title": "Labels",
+                                                            "type": "array"
+                                                        },
+                                                        "language": {
+                                                            "title": "Detected language",
+                                                            "type": "string"
+                                                        },
+                                                        "nist": {
+                                                            "title": "NIST file",
+                                                            "type": "boolean"
+                                                        },
+                                                        "sentiment": {
+                                                            "title": "Sentiment polarity",
+                                                            "type": "number"
+                                                        },
+                                                        "sentiment_subjectivity": {
+                                                            "title": "Sentiment subjectivity",
+                                                            "type": "number"
+                                                        },
+                                                        "summary": {
+                                                            "title": "Summary text extraction",
+                                                            "type": "string"
+                                                        },
+                                                        "text_addition": {
+                                                            "title": "Image recognition",
+                                                            "type": "string"
+                                                        },
+                                                        "topification": {
+                                                            "items": {
+                                                                "properties": {
+                                                                    "model_version": {
+                                                                        "type": "number"
+                                                                    },
+                                                                    "proba": {
+                                                                        "type": "number"
+                                                                    },
+                                                                    "term": {
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "title": "term",
+                                                                "type": "object"
+                                                            },
+                                                            "maxItems": 500,
+                                                            "title": "Topification",
+                                                            "type": "array"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "onna.canonical.behaviors.metadata.IMetadata": {
+                                                    "properties": {
+                                                        "application_name": {
+                                                            "title": "Application name",
+                                                            "type": "string"
+                                                        },
+                                                        "author": {
+                                                            "title": "Author",
+                                                            "type": "string"
+                                                        },
+                                                        "company": {
+                                                            "title": "Company",
+                                                            "type": "string"
+                                                        },
+                                                        "content_hash": {
+                                                            "title": "Content hash",
+                                                            "type": "string"
+                                                        },
+                                                        "content_length": {
+                                                            "title": "File size",
+                                                            "type": "number"
+                                                        },
+                                                        "content_type": {
+                                                            "title": "Content type",
+                                                            "type": "string"
+                                                        },
+                                                        "date_created": {
+                                                            "format": "date-time",
+                                                            "title": "File creation",
+                                                            "type": "string"
+                                                        },
+                                                        "date_modified": {
+                                                            "format": "date-time",
+                                                            "title": "File last modified",
+                                                            "type": "string"
+                                                        },
+                                                        "duration": {
+                                                            "title": "Duration",
+                                                            "type": "number"
+                                                        },
+                                                        "extension": {
+                                                            "title": "Extension",
+                                                            "type": "string"
+                                                        },
+                                                        "extracted_text": {
+                                                            "title": "Extracted text",
+                                                            "type": "string"
+                                                        },
+                                                        "first_sync_last": {
+                                                            "title": "Last file of first sync",
+                                                            "type": "boolean"
+                                                        },
+                                                        "md5": {
+                                                            "title": "MD5 hash",
+                                                            "type": "string"
+                                                        },
+                                                        "other_metadata": {
+                                                            "properties": {},
+                                                            "title": "Other document metadata",
+                                                            "type": "object",
+                                                            "x-dynamic": false
+                                                        },
+                                                        "processing_date": {
+                                                            "title": "Processed in Onna",
+                                                            "type": "string"
+                                                        },
+                                                        "processing_exception": {
+                                                            "title": "Processing exception",
+                                                            "type": "string"
+                                                        },
+                                                        "processing_title": {
+                                                            "title": "File title",
+                                                            "type": "string"
+                                                        },
+                                                        "resource_name": {
+                                                            "title": "File name",
+                                                            "type": "string"
+                                                        },
+                                                        "screenshot": {
+                                                            "properties": {
+                                                                "content_type": {
+                                                                    "description": "The content type identifies the type of data.",
+                                                                    "title": "Content Type",
+                                                                    "type": "string"
+                                                                },
+                                                                "extension": {
+                                                                    "title": "Extension of the file",
+                                                                    "type": "string"
+                                                                },
+                                                                "filename": {
+                                                                    "title": "Filename",
+                                                                    "type": "string"
+                                                                },
+                                                                "md5": {
+                                                                    "title": "MD5",
+                                                                    "type": "string"
+                                                                },
+                                                                "size": {
+                                                                    "title": "Size",
+                                                                    "type": "number"
+                                                                }
+                                                            },
+                                                            "title": "Screenshot",
+                                                            "type": "object"
+                                                        },
+                                                        "thumbnail": {
+                                                            "title": "Thumbnail",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "onna.canonical.behaviors.origin.IOrigin": {
+                                                    "properties": {
+                                                        "filter": {
+                                                            "title": "Synced folder or label in source",
+                                                            "type": "string"
+                                                        },
+                                                        "origin": {
+                                                            "title": "URL to original file",
+                                                            "type": "string"
+                                                        },
+                                                        "origin_created_by": {
+                                                            "items": {
+                                                                "properties": {},
+                                                                "title": "Created by",
+                                                                "type": "object"
+                                                            },
+                                                            "maxItems": 1000,
+                                                            "title": "List of creators in source",
+                                                            "type": "array"
+                                                        },
+                                                        "origin_date_created": {
+                                                            "format": "date-time",
+                                                            "title": "Source {{type}} created on",
+                                                            "type": "string"
+                                                        },
+                                                        "origin_date_modified": {
+                                                            "format": "date-time",
+                                                            "title": "Source {{type}} updated on",
+                                                            "type": "string"
+                                                        },
+                                                        "origin_display_id": {
+                                                            "title": "Source display id",
+                                                            "type": "string"
+                                                        },
+                                                        "origin_exception": {
+                                                            "title": "Exception",
+                                                            "type": "string"
+                                                        },
+                                                        "origin_has_deletions": {
+                                                            "title": "The resource includes deletions",
+                                                            "type": "boolean"
+                                                        },
+                                                        "origin_has_editions": {
+                                                            "title": "The resource includes editions",
+                                                            "type": "boolean"
+                                                        },
+                                                        "origin_id": {
+                                                            "title": "Source {{type}} ID",
+                                                            "type": "string"
+                                                        },
+                                                        "origin_is_archived": {
+                                                            "title": "The resource was archived",
+                                                            "type": "boolean"
+                                                        },
+                                                        "origin_label_ids": {
+                                                            "items": {
+                                                                "title": "Folder or label id",
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 5000,
+                                                            "title": "Synced folder or label ID in source",
+                                                            "type": "array"
+                                                        },
+                                                        "origin_md5": {
+                                                            "title": "Source {{type}} MD5",
+                                                            "type": "string"
+                                                        },
+                                                        "origin_modified_by": {
+                                                            "items": {
+                                                                "properties": {},
+                                                                "title": "Modified by",
+                                                                "type": "object"
+                                                            },
+                                                            "maxItems": 1000,
+                                                            "title": "List of modifiers in source",
+                                                            "type": "array"
+                                                        },
+                                                        "origin_other_metadata": {
+                                                            "properties": {},
+                                                            "title": "Other source metadata",
+                                                            "type": "object",
+                                                            "x-dynamic": false
+                                                        },
+                                                        "origin_related_users": {
+                                                            "items": {
+                                                                "properties": {},
+                                                                "title": "Related user",
+                                                                "type": "object"
+                                                            },
+                                                            "maxItems": 5000,
+                                                            "title": "Origin list of related users",
+                                                            "type": "array"
+                                                        },
+                                                        "origin_resource_kind": {
+                                                            "enum": [
+                                                                "ticket/github.issue",
+                                                                "ticket/github.pr",
+                                                                "ticket/zendesk",
+                                                                "conversation/slack.im",
+                                                                "conversation/slack.mpim",
+                                                                "conversation/slack.channel",
+                                                                "conversation/slack.group",
+                                                                "conversation/hangouts",
+                                                                "conversation/twitter",
+                                                                "post/workplace",
+                                                                "post/twitter"
+                                                            ],
+                                                            "title": "Type of resource",
+                                                            "type": "string"
+                                                        },
+                                                        "origin_server_modified": {
+                                                            "format": "date-time",
+                                                            "title": "Last modified in source",
+                                                            "type": "string"
+                                                        },
+                                                        "origin_state": {
+                                                            "title": "Source state",
+                                                            "type": "string"
+                                                        },
+                                                        "origin_targeted_users": {
+                                                            "items": {
+                                                                "title": "User",
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 5000,
+                                                            "title": "List of users collected for",
+                                                            "type": "array"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "description": "Resource data"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.ViewContent"
+                        ]
+                    }
+                ],
+                "summary": "Retrieves serialization of resource",
+                "tags": [
+                    ""
+                ]
+            }
+        }
+    },
+    "security": [
+        {
+            "bearerAuth": []
+        }
+    ],
+    "servers": [
+        {
+            "url": "https://enterprise.onna.com/api"
+        }
+    ]
+}
