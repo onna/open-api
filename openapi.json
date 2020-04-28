@@ -66,6 +66,129 @@
                 "title": "Addons response data",
                 "type": "object"
             },
+            "AdvancedQuery": {
+                "additionalProperties": false,
+                "properties": {
+                    "and": {
+                        "items": {
+                            "$ref": "#/components/schemas/AdvancedQueryTerm"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "and"
+                ],
+                "title": "Query",
+                "type": "object"
+            },
+            "AdvancedQueryTerm": {
+                "oneOf": [
+                    {
+                        "additionalProperties": {
+                            "items": {
+                                "oneOf": [
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "var": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    {
+                                        "oneOf": [
+                                            {
+                                                "type": "string"
+                                            },
+                                            {
+                                                "type": "number"
+                                            },
+                                            {
+                                                "type": "boolean"
+                                            },
+                                            {
+                                                "items": {
+                                                    "oneOf": [
+                                                        {
+                                                            "type": "string"
+                                                        },
+                                                        {
+                                                            "type": "number"
+                                                        },
+                                                        {
+                                                            "type": "boolean"
+                                                        }
+                                                    ]
+                                                },
+                                                "type": "array"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            "maxItems": 2,
+                            "minItems": 2,
+                            "type": "array"
+                        },
+                        "example": {
+                            "text_contains": [
+                                {
+                                    "var": "title"
+                                },
+                                "foobar"
+                            ]
+                        },
+                        "maxProperties": 1,
+                        "minProperties": 1,
+                        "properties": {
+                            "exists": {
+                                "items": {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "var": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "maxItems": 1,
+                                "minItems": 1,
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "additionalProperties": false,
+                        "maxProperties": 1,
+                        "minProperties": 1,
+                        "properties": {
+                            "and": {
+                                "items": {
+                                    "$ref": "#/components/schemas/AdvancedQueryTerm"
+                                },
+                                "type": "array"
+                            },
+                            "and_not": {
+                                "items": {
+                                    "$ref": "#/components/schemas/AdvancedQueryTerm"
+                                },
+                                "type": "array"
+                            },
+                            "or": {
+                                "items": {
+                                    "$ref": "#/components/schemas/AdvancedQueryTerm"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ],
+                "title": "Query term"
+            },
             "AllPermissions": {
                 "items": {
                     "$ref": "#/components/schemas/Permissions",
@@ -143,8 +266,7 @@
                         "type": "object"
                     },
                     "query": {
-                        "$ref": "#/components/schemas/Query",
-                        "type": "object"
+                        "$ref": "#/components/schemas/Query"
                     }
                 },
                 "required": [
@@ -391,8 +513,7 @@
                     },
                     "updates": {
                         "items": {
-                            "$ref": "#/components/schemas/DataAPIResultItem",
-                            "type": "object"
+                            "$ref": "#/components/schemas/DataAPIResultItem"
                         },
                         "type": "array"
                     }
@@ -605,6 +726,7 @@
                             "enum": [
                                 "onna.GetUserActivity",
                                 "onna.permission:ManageLegalHolds",
+                                "onna.permission:ManageLegalHoldWorkspaces",
                                 "onna.CreateAccountFields",
                                 "onna.permission:ManageIdentities"
                             ],
@@ -649,10 +771,9 @@
                 "type": "object"
             },
             "Query": {
-                "additionalProperties": false,
                 "properties": {
                     "advanced": {
-                        "type": "object"
+                        "$ref": "#/components/schemas/AdvancedQuery"
                     },
                     "aggs_includes": {
                         "items": {
@@ -671,8 +792,9 @@
                     },
                     "facets": {
                         "items": {
-                            "type": "object"
+                            "$ref": "#/components/schemas/QueryFacet"
                         },
+                        "maxItems": 100,
                         "type": "array"
                     },
                     "filters": {
@@ -702,11 +824,22 @@
                         "default": true,
                         "type": "boolean"
                     },
+                    "highlight": {
+                        "default": false,
+                        "type": "boolean"
+                    },
                     "includes": {
-                        "items": {
-                            "type": "string"
-                        },
-                        "type": "array"
+                        "oneOf": [
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ]
                     },
                     "paginate": {
                         "type": "boolean"
@@ -731,6 +864,9 @@
                         "type": "object"
                     },
                     "search_after": {
+                        "items": {
+                            "type": "string"
+                        },
                         "type": "array"
                     },
                     "size": {
@@ -751,6 +887,10 @@
                             "direction"
                         ],
                         "type": "object"
+                    },
+                    "suggest": {
+                        "default": false,
+                        "type": "boolean"
                     },
                     "terms": {
                         "items": {
@@ -773,6 +913,65 @@
                 },
                 "title": "Query payload",
                 "type": "object"
+            },
+            "QueryFacet": {
+                "additionalProperties": false,
+                "properties": {
+                    "facetSelected": {
+                        "$ref": "#/components/schemas/QueryFacetValue"
+                    },
+                    "facetType": {
+                        "type": "string"
+                    },
+                    "facetsSelected": {
+                        "$ref": "#/components/schemas/QueryFacetValue"
+                    }
+                },
+                "title": "Query Facet",
+                "type": "object"
+            },
+            "QueryFacetValue": {
+                "items": {
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "additionalProperties": false,
+                            "properties": {
+                                "from": {
+                                    "type": "string"
+                                },
+                                "to": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        {
+                            "additionalProperties": false,
+                            "properties": {
+                                "max": {
+                                    "type": "number"
+                                },
+                                "min": {
+                                    "type": "number"
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    ]
+                },
+                "type": "array"
             },
             "RealIdentity": {
                 "additionalProperties": false,
@@ -1041,7 +1240,26 @@
                         "type": "string"
                     },
                     "other_metadata": {
+                        "additionalProperties": {
+                            "oneOf": [
+                                {
+                                    "maxLength": 1024,
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "number"
+                                },
+                                {
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "maxItems": 50,
+                                    "type": "array"
+                                }
+                            ]
+                        },
                         "description": "Other source account's generic metadata",
+                        "maxProperties": 10,
                         "properties": {},
                         "title": "Source account other metadata",
                         "type": "object"
@@ -1218,11 +1436,15 @@
         "url": "https://developers.onna.com"
     },
     "info": {
+        "contact": {
+            "email": "onna@support.com",
+            "name": "Onna Support"
+        },
         "description": "REST API for Onna Platform\n\n# Introduction\nThe Canonical REST API is the central hub for access and updating data related to Onna.\n\nIt is built on top of the [Guillotina](https://guillotina.readthedocs.io/en/latest/) framework, which is a REST Resource API.",
         "title": "Onna",
         "version": "1.0.0"
     },
-    "openapi": "3.0.3",
+    "openapi": "3.0.2",
     "paths": {
         "/{account_id}/@frontsearch": {
             "post": {
@@ -1270,9 +1492,9 @@
                         ]
                     }
                 ],
-                "summary": "",
+                "summary": "Searches for discussions between users",
                 "tags": [
-                    ""
+                    "frontsearch"
                 ]
             }
         },
@@ -1334,7 +1556,7 @@
                 ],
                 "summary": "",
                 "tags": [
-                    ""
+                    "groups"
                 ]
             }
         },
@@ -1391,499 +1613,7 @@
                 ],
                 "summary": "",
                 "tags": [
-                    ""
-                ]
-            }
-        },
-        "/{account_id}/workspaces": {
-            "post": {
-                "description": "permission: guillotina.AddContent",
-                "parameters": [
-                    {
-                        "description": "Account ID",
-                        "in": "path",
-                        "name": "account_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/AddableResource"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ResourceFolder"
-                                }
-                            }
-                        },
-                        "description": "Resource data"
-                    },
-                    "401": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": [
-                            "permission:guillotina.AddContent"
-                        ]
-                    }
-                ],
-                "summary": "Add new resouce inside this container resource",
-                "tags": [
-                    ""
-                ]
-            }
-        },
-        "/{account_id}/workspaces/{workspace_name}/@sharing": {
-            "get": {
-                "description": "permission: guillotina.SeePermissions",
-                "parameters": [
-                    {
-                        "description": "Account ID",
-                        "in": "path",
-                        "name": "account_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Workspace",
-                        "in": "path",
-                        "name": "workspace_name",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ResourceACL"
-                                }
-                            }
-                        },
-                        "description": "All the sharing defined on this resource"
-                    },
-                    "401": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": [
-                            "permission:guillotina.SeePermissions"
-                        ]
-                    }
-                ],
-                "summary": "Get sharing settings for this resource",
-                "tags": [
-                    ""
-                ]
-            },
-            "post": {
-                "description": "permission: guillotina.ChangePermissions",
-                "parameters": [
-                    {
-                        "description": "Account ID",
-                        "in": "path",
-                        "name": "account_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Workspace",
-                        "in": "path",
-                        "name": "workspace_name",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Permissions"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successfully changed permission"
-                    },
-                    "401": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": [
-                            "permission:guillotina.ChangePermissions"
-                        ]
-                    }
-                ],
-                "summary": "Change permissions for a resource",
-                "tags": [
-                    ""
-                ]
-            }
-        },
-        "/{account_id}/workspaces/{workspace_name}/{datasource_name}": {
-            "get": {
-                "description": "permission: guillotina.ViewContent",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "include",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "in": "query",
-                        "name": "omit",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Account ID",
-                        "in": "path",
-                        "name": "account_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Workspace",
-                        "in": "path",
-                        "name": "workspace_name",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Datasource",
-                        "in": "path",
-                        "name": "datasource_name",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "allOf": [
-                                        {
-                                            "$ref": "#/components/schemas/ResourceFolder"
-                                        },
-                                        {
-                                            "properties": {
-                                                "guillotina.behaviors.dublincore.IDublinCore": {
-                                                    "properties": {
-                                                        "contributors": {
-                                                            "description": "The unqualified Dublin Core 'Contributor' element values",
-                                                            "items": {
-                                                                "type": "string"
-                                                            },
-                                                            "maxItems": 10000,
-                                                            "title": "Contributors",
-                                                            "type": "array"
-                                                        },
-                                                        "creation_date": {
-                                                            "description": "The date and time that an object is created. \nThis is normally set automatically.",
-                                                            "format": "date-time",
-                                                            "title": "Added to Onna",
-                                                            "type": "string"
-                                                        },
-                                                        "creators": {
-                                                            "description": "The unqualified Dublin Core 'Creator' element values",
-                                                            "items": {
-                                                                "type": "string"
-                                                            },
-                                                            "maxItems": 1000,
-                                                            "title": "Creators",
-                                                            "type": "array"
-                                                        },
-                                                        "description": {
-                                                            "description": "The first unqualified Dublin Core 'Description' element value.",
-                                                            "title": "Description",
-                                                            "type": "string"
-                                                        },
-                                                        "effective_date": {
-                                                            "description": "The date and time that an object should be published. ",
-                                                            "format": "date-time",
-                                                            "title": "Effective date",
-                                                            "type": "string"
-                                                        },
-                                                        "expiration_date": {
-                                                            "description": "The date and time that the object should become unpublished.",
-                                                            "format": "date-time",
-                                                            "title": "Expiration date",
-                                                            "type": "string"
-                                                        },
-                                                        "modification_date": {
-                                                            "description": "The date and time that the object was last modified in a\nmeaningful way.",
-                                                            "format": "date-time",
-                                                            "title": "Last update",
-                                                            "type": "string"
-                                                        },
-                                                        "publisher": {
-                                                            "description": "The first unqualified Dublin Core 'Publisher' element value.",
-                                                            "title": "Publisher",
-                                                            "type": "string"
-                                                        },
-                                                        "tags": {
-                                                            "description": "The unqualified Dublin Core 'Tags' element values",
-                                                            "items": {
-                                                                "type": "string"
-                                                            },
-                                                            "maxItems": 10000,
-                                                            "title": "Tags",
-                                                            "type": "array"
-                                                        },
-                                                        "title": {
-                                                            "description": "The first unqualified Dublin Core 'Title' element value.",
-                                                            "title": "Title",
-                                                            "type": "string"
-                                                        }
-                                                    },
-                                                    "type": "object"
-                                                },
-                                                "onna.canonical.behaviors.following.IFollowing": {
-                                                    "properties": {
-                                                        "favorite": {
-                                                            "title": "Current user has it favorited",
-                                                            "type": "boolean"
-                                                        },
-                                                        "favorites": {
-                                                            "items": {
-                                                                "title": "follower",
-                                                                "type": "string"
-                                                            },
-                                                            "maxItems": 10000,
-                                                            "title": "favorites",
-                                                            "type": "array"
-                                                        }
-                                                    },
-                                                    "type": "object"
-                                                }
-                                            },
-                                            "type": "object"
-                                        }
-                                    ]
-                                }
-                            }
-                        },
-                        "description": "Resource data"
-                    },
-                    "401": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": [
-                            "permission:guillotina.ViewContent"
-                        ]
-                    }
-                ],
-                "summary": "Retrieves serialization of resource",
-                "tags": [
-                    ""
-                ]
-            }
-        },
-        "/{account_id}/workspaces/{workspace_name}/{datasource_name}/@sharing": {
-            "get": {
-                "description": "permission: guillotina.SeePermissions",
-                "parameters": [
-                    {
-                        "description": "Account ID",
-                        "in": "path",
-                        "name": "account_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Workspace",
-                        "in": "path",
-                        "name": "workspace_name",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Datasource",
-                        "in": "path",
-                        "name": "datasource_name",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ResourceACL"
-                                }
-                            }
-                        },
-                        "description": "All the sharing defined on this resource"
-                    },
-                    "401": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": [
-                            "permission:guillotina.SeePermissions"
-                        ]
-                    }
-                ],
-                "summary": "Get sharing settings for this resource",
-                "tags": [
-                    ""
-                ]
-            },
-            "post": {
-                "description": "permission: guillotina.ChangePermissions",
-                "parameters": [
-                    {
-                        "description": "Account ID",
-                        "in": "path",
-                        "name": "account_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Workspace",
-                        "in": "path",
-                        "name": "workspace_name",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Datasource",
-                        "in": "path",
-                        "name": "datasource_name",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Permissions"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successfully changed permission"
-                    },
-                    "401": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": [
-                            "permission:guillotina.ChangePermissions"
-                        ]
-                    }
-                ],
-                "summary": "Change permissions for a resource",
-                "tags": [
-                    ""
+                    "groups/{group_id}"
                 ]
             }
         },
@@ -2211,29 +1941,6 @@
                                                             "properties": {},
                                                             "type": "object"
                                                         },
-                                                        "labels": {
-                                                            "items": {
-                                                                "properties": {
-                                                                    "confirmed": {
-                                                                        "type": "boolean"
-                                                                    },
-                                                                    "label": {
-                                                                        "type": "string"
-                                                                    },
-                                                                    "proba": {
-                                                                        "type": "number"
-                                                                    },
-                                                                    "type": {
-                                                                        "type": "string"
-                                                                    }
-                                                                },
-                                                                "title": "label",
-                                                                "type": "object"
-                                                            },
-                                                            "maxItems": 500,
-                                                            "title": "Labels",
-                                                            "type": "array"
-                                                        },
                                                         "language": {
                                                             "title": "Detected language",
                                                             "type": "string"
@@ -2431,6 +2138,9 @@
                                                             "title": "Exception",
                                                             "type": "string"
                                                         },
+                                                        "origin_folder_path": {
+                                                            "type": "string"
+                                                        },
                                                         "origin_has_deletions": {
                                                             "title": "The resource includes deletions",
                                                             "type": "boolean"
@@ -2552,9 +2262,7 @@
                     }
                 ],
                 "summary": "Retrieves serialization of resource",
-                "tags": [
-                    ""
-                ]
+                "tags": []
             }
         },
         "/{account_id}/{username}/@enabledDSTypes": {
@@ -2611,7 +2319,7 @@
                 ],
                 "summary": "",
                 "tags": [
-                    ""
+                    "enabledDSTypes"
                 ]
             }
         },
@@ -2667,9 +2375,9 @@
                         ]
                     }
                 ],
-                "summary": "",
+                "summary": "Gets user's exports",
                 "tags": [
-                    ""
+                    "Content"
                 ]
             }
         },
@@ -2727,7 +2435,7 @@
                 ],
                 "summary": "",
                 "tags": [
-                    ""
+                    "rules"
                 ]
             }
         },
@@ -2794,7 +2502,7 @@
                 ],
                 "summary": "Get sharing settings for this resource",
                 "tags": [
-                    ""
+                    "sharing"
                 ]
             },
             "post": {
@@ -2862,7 +2570,7 @@
                 ],
                 "summary": "Change permissions for a resource",
                 "tags": [
-                    ""
+                    "Auth"
                 ]
             }
         },
@@ -2938,7 +2646,7 @@
                 ],
                 "summary": "Get sharing settings for this resource",
                 "tags": [
-                    ""
+                    "sharing"
                 ]
             },
             "post": {
@@ -3015,7 +2723,7 @@
                 ],
                 "summary": "Change permissions for a resource",
                 "tags": [
-                    ""
+                    "Auth"
                 ]
             }
         },
@@ -3343,29 +3051,6 @@
                                                             "properties": {},
                                                             "type": "object"
                                                         },
-                                                        "labels": {
-                                                            "items": {
-                                                                "properties": {
-                                                                    "confirmed": {
-                                                                        "type": "boolean"
-                                                                    },
-                                                                    "label": {
-                                                                        "type": "string"
-                                                                    },
-                                                                    "proba": {
-                                                                        "type": "number"
-                                                                    },
-                                                                    "type": {
-                                                                        "type": "string"
-                                                                    }
-                                                                },
-                                                                "title": "label",
-                                                                "type": "object"
-                                                            },
-                                                            "maxItems": 500,
-                                                            "title": "Labels",
-                                                            "type": "array"
-                                                        },
                                                         "language": {
                                                             "title": "Detected language",
                                                             "type": "string"
@@ -3563,6 +3248,9 @@
                                                             "title": "Exception",
                                                             "type": "string"
                                                         },
+                                                        "origin_folder_path": {
+                                                            "type": "string"
+                                                        },
                                                         "origin_has_deletions": {
                                                             "title": "The resource includes deletions",
                                                             "type": "boolean"
@@ -3684,9 +3372,7 @@
                     }
                 ],
                 "summary": "Retrieves serialization of resource",
-                "tags": [
-                    ""
-                ]
+                "tags": []
             }
         }
     },
@@ -3698,6 +3384,24 @@
     "servers": [
         {
             "url": "https://enterprise.onna.com/api"
+        }
+    ],
+    "tags": [
+        {
+            "description": "Manage User And Groups",
+            "name": "Account"
+        },
+        {
+            "description": "Manage And Share Workspaces",
+            "name": "Workspace"
+        },
+        {
+            "description": "List, Search And Export Content",
+            "name": "Content"
+        },
+        {
+            "description": "User And Group Authentication",
+            "name": "Auth"
         }
     ]
 }
