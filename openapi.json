@@ -66,6 +66,129 @@
                 "title": "Addons response data",
                 "type": "object"
             },
+            "AdvancedQuery": {
+                "additionalProperties": false,
+                "properties": {
+                    "and": {
+                        "items": {
+                            "$ref": "#/components/schemas/AdvancedQueryTerm"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "and"
+                ],
+                "title": "Query",
+                "type": "object"
+            },
+            "AdvancedQueryTerm": {
+                "oneOf": [
+                    {
+                        "additionalProperties": {
+                            "items": {
+                                "oneOf": [
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "var": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    {
+                                        "oneOf": [
+                                            {
+                                                "type": "string"
+                                            },
+                                            {
+                                                "type": "number"
+                                            },
+                                            {
+                                                "type": "boolean"
+                                            },
+                                            {
+                                                "items": {
+                                                    "oneOf": [
+                                                        {
+                                                            "type": "string"
+                                                        },
+                                                        {
+                                                            "type": "number"
+                                                        },
+                                                        {
+                                                            "type": "boolean"
+                                                        }
+                                                    ]
+                                                },
+                                                "type": "array"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            "maxItems": 2,
+                            "minItems": 2,
+                            "type": "array"
+                        },
+                        "example": {
+                            "text_contains": [
+                                {
+                                    "var": "title"
+                                },
+                                "foobar"
+                            ]
+                        },
+                        "maxProperties": 1,
+                        "minProperties": 1,
+                        "properties": {
+                            "exists": {
+                                "items": {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "var": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "maxItems": 1,
+                                "minItems": 1,
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "additionalProperties": false,
+                        "maxProperties": 1,
+                        "minProperties": 1,
+                        "properties": {
+                            "and": {
+                                "items": {
+                                    "$ref": "#/components/schemas/AdvancedQueryTerm"
+                                },
+                                "type": "array"
+                            },
+                            "and_not": {
+                                "items": {
+                                    "$ref": "#/components/schemas/AdvancedQueryTerm"
+                                },
+                                "type": "array"
+                            },
+                            "or": {
+                                "items": {
+                                    "$ref": "#/components/schemas/AdvancedQueryTerm"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ],
+                "title": "Query term"
+            },
             "AllPermissions": {
                 "items": {
                     "$ref": "#/components/schemas/Permissions",
@@ -143,8 +266,7 @@
                         "type": "object"
                     },
                     "query": {
-                        "$ref": "#/components/schemas/Query",
-                        "type": "object"
+                        "$ref": "#/components/schemas/Query"
                     }
                 },
                 "required": [
@@ -391,8 +513,7 @@
                     },
                     "updates": {
                         "items": {
-                            "$ref": "#/components/schemas/DataAPIResultItem",
-                            "type": "object"
+                            "$ref": "#/components/schemas/DataAPIResultItem"
                         },
                         "type": "array"
                     }
@@ -449,6 +570,149 @@
                 "additionalProperties": false,
                 "properties": {},
                 "title": "Notify others that you are typing",
+                "type": "object"
+            },
+            "IdentitiesSearchQuery": {
+                "oneOf": [
+                    {
+                        "additionalProperties": false,
+                        "properties": {
+                            "cursor": {
+                                "description": "Cursor to get more results pages",
+                                "minLength": 1,
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "additionalProperties": false,
+                        "properties": {
+                            "filters": {
+                                "additionalProperties": false,
+                                "minProperties": 1,
+                                "properties": {
+                                    "email_domain": {
+                                        "description": "Email domains to filter with",
+                                        "example": [
+                                            "onna.com",
+                                            "amazon.es"
+                                        ],
+                                        "items": {
+                                            "maxLength": 200,
+                                            "minLength": 1,
+                                            "type": "string"
+                                        },
+                                        "maxItems": 1000,
+                                        "minItems": 1,
+                                        "type": "array"
+                                    },
+                                    "type_name": {
+                                        "description": "Type of datasource to filter with",
+                                        "example": [
+                                            "SlackEDatasource"
+                                        ],
+                                        "items": {
+                                            "maxLength": 50,
+                                            "minLength": 1,
+                                            "type": "string"
+                                        },
+                                        "maxItems": 100,
+                                        "minItems": 1,
+                                        "type": "array"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "last_modified": {
+                                "additionalProperties": false,
+                                "example": {
+                                    "from_date": "2019-12-01",
+                                    "to_date": "2020-04-01"
+                                },
+                                "minProperties": 1,
+                                "properties": {
+                                    "from_date": {
+                                        "format": "date",
+                                        "minLength": 1,
+                                        "type": "string"
+                                    },
+                                    "to_date": {
+                                        "format": "date",
+                                        "minLength": 1,
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "query": {
+                                "description": "Query string to match against identity name and email",
+                                "example": "pepito",
+                                "maxLength": 200,
+                                "minLength": 1,
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "IdentitiesSearchResponse": {
+                "properties": {
+                    "cursor": {
+                        "default": null,
+                        "type": "string"
+                    },
+                    "items": {
+                        "items": {
+                            "description": "Identity summary",
+                            "properties": {
+                                "source_accounts": {
+                                    "items": {
+                                        "description": "Mapped Source account summary",
+                                        "properties": {
+                                            "datasource_type_name": {
+                                                "type": "string"
+                                            },
+                                            "display_name": {
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "full_name": {
+                                                "type": "string"
+                                            },
+                                            "origin_id": {
+                                                "type": "string"
+                                            },
+                                            "signature": {
+                                                "type": "string"
+                                            },
+                                            "uuid": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "title": {
+                                    "type": "string"
+                                },
+                                "uuid": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "cursor",
+                    "items"
+                ],
                 "type": "object"
             },
             "LegalHold": {
@@ -605,6 +869,7 @@
                             "enum": [
                                 "onna.GetUserActivity",
                                 "onna.permission:ManageLegalHolds",
+                                "onna.permission:ManageLegalHoldWorkspaces",
                                 "onna.CreateAccountFields",
                                 "onna.permission:ManageIdentities"
                             ],
@@ -649,10 +914,9 @@
                 "type": "object"
             },
             "Query": {
-                "additionalProperties": false,
                 "properties": {
                     "advanced": {
-                        "type": "object"
+                        "$ref": "#/components/schemas/AdvancedQuery"
                     },
                     "aggs_includes": {
                         "items": {
@@ -671,8 +935,9 @@
                     },
                     "facets": {
                         "items": {
-                            "type": "object"
+                            "$ref": "#/components/schemas/QueryFacet"
                         },
+                        "maxItems": 100,
                         "type": "array"
                     },
                     "filters": {
@@ -702,11 +967,22 @@
                         "default": true,
                         "type": "boolean"
                     },
+                    "highlight": {
+                        "default": false,
+                        "type": "boolean"
+                    },
                     "includes": {
-                        "items": {
-                            "type": "string"
-                        },
-                        "type": "array"
+                        "oneOf": [
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ]
                     },
                     "paginate": {
                         "type": "boolean"
@@ -731,6 +1007,9 @@
                         "type": "object"
                     },
                     "search_after": {
+                        "items": {
+                            "type": "string"
+                        },
                         "type": "array"
                     },
                     "size": {
@@ -751,6 +1030,10 @@
                             "direction"
                         ],
                         "type": "object"
+                    },
+                    "suggest": {
+                        "default": false,
+                        "type": "boolean"
                     },
                     "terms": {
                         "items": {
@@ -773,6 +1056,65 @@
                 },
                 "title": "Query payload",
                 "type": "object"
+            },
+            "QueryFacet": {
+                "additionalProperties": false,
+                "properties": {
+                    "facetSelected": {
+                        "$ref": "#/components/schemas/QueryFacetValue"
+                    },
+                    "facetType": {
+                        "type": "string"
+                    },
+                    "facetsSelected": {
+                        "$ref": "#/components/schemas/QueryFacetValue"
+                    }
+                },
+                "title": "Query Facet",
+                "type": "object"
+            },
+            "QueryFacetValue": {
+                "items": {
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "additionalProperties": false,
+                            "properties": {
+                                "from": {
+                                    "type": "string"
+                                },
+                                "to": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        {
+                            "additionalProperties": false,
+                            "properties": {
+                                "max": {
+                                    "type": "number"
+                                },
+                                "min": {
+                                    "type": "number"
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    ]
+                },
+                "type": "array"
             },
             "RealIdentity": {
                 "additionalProperties": false,
@@ -1041,7 +1383,26 @@
                         "type": "string"
                     },
                     "other_metadata": {
+                        "additionalProperties": {
+                            "oneOf": [
+                                {
+                                    "maxLength": 1024,
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "number"
+                                },
+                                {
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "maxItems": 50,
+                                    "type": "array"
+                                }
+                            ]
+                        },
                         "description": "Other source account's generic metadata",
+                        "maxProperties": 10,
                         "properties": {},
                         "title": "Source account other metadata",
                         "type": "object"
@@ -1218,11 +1579,16 @@
         "url": "https://developers.onna.com"
     },
     "info": {
-        "description": "REST API for Onna Platform\n\n# Introduction\nThe Canonical REST API is the central hub for access and updating data related to Onna.\n\nIt is built on top of the [Guillotina](https://guillotina.readthedocs.io/en/latest/) framework, which is a REST Resource API.",
-        "title": "Onna",
+        "contact": {
+            "email": "onna@support.com",
+            "name": "Onna Support",
+            "url": "https://support.onna.com"
+        },
+        "description": "REST API for Onna\n\n# Introduction\nThe API is the central hub for access and updating data related to Onna.\n",
+        "title": "Onna API",
         "version": "1.0.0"
     },
-    "openapi": "3.0.3",
+    "openapi": "3.0.2",
     "paths": {
         "/{account_id}/@frontsearch": {
             "post": {
@@ -1270,9 +1636,9 @@
                         ]
                     }
                 ],
-                "summary": "",
+                "summary": "Searches for discussions between users",
                 "tags": [
-                    ""
+                    "Search"
                 ]
             }
         },
@@ -1334,7 +1700,7 @@
                 ],
                 "summary": "",
                 "tags": [
-                    ""
+                    "Account"
                 ]
             }
         },
@@ -1391,7 +1757,7 @@
                 ],
                 "summary": "",
                 "tags": [
-                    ""
+                    "Account"
                 ]
             }
         },
@@ -1450,7 +1816,8 @@
                 ],
                 "summary": "Add new resouce inside this container resource",
                 "tags": [
-                    ""
+                    "Workspace",
+                    "Content"
                 ]
             }
         },
@@ -1508,7 +1875,7 @@
                 ],
                 "summary": "Get sharing settings for this resource",
                 "tags": [
-                    ""
+                    "Auth"
                 ]
             },
             "post": {
@@ -1567,7 +1934,7 @@
                 ],
                 "summary": "Change permissions for a resource",
                 "tags": [
-                    ""
+                    "Auth"
                 ]
             }
         },
@@ -1748,7 +2115,8 @@
                 ],
                 "summary": "Retrieves serialization of resource",
                 "tags": [
-                    ""
+                    "Workspace",
+                    "Content"
                 ]
             }
         },
@@ -1815,7 +2183,7 @@
                 ],
                 "summary": "Get sharing settings for this resource",
                 "tags": [
-                    ""
+                    "Auth"
                 ]
             },
             "post": {
@@ -1883,7 +2251,7 @@
                 ],
                 "summary": "Change permissions for a resource",
                 "tags": [
-                    ""
+                    "Auth"
                 ]
             }
         },
@@ -2211,29 +2579,6 @@
                                                             "properties": {},
                                                             "type": "object"
                                                         },
-                                                        "labels": {
-                                                            "items": {
-                                                                "properties": {
-                                                                    "confirmed": {
-                                                                        "type": "boolean"
-                                                                    },
-                                                                    "label": {
-                                                                        "type": "string"
-                                                                    },
-                                                                    "proba": {
-                                                                        "type": "number"
-                                                                    },
-                                                                    "type": {
-                                                                        "type": "string"
-                                                                    }
-                                                                },
-                                                                "title": "label",
-                                                                "type": "object"
-                                                            },
-                                                            "maxItems": 500,
-                                                            "title": "Labels",
-                                                            "type": "array"
-                                                        },
                                                         "language": {
                                                             "title": "Detected language",
                                                             "type": "string"
@@ -2431,6 +2776,9 @@
                                                             "title": "Exception",
                                                             "type": "string"
                                                         },
+                                                        "origin_folder_path": {
+                                                            "type": "string"
+                                                        },
                                                         "origin_has_deletions": {
                                                             "title": "The resource includes deletions",
                                                             "type": "boolean"
@@ -2498,7 +2846,8 @@
                                                                 "conversation/hangouts",
                                                                 "conversation/twitter",
                                                                 "post/workplace",
-                                                                "post/twitter"
+                                                                "post/twitter",
+                                                                "channel/slack"
                                                             ],
                                                             "title": "Type of resource",
                                                             "type": "string"
@@ -2553,7 +2902,8 @@
                 ],
                 "summary": "Retrieves serialization of resource",
                 "tags": [
-                    ""
+                    "Workspace",
+                    "Content"
                 ]
             }
         },
@@ -2611,7 +2961,7 @@
                 ],
                 "summary": "",
                 "tags": [
-                    ""
+                    "Content"
                 ]
             }
         },
@@ -2667,9 +3017,9 @@
                         ]
                     }
                 ],
-                "summary": "",
+                "summary": "Gets user's exports",
                 "tags": [
-                    ""
+                    "Content"
                 ]
             }
         },
@@ -2727,7 +3077,7 @@
                 ],
                 "summary": "",
                 "tags": [
-                    ""
+                    "Content"
                 ]
             }
         },
@@ -2794,7 +3144,7 @@
                 ],
                 "summary": "Get sharing settings for this resource",
                 "tags": [
-                    ""
+                    "Auth"
                 ]
             },
             "post": {
@@ -2862,7 +3212,7 @@
                 ],
                 "summary": "Change permissions for a resource",
                 "tags": [
-                    ""
+                    "Auth"
                 ]
             }
         },
@@ -2938,7 +3288,7 @@
                 ],
                 "summary": "Get sharing settings for this resource",
                 "tags": [
-                    ""
+                    "Auth"
                 ]
             },
             "post": {
@@ -3015,7 +3365,7 @@
                 ],
                 "summary": "Change permissions for a resource",
                 "tags": [
-                    ""
+                    "Auth"
                 ]
             }
         },
@@ -3343,29 +3693,6 @@
                                                             "properties": {},
                                                             "type": "object"
                                                         },
-                                                        "labels": {
-                                                            "items": {
-                                                                "properties": {
-                                                                    "confirmed": {
-                                                                        "type": "boolean"
-                                                                    },
-                                                                    "label": {
-                                                                        "type": "string"
-                                                                    },
-                                                                    "proba": {
-                                                                        "type": "number"
-                                                                    },
-                                                                    "type": {
-                                                                        "type": "string"
-                                                                    }
-                                                                },
-                                                                "title": "label",
-                                                                "type": "object"
-                                                            },
-                                                            "maxItems": 500,
-                                                            "title": "Labels",
-                                                            "type": "array"
-                                                        },
                                                         "language": {
                                                             "title": "Detected language",
                                                             "type": "string"
@@ -3563,6 +3890,9 @@
                                                             "title": "Exception",
                                                             "type": "string"
                                                         },
+                                                        "origin_folder_path": {
+                                                            "type": "string"
+                                                        },
                                                         "origin_has_deletions": {
                                                             "title": "The resource includes deletions",
                                                             "type": "boolean"
@@ -3630,7 +3960,8 @@
                                                                 "conversation/hangouts",
                                                                 "conversation/twitter",
                                                                 "post/workplace",
-                                                                "post/twitter"
+                                                                "post/twitter",
+                                                                "channel/slack"
                                                             ],
                                                             "title": "Type of resource",
                                                             "type": "string"
@@ -3685,7 +4016,8 @@
                 ],
                 "summary": "Retrieves serialization of resource",
                 "tags": [
-                    ""
+                    "Workspace",
+                    "Content"
                 ]
             }
         }
@@ -3698,6 +4030,28 @@
     "servers": [
         {
             "url": "https://enterprise.onna.com/api"
+        }
+    ],
+    "tags": [
+        {
+            "description": "Manage User And Groups",
+            "name": "Account"
+        },
+        {
+            "description": "User And Group Authentication",
+            "name": "Auth"
+        },
+        {
+            "description": "List, Search And Export Content",
+            "name": "Content"
+        },
+        {
+            "description": "Search and related operations",
+            "name": "Search"
+        },
+        {
+            "description": "Manage And Share Workspaces",
+            "name": "Workspace"
         }
     ]
 }
