@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.2]
+
+### Added
+
+- update for better tags
+
 ## [1.0.1]
 
 ### Added
