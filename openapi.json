@@ -576,6 +576,12 @@
                 "oneOf": [
                     {
                         "additionalProperties": false,
+                        "description": "To iterate all identities",
+                        "properties": {},
+                        "type": "object"
+                    },
+                    {
+                        "additionalProperties": false,
                         "properties": {
                             "cursor": {
                                 "description": "Cursor to get more results pages",
@@ -583,10 +589,14 @@
                                 "type": "string"
                             }
                         },
+                        "required": [
+                            "cursor"
+                        ],
                         "type": "object"
                     },
                     {
                         "additionalProperties": false,
+                        "minProperties": 1,
                         "properties": {
                             "filters": {
                                 "additionalProperties": false,
@@ -624,27 +634,6 @@
                                 },
                                 "type": "object"
                             },
-                            "last_modified": {
-                                "additionalProperties": false,
-                                "example": {
-                                    "from_date": "2019-12-01",
-                                    "to_date": "2020-04-01"
-                                },
-                                "minProperties": 1,
-                                "properties": {
-                                    "from_date": {
-                                        "format": "date",
-                                        "minLength": 1,
-                                        "type": "string"
-                                    },
-                                    "to_date": {
-                                        "format": "date",
-                                        "minLength": 1,
-                                        "type": "string"
-                                    }
-                                },
-                                "type": "object"
-                            },
                             "query": {
                                 "description": "Query string to match against identity name and email",
                                 "example": "pepito",
@@ -661,6 +650,7 @@
                 "properties": {
                     "cursor": {
                         "default": null,
+                        "description": "Use to get more results",
                         "type": "string"
                     },
                     "items": {
@@ -707,6 +697,10 @@
                             "type": "object"
                         },
                         "type": "array"
+                    },
+                    "matching_source_accounts": {
+                        "description": "Number of accounts matching the query.",
+                        "type": "integer"
                     }
                 },
                 "required": [
@@ -1644,7 +1638,7 @@
         },
         "/{account_id}/@groups": {
             "get": {
-                "description": "permission: guillotina.AccessContent",
+                "description": "Retrieves a list of all types of groups including `people groups` as well as `workspaces` that a user is part of.",
                 "parameters": [
                     {
                         "in": "query",
@@ -1698,7 +1692,7 @@
                         ]
                     }
                 ],
-                "summary": "",
+                "summary": "Gets a list of all groups in the current container.",
                 "tags": [
                     "Account"
                 ]
@@ -1706,7 +1700,7 @@
         },
         "/{account_id}/@groups/{group_id}": {
             "get": {
-                "description": "permission: guillotina.AccessContent",
+                "description": "Retrieves a list of all types of groups including `people groups` as well as `workspaces` that a user is part of.",
                 "parameters": [
                     {
                         "in": "path",
@@ -1755,7 +1749,7 @@
                         ]
                     }
                 ],
-                "summary": "",
+                "summary": "Gets a list of all groups in the current container.",
                 "tags": [
                     "Account"
                 ]
@@ -2909,7 +2903,7 @@
         },
         "/{account_id}/{username}/@enabledDSTypes": {
             "get": {
-                "description": "permission: guillotina.AccessContent",
+                "description": "Retrieves a list of Datasource types enabled for this user",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -2959,7 +2953,7 @@
                         ]
                     }
                 ],
-                "summary": "",
+                "summary": "Gets a list of enabled Datasource types",
                 "tags": [
                     "Content"
                 ]
@@ -2967,7 +2961,7 @@
         },
         "/{account_id}/{username}/@exports": {
             "get": {
-                "description": "permission: guillotina.ViewContent",
+                "description": "Retrieves all exports belonging to a user, including expired.",
                 "parameters": [
                     {
                         "description": "Account ID",

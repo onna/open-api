@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.3]
+
+### Added
+
+- update for summary and description
+
 ## [1.0.2]
 
 ### Added
