@@ -2,7 +2,7 @@
 
 ## [1.0.3]
 
-#### Added
+### Added
 
 - Link to "auth" docs on developers.onna.com
 - More endpoint descriptions
