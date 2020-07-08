@@ -1,10 +1,17 @@
 # Changelog
 
+## [1.0.3]
+
+#### Added
+
+- Link to "auth" docs on developers.onna.com
+- More endpoint descriptions
+
 ## [1.0.2]
 
-### Added
+### Improved
 
-- update for better tags
+- Update for better tags
 
 ## [1.0.1]
 
