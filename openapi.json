@@ -566,18 +566,43 @@
                 },
                 "type": "object"
             },
+            "DatasourceType": {
+                "additionalProperties": false,
+                "properties": {
+                    "config_type": {
+                        "type": "string"
+                    },
+                    "type_name": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "type_name"
+                ],
+                "type": "object"
+            },
+            "DatasourceTypes": {
+                "items": {
+                    "$ref": "#/components/schemas/DatasourceType"
+                },
+                "type": "array"
+            },
             "EmptyWSBody": {
                 "additionalProperties": false,
                 "properties": {},
                 "title": "Notify others that you are typing",
                 "type": "object"
             },
-            "IdentitiesSearchQuery": {
+            "IdentitiesDiscoveryQuery": {
                 "oneOf": [
                     {
                         "additionalProperties": false,
-                        "description": "To iterate all identities",
-                        "properties": {},
+                        "description": "To match on all source accounts and get their mapped identities",
+                        "properties": {
+                            "size": {
+                                "$ref": "#/components/schemas/IdentitiesDiscovery_size"
+                            }
+                        },
                         "type": "object"
                     },
                     {
@@ -596,57 +621,56 @@
                     },
                     {
                         "additionalProperties": false,
-                        "minProperties": 1,
                         "properties": {
                             "filters": {
-                                "additionalProperties": false,
-                                "minProperties": 1,
-                                "properties": {
-                                    "email_domain": {
-                                        "description": "Email domains to filter with",
-                                        "example": [
-                                            "onna.com",
-                                            "amazon.es"
-                                        ],
-                                        "items": {
-                                            "maxLength": 200,
-                                            "minLength": 1,
-                                            "type": "string"
-                                        },
-                                        "maxItems": 1000,
-                                        "minItems": 1,
-                                        "type": "array"
-                                    },
-                                    "type_name": {
-                                        "description": "Type of datasource to filter with",
-                                        "example": [
-                                            "SlackEDatasource"
-                                        ],
-                                        "items": {
-                                            "maxLength": 50,
-                                            "minLength": 1,
-                                            "type": "string"
-                                        },
-                                        "maxItems": 100,
-                                        "minItems": 1,
-                                        "type": "array"
-                                    }
-                                },
-                                "type": "object"
+                                "$ref": "#/components/schemas/IdentitiesDiscovery_filters"
                             },
-                            "query": {
-                                "description": "Query string to match against identity name and email",
-                                "example": "pepito",
-                                "maxLength": 200,
-                                "minLength": 1,
-                                "type": "string"
+                            "size": {
+                                "$ref": "#/components/schemas/IdentitiesDiscovery_size"
                             }
                         },
+                        "required": [
+                            "filters"
+                        ],
+                        "type": "object"
+                    },
+                    {
+                        "additionalProperties": false,
+                        "properties": {
+                            "query": {
+                                "$ref": "#/components/schemas/IdentitiesDiscovery_query"
+                            },
+                            "size": {
+                                "$ref": "#/components/schemas/IdentitiesDiscovery_size"
+                            }
+                        },
+                        "required": [
+                            "query"
+                        ],
+                        "type": "object"
+                    },
+                    {
+                        "additionalProperties": false,
+                        "properties": {
+                            "filters": {
+                                "$ref": "#/components/schemas/IdentitiesDiscovery_filters"
+                            },
+                            "query": {
+                                "$ref": "#/components/schemas/IdentitiesDiscovery_query"
+                            },
+                            "size": {
+                                "$ref": "#/components/schemas/IdentitiesDiscovery_size"
+                            }
+                        },
+                        "required": [
+                            "filters",
+                            "query"
+                        ],
                         "type": "object"
                     }
                 ]
             },
-            "IdentitiesSearchResponse": {
+            "IdentitiesDiscoveryResponse": {
                 "properties": {
                     "cursor": {
                         "default": null,
@@ -705,9 +729,233 @@
                 },
                 "required": [
                     "cursor",
-                    "items"
+                    "items",
+                    "matching_source_accounts"
                 ],
                 "type": "object"
+            },
+            "IdentitiesDiscovery_filters": {
+                "additionalProperties": false,
+                "properties": {
+                    "config_type": {
+                        "description": "Match only source accounts from the specified list of config_type",
+                        "example": [
+                            "eslack"
+                        ],
+                        "items": {
+                            "maxLength": 50,
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        "maxItems": 100,
+                        "minItems": 1,
+                        "type": "array"
+                    },
+                    "email_domain": {
+                        "description": "Match only source account with specified email domains",
+                        "example": [
+                            "onna.com",
+                            "amazon.es"
+                        ],
+                        "items": {
+                            "maxLength": 200,
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        "maxItems": 1000,
+                        "minItems": 1,
+                        "type": "array"
+                    },
+                    "type_name": {
+                        "description": "Match only source accounts from the specified list of type_name",
+                        "example": [
+                            "SlackEDatasource"
+                        ],
+                        "items": {
+                            "maxLength": 50,
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        "maxItems": 100,
+                        "minItems": 1,
+                        "type": "array"
+                    }
+                },
+                "title": "Filters applied to source accounts query",
+                "type": "object"
+            },
+            "IdentitiesDiscovery_metadataField": {
+                "description": "Field from the source account metadata to query on",
+                "enum": [
+                    "email",
+                    "full_name",
+                    "display_name"
+                ],
+                "type": "string"
+            },
+            "IdentitiesDiscovery_query": {
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/IdentitiesDiscovery_queryString"
+                    },
+                    {
+                        "additionalProperties": false,
+                        "description": "To search on a specific metadata field",
+                        "example": {
+                            "field": "full_name",
+                            "query": "pepito"
+                        },
+                        "properties": {
+                            "field": {
+                                "$ref": "#/components/schemas/IdentitiesDiscovery_metadataField"
+                            },
+                            "query": {
+                                "$ref": "#/components/schemas/IdentitiesDiscovery_queryString"
+                            }
+                        },
+                        "required": [
+                            "field",
+                            "query"
+                        ],
+                        "type": "object"
+                    }
+                ]
+            },
+            "IdentitiesDiscovery_queryString": {
+                "description": "Query string to match against source account metadata",
+                "example": "pepito",
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+            },
+            "IdentitiesDiscovery_size": {
+                "default": 30,
+                "description": "Page results size. Maximum page size is 100.",
+                "minimum": 0,
+                "type": "integer"
+            },
+            "IdentitiesSearchQuery": {
+                "oneOf": [
+                    {
+                        "additionalProperties": false,
+                        "description": "To scroll on all identities and get their mapped source accounts",
+                        "properties": {
+                            "size": {
+                                "$ref": "#/components/schemas/IdentitiesSearch_size"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "additionalProperties": false,
+                        "properties": {
+                            "cursor": {
+                                "description": "Cursor to get more results pages",
+                                "minLength": 1,
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "cursor"
+                        ],
+                        "type": "object"
+                    },
+                    {
+                        "additionalProperties": false,
+                        "properties": {
+                            "query": {
+                                "$ref": "#/components/schemas/IdentitiesSearch_query"
+                            },
+                            "size": {
+                                "$ref": "#/components/schemas/IdentitiesSearch_size"
+                            }
+                        },
+                        "required": [
+                            "query"
+                        ],
+                        "type": "object"
+                    }
+                ]
+            },
+            "IdentitiesSearchResponse": {
+                "properties": {
+                    "cursor": {
+                        "default": null,
+                        "description": "Use to get more results",
+                        "type": "string"
+                    },
+                    "items": {
+                        "items": {
+                            "description": "Identity summary",
+                            "properties": {
+                                "source_accounts": {
+                                    "items": {
+                                        "description": "Mapped source accounts summary",
+                                        "properties": {
+                                            "config_type": {
+                                                "type": "string"
+                                            },
+                                            "datasource_type_name": {
+                                                "type": "string"
+                                            },
+                                            "display_name": {
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "full_name": {
+                                                "type": "string"
+                                            },
+                                            "origin_id": {
+                                                "type": "string"
+                                            },
+                                            "signature": {
+                                                "type": "string"
+                                            },
+                                            "uuid": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "title": {
+                                    "type": "string"
+                                },
+                                "uuid": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "type": "array"
+                    },
+                    "matching_identities": {
+                        "description": "Number of identities matching the query.",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "cursor",
+                    "items",
+                    "matching_identities"
+                ],
+                "type": "object"
+            },
+            "IdentitiesSearch_query": {
+                "description": "Query string to match against identities title",
+                "example": "pepito",
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+            },
+            "IdentitiesSearch_size": {
+                "default": 30,
+                "description": "Page results size. Maximum page size is 100.",
+                "minimum": 0,
+                "type": "integer"
             },
             "LegalHold": {
                 "properties": {
@@ -2745,7 +2993,6 @@
                                                         "origin_created_by": {
                                                             "items": {
                                                                 "properties": {},
-                                                                "title": "Created by",
                                                                 "type": "object"
                                                             },
                                                             "maxItems": 1000,
@@ -2805,7 +3052,6 @@
                                                         "origin_modified_by": {
                                                             "items": {
                                                                 "properties": {},
-                                                                "title": "Modified by",
                                                                 "type": "object"
                                                             },
                                                             "maxItems": 1000,
@@ -2821,7 +3067,6 @@
                                                         "origin_related_users": {
                                                             "items": {
                                                                 "properties": {},
-                                                                "title": "Related user",
                                                                 "type": "object"
                                                             },
                                                             "maxItems": 5000,
@@ -2841,7 +3086,11 @@
                                                                 "conversation/twitter",
                                                                 "post/workplace",
                                                                 "post/twitter",
-                                                                "channel/slack"
+                                                                "channel/slack",
+                                                                "meeting/zoom.meeting",
+                                                                "meeting/zoom.instance",
+                                                                "meeting/zoom.chat",
+                                                                "meeting/zoom.transcript"
                                                             ],
                                                             "title": "Type of resource",
                                                             "type": "string"
@@ -2850,6 +3099,41 @@
                                                             "format": "date-time",
                                                             "title": "Last modified in source",
                                                             "type": "string"
+                                                        },
+                                                        "origin_shared": {
+                                                            "additionalProperties": false,
+                                                            "properties": {
+                                                                "is_link": {
+                                                                    "default": false,
+                                                                    "description": "Resource shared using public link",
+                                                                    "type": "boolean"
+                                                                },
+                                                                "last_shared": {
+                                                                    "description": "Resource shared date",
+                                                                    "format": "date-time",
+                                                                    "type": "string"
+                                                                },
+                                                                "shared_by": {
+                                                                    "description": "List of users sharing the resource",
+                                                                    "items": {
+                                                                        "properties": {},
+                                                                        "type": "object"
+                                                                    },
+                                                                    "maxItems": 100,
+                                                                    "type": "array"
+                                                                },
+                                                                "shared_with": {
+                                                                    "description": "List of users with access permissions",
+                                                                    "items": {
+                                                                        "properties": {},
+                                                                        "type": "object"
+                                                                    },
+                                                                    "maxItems": 100,
+                                                                    "type": "array"
+                                                                }
+                                                            },
+                                                            "title": "Resource sharing information",
+                                                            "type": "object"
                                                         },
                                                         "origin_state": {
                                                             "title": "Source state",
@@ -3859,7 +4143,6 @@
                                                         "origin_created_by": {
                                                             "items": {
                                                                 "properties": {},
-                                                                "title": "Created by",
                                                                 "type": "object"
                                                             },
                                                             "maxItems": 1000,
@@ -3919,7 +4202,6 @@
                                                         "origin_modified_by": {
                                                             "items": {
                                                                 "properties": {},
-                                                                "title": "Modified by",
                                                                 "type": "object"
                                                             },
                                                             "maxItems": 1000,
@@ -3935,7 +4217,6 @@
                                                         "origin_related_users": {
                                                             "items": {
                                                                 "properties": {},
-                                                                "title": "Related user",
                                                                 "type": "object"
                                                             },
                                                             "maxItems": 5000,
@@ -3955,7 +4236,11 @@
                                                                 "conversation/twitter",
                                                                 "post/workplace",
                                                                 "post/twitter",
-                                                                "channel/slack"
+                                                                "channel/slack",
+                                                                "meeting/zoom.meeting",
+                                                                "meeting/zoom.instance",
+                                                                "meeting/zoom.chat",
+                                                                "meeting/zoom.transcript"
                                                             ],
                                                             "title": "Type of resource",
                                                             "type": "string"
@@ -3964,6 +4249,41 @@
                                                             "format": "date-time",
                                                             "title": "Last modified in source",
                                                             "type": "string"
+                                                        },
+                                                        "origin_shared": {
+                                                            "additionalProperties": false,
+                                                            "properties": {
+                                                                "is_link": {
+                                                                    "default": false,
+                                                                    "description": "Resource shared using public link",
+                                                                    "type": "boolean"
+                                                                },
+                                                                "last_shared": {
+                                                                    "description": "Resource shared date",
+                                                                    "format": "date-time",
+                                                                    "type": "string"
+                                                                },
+                                                                "shared_by": {
+                                                                    "description": "List of users sharing the resource",
+                                                                    "items": {
+                                                                        "properties": {},
+                                                                        "type": "object"
+                                                                    },
+                                                                    "maxItems": 100,
+                                                                    "type": "array"
+                                                                },
+                                                                "shared_with": {
+                                                                    "description": "List of users with access permissions",
+                                                                    "items": {
+                                                                        "properties": {},
+                                                                        "type": "object"
+                                                                    },
+                                                                    "maxItems": 100,
+                                                                    "type": "array"
+                                                                }
+                                                            },
+                                                            "title": "Resource sharing information",
+                                                            "type": "object"
                                                         },
                                                         "origin_state": {
                                                             "title": "Source state",
@@ -4032,7 +4352,7 @@
             "name": "Account"
         },
         {
-            "description": "User And Group Authentication",
+            "description": "User And Group Authentication.\nAuthentication requires that you have an Onna account.\nPlease consult the [developer documentation](https://developers.onna.com/tutorial/primer/authentication.html) for more information.",
             "name": "Auth"
         },
         {
