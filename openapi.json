@@ -566,9 +566,30 @@
                 },
                 "type": "object"
             },
+            "DatasourceCapability": {
+                "additionalProperties": false,
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id"
+                ],
+                "type": "object"
+            },
             "DatasourceType": {
                 "additionalProperties": false,
                 "properties": {
+                    "capabilities": {
+                        "items": {
+                            "$ref": "#/components/schemas/DatasourceCapability"
+                        },
+                        "type": "array"
+                    },
                     "config_type": {
                         "type": "string"
                     },
@@ -1250,7 +1271,14 @@
                     },
                     "search_after": {
                         "items": {
-                            "type": "string"
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
                         },
                         "type": "array"
                     },
@@ -1607,6 +1635,18 @@
                         "title": "Email",
                         "type": "string"
                     },
+                    "employee_department": {
+                        "title": "Employee department",
+                        "type": "string"
+                    },
+                    "employee_division": {
+                        "title": "Employee division",
+                        "type": "string"
+                    },
+                    "employee_title": {
+                        "title": "Employee title",
+                        "type": "string"
+                    },
                     "first_name": {
                         "title": "First name",
                         "type": "string"
@@ -1826,7 +1866,7 @@
             "name": "Onna Support",
             "url": "https://support.onna.com"
         },
-        "description": "REST API for Onna\n\n# Introduction\nThe API is the central hub for access and updating data related to Onna.\n",
+        "description": "REST API for Onna\n\n# Introduction\nThe API is the central hub for access and updating data related to Onna.\n\n## Requirements\nAccess to the Onna API requires that you have an active account.\n\nYou can sign up for an Onna account by filling out the [registration form](https://register.onna.com/signup?trial=true).",
         "title": "Onna API",
         "version": "1.0.0"
     },

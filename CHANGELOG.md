@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.4]
+
+- Add requirements to OAS
+
 ## [1.0.3]
 
 ### Added
