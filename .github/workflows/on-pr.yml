@@ -1,4 +1,4 @@
-name: Changelog
+name: Pull Request Checks
 on:
   pull_request:
     types: [assigned, opened, synchronize, reopened, labeled, unlabeled]
@@ -7,14 +7,14 @@ on:
 
 jobs:
   build:
-    name: Check Changelog Update
+    name: Changelog
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Changelog check
+      - name: Check Changelog
         uses: Zomzog/changelog-checker@v1.0.0
         with:
-          fileName: CHANGELOG.md # default `CHANGELOG.adoc`
+          fileName: CHANGELOG.md
           noChangelogLabel: my custom label # default `no changelog`
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
