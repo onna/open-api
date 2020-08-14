@@ -1846,6 +1846,7 @@
         },
         "securitySchemes": {
             "basicAuth": {
+                "description": "Authentication to the API is performed via [HTTP Basic Auth](http://en.wikipedia.org/wiki/Basic_access_authentication).\n\nAll API requests must be made over [HTTPS](http://en.wikipedia.org/wiki/HTTP_Secure).",
                 "scheme": "basic",
                 "type": "http"
             },
@@ -1868,7 +1869,7 @@
         },
         "description": "REST API for Onna\n\n# Introduction\nThe API is the central hub for access and updating data related to Onna.\n\n## Requirements\nAccess to the Onna API requires that you have an active account.\n\nYou can sign up for an Onna account by filling out the [registration form](https://register.onna.com/signup?trial=true).",
         "title": "Onna API",
-        "version": "1.0.0"
+        "version": "1.0.5"
     },
     "openapi": "3.0.2",
     "paths": {

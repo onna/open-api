@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.5]
+
+- Add description to Authentication
+
 ## [1.0.4]
 
 - Add requirements to OAS
