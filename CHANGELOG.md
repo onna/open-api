@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.6]
+
+- Fix email address
+
 ## [1.0.5]
 
 - Add description to Authentication
