@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.7]
+
+- Improve repo structure
+
 ## [1.0.6]
 
 - Fix email address
