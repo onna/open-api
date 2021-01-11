@@ -1946,7 +1946,7 @@
     "paths": {
         "/{account_id}/@availableEdatasources": {
             "get": {
-                "description": "Get a list of available enterprise datasources for this account",
+                "description": "Get a list of available enterprise datasources for this account \u301c permission: .SearchContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -1995,7 +1995,7 @@
         },
         "/{account_id}/@batch": {
             "post": {
-                "description": "Commit changes to database for each individual request",
+                "description": "permission: .AccessContent",
                 "parameters": [
                     {
                         "default": false,
@@ -2109,7 +2109,7 @@
         },
         "/{account_id}/@batchOnQuery": {
             "post": {
-                "summary": "Operations sent to task queue based on query results",
+                "description": "Operations sent to task queue based on query results \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -2168,7 +2168,7 @@
         },
         "/{account_id}/@behaviors": {
             "get": {
-                "description": "A listing of behaviors for content",
+                "description": "permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -2210,12 +2210,12 @@
                     }
                 ],
                 "summary": "Get information on behaviors for this resource",
-                "tags": ["Content"]
+                "tags": []
             }
         },
         "/{account_id}/@caniadd": {
             "get": {
-                "description": "Do some permission checks",
+                "description": "Do some permission checks \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -2264,7 +2264,7 @@
         },
         "/{account_id}/@canido": {
             "get": {
-                "summary": "Check if user has permissions on context",
+                "description": "permission: .AccessContent",
                 "parameters": [
                     {
                         "in": "query",
@@ -2308,13 +2308,14 @@
                 ],
                 "summary": "Check if user has permissions on context",
                 "tags": [
-                    "Auth"
+                    "Auth",
+                    "Content"
                 ]
             }
         },
         "/{account_id}/@channelRecent": {
             "post": {
-                "description": "Websocket channel activity",
+                "description": "Websocket channel activity \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -2367,13 +2368,13 @@
                 ],
                 "summary": "Websocket channel activity",
                 "tags": [
-                    "Account"
+                    "Content"
                 ]
             }
         },
         "/{account_id}/@channelStatus": {
             "get": {
-                "description": "Websocket message channel status",
+                "description": "Websocket message channel status \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "in": "query",
@@ -2434,13 +2435,13 @@
                 ],
                 "summary": "Websocket message channel status",
                 "tags": [
-                    "Account"
+                    "Content"
                 ]
             }
         },
         "/{account_id}/@checkInvited": {
             "post": {
-                "description": "Check if a set of users are guests on the system",
+                "description": "Check if a set of users are guests on the system \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -2497,13 +2498,13 @@
                 ],
                 "summary": "Check is a set of users are guests on the system",
                 "tags": [
-                    "Content"
+                    "Auth"
                 ]
             }
         },
         "/{account_id}/@complianceQueries": {
             "get": {
-                "description": "permission: onna.SearchUsers",
+                "description": "Get a list of modifiers used with compliance queries \u301c permission: onna.SearchUsers",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -2552,7 +2553,7 @@
         },
         "/{account_id}/@configuration": {
             "get": {
-                "description": "Get account configuration",
+                "description": "Get account configuration \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -2599,9 +2600,56 @@
                 ]
             }
         },
+        "/{account_id}/@consumer-stat": {
+            "get": {
+                "description": "permission: .AccessContent",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:.AccessContent"
+                        ]
+                    }
+                ],
+                "summary": "",
+                "tags": []
+            }
+        },
         "/{account_id}/@copy": {
             "post": {
-                "description": "Copy resource and all the children",
+                "description": "Copy resource and all the children \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -2680,13 +2728,13 @@
                 ],
                 "summary": "Copy resource and all the children",
                 "tags": [
-                    "Account"
+                    "Content"
                 ]
             }
         },
         "/{account_id}/@data": {
             "get": {
-                "description": "Data API",
+                "description": "Data API \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Date string",
@@ -2760,7 +2808,7 @@
                 ]
             },
             "post": {
-                "description": "permission: .AccessContent",
+                "description": "Data API \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -2837,7 +2885,7 @@
         },
         "/{account_id}/@datasourceAuthCode/{type}": {
             "get": {
-                "description": "Datasource authorization code",
+                "description": "Retrieve an authorization code \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "in": "path",
@@ -2894,7 +2942,7 @@
         },
         "/{account_id}/@datasourceTypes": {
             "get": {
-                "description": "Get available datasource information for account",
+                "description": "Get available datasource information for account \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -3235,7 +3283,7 @@
         },
         "/{account_id}/@enabledSearchableFields": {
             "get": {
-                "description": "permission: onna.SearchUsers",
+                "description": "Get a list of allowed searchable fields \u301c permission: onna.SearchUsers",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -3284,7 +3332,7 @@
         },
         "/{account_id}/@exportable": {
             "get": {
-                "description": "permission: onna.GetExportable",
+                "description": "Deduplicate and filter specific exportable fields \u301c permission: onna.GetExportable",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -3334,7 +3382,7 @@
         },
         "/{account_id}/@filters": {
             "get": {
-                "description": "permission: .SearchContent",
+                "description": "Get various filters for a search query \u301c permission: .SearchContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -3383,7 +3431,7 @@
         },
         "/{account_id}/@findUsers": {
             "get": {
-                "description": "permission: onna.SearchUsers",
+                "description": "Search for a user in the user store \u301c permission: onna.SearchUsers",
                 "parameters": [
                     {
                         "in": "query",
@@ -3453,7 +3501,7 @@
         },
         "/{account_id}/@frontsearch": {
             "post": {
-                "description": "permission: .SearchContent",
+                "description": "Execute a search \u301c permission: .SearchContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -3505,7 +3553,7 @@
         },
         "/{account_id}/@getAccountFields": {
             "get": {
-                "description": "permission: onna.ViewAccountFields",
+                "description": "Get custom fields in an account \u301c permission: onna.ViewAccountFields",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -3554,7 +3602,7 @@
         },
         "/{account_id}/@getAllChildren": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "leverages elasticsearch to get all the children of a resource \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "in": "query",
@@ -3629,7 +3677,7 @@
         },
         "/{account_id}/@getAllChildrenData": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "leverages elasticsearch to get all the children of a resource, with included data \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "in": "query",
@@ -3714,7 +3762,7 @@
         },
         "/{account_id}/@getDOAuthCode": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "Get the Dropbox OAuth code callback for an account \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -3774,7 +3822,7 @@
         },
         "/{account_id}/@getEQuipAuthCode": {
             "post": {
-                "description": "permission: .AccessContent",
+                "description": "Get the Enterprise Quip OAuth code callback for a user \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -3868,7 +3916,7 @@
         },
         "/{account_id}/@getESlackAuthCode": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "Get the Enterprise Slack OAuth code callback for a user \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -3928,7 +3976,7 @@
         },
         "/{account_id}/@getMGraphAuthCode": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "Authenticate MGraph entreprise \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -3989,7 +4037,7 @@
         },
         "/{account_id}/@getMGraphEnterpriseAuthCode": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "Get MGraph entreprise auth code \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "in": "query",
@@ -4072,7 +4120,7 @@
         },
         "/{account_id}/@getUsers": {
             "post": {
-                "description": "permission: onna.SearchUsers",
+                "description": "Get a list of users from the user store for this account \u301c permission: onna.SearchUsers",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -4130,7 +4178,7 @@
         },
         "/{account_id}/@globalAssignableRoles": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "Get a list of available roles \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -4298,7 +4346,7 @@
         },
         "/{account_id}/@initCheck": {
             "post": {
-                "description": "permission: .AccessContent",
+                "description": "Set up a user object \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -4356,7 +4404,7 @@
         },
         "/{account_id}/@inviteUser": {
             "post": {
-                "description": "permission: onna.Invite",
+                "description": "Invite a user to Onna \u301c permission: onna.Invite",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -4433,7 +4481,7 @@
         },
         "/{account_id}/@keys": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "Get a list of unique keys in a datasource \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Use last key in previous response to get further results.",
@@ -4560,12 +4608,68 @@
                     }
                 ],
                 "summary": "Components for a resource",
-                "tags": ["Content"]
+                "tags": []
+            }
+        },
+        "/{account_id}/@login-renew": {
+            "post": {
+                "description": "permission: .RefreshToken",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:.RefreshToken"
+                        ]
+                    }
+                ],
+                "summary": "Refresh to a new token",
+                "tags": []
             }
         },
         "/{account_id}/@magicLink": {
             "post": {
-                "description": "permission: .Public",
+                "description": "Share a resource with a user \u301c permission: .Public",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -4625,7 +4729,7 @@
         },
         "/{account_id}/@metadataFields": {
             "get": {
-                "description": "permission: onna.SearchUsers",
+                "description": "Get a list of metadata fields \u301c permission: onna.SearchUsers",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -4674,7 +4778,7 @@
         },
         "/{account_id}/@multiFileDownload": {
             "post": {
-                "description": "permission: onna.MultiFileDownload",
+                "description": "Process multi-file download \u301c permission: onna.MultiFileDownload",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -4727,7 +4831,7 @@
         },
         "/{account_id}/@multiFileExport": {
             "post": {
-                "description": "permission: onna.MultiFileExport",
+                "description": "Process multi-file export \u301c permission: onna.MultiFileExport",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -4780,7 +4884,7 @@
         },
         "/{account_id}/@myManagedPermissions": {
             "get": {
-                "description": "permission: onna.permission:ViewOwnPermissions",
+                "description": "Get assigned permissions on account for logged in user \u301c permission: onna.permission:ViewOwnPermissions",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -4826,7 +4930,7 @@
                 ],
                 "summary": "Get assigned permissions on account for logged in user",
                 "tags": [
-                    "Content"
+                    "Auth"
                 ]
             }
         },
@@ -4986,7 +5090,7 @@
         },
         "/{account_id}/@openSearch": {
             "get": {
-                "description": "permission: .Public",
+                "description": "Allow search via a browser's location bar \u301c permission: .Public",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -5035,7 +5139,7 @@
         },
         "/{account_id}/@originRetentionPolicies": {
             "get": {
-                "description": "permission: onna.SeeRetentionPolicies",
+                "description": "Get setting for origin retention policy tracking \u301c permission: onna.SeeRetentionPolicies",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -5084,7 +5188,7 @@
         },
         "/{account_id}/@processingAggs": {
             "post": {
-                "description": "permission: .SearchContent",
+                "description": "Build a list of aggregations for a search \u301c permission: .SearchContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -5142,7 +5246,7 @@
         },
         "/{account_id}/@recent": {
             "get": {
-                "description": "permission: .SearchContent",
+                "description": "Get a list of the last visited resources \u301c permission: .SearchContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -5185,7 +5289,8 @@
                 ],
                 "summary": "Get a list of the last visited resources",
                 "tags": [
-                    "Search"
+                    "Search",
+                    "Content"
                 ]
             }
         },
@@ -5234,12 +5339,12 @@
                     }
                 ],
                 "summary": "Get content by UID",
-                "tags": ["Content"]
+                "tags": []
             }
         },
         "/{account_id}/@retentionPolicies": {
             "get": {
-                "description": "permission: onna.SeeRetentionPolicies",
+                "description": "Modify the retention policy of a datasource type \u301c permission: onna.SeeRetentionPolicies",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -5500,13 +5605,13 @@
                 ],
                 "summary": "Make search request",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             }
         },
         "/{account_id}/@searchTemplate": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "Generate an Excel like file with search fields \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -5555,7 +5660,7 @@
         },
         "/{account_id}/@searchableFields": {
             "get": {
-                "description": "permission: onna.SearchUsers",
+                "description": "Get a list of searchable fields \u301c permission: onna.SearchUsers",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -5604,7 +5709,7 @@
         },
         "/{account_id}/@sendToStatic": {
             "post": {
-                "description": "permission: .AccessContent",
+                "description": "Process files in a static datasource \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -5657,7 +5762,7 @@
         },
         "/{account_id}/@setupInvitedMembers": {
             "post": {
-                "description": "permission: .AccessContent",
+                "description": "Add billing and technical contact information to an account \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -5736,7 +5841,7 @@
         },
         "/{account_id}/@sizes": {
             "get": {
-                "description": "permission: .SearchContent",
+                "description": "Get the size of various user owned content items \u301c permission: .SearchContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -5785,7 +5890,7 @@
         },
         "/{account_id}/@status": {
             "get": {
-                "description": "permission: onna.Public",
+                "description": "Get the status of an account \u301c permission: onna.Public",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -5834,7 +5939,7 @@
         },
         "/{account_id}/@statusAccount": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "Get the account status \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -5883,7 +5988,7 @@
         },
         "/{account_id}/@suggestions": {
             "get": {
-                "description": "permission: .SearchContent",
+                "description": "Get a list of suggested search terms \u301c permission: .SearchContent",
                 "parameters": [
                     {
                         "description": "Suggestion term string",
@@ -5950,7 +6055,7 @@
         },
         "/{account_id}/@syncUsers": {
             "post": {
-                "description": "permission: .AccessContent",
+                "description": "Ensure users in user store exist in the account \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -6163,7 +6268,7 @@
         },
         "/{account_id}/@userRoles": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "Get a list of user roles for this context \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -6215,7 +6320,7 @@
         },
         "/{account_id}/@wallet": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "Get wallet metadata \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -6309,7 +6414,7 @@
         },
         "/{account_id}/@webhookRefs": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "Webhook references \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -6358,7 +6463,7 @@
         },
         "/{account_id}/@workspaces": {
             "get": {
-                "description": "permission: onna.permission:GetWorkspaces",
+                "description": "Get a list of workspaces in this account \u301c permission: onna.permission:GetWorkspaces",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -6509,7 +6614,7 @@
         },
         "/{account_id}/{username}": {
             "delete": {
-                "description": "permission: .DeleteContent",
+                "description": "Delete resource \u301c permission: .DeleteContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -6937,7 +7042,7 @@
         },
         "/{account_id}/{username}/@addable-types": {
             "get": {
-                "description": "Return a list of type names that can be added to container",
+                "description": "permission: .AddContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -6981,7 +7086,7 @@
                     }
                 ],
                 "summary": "Return a list of type names that can be added to container",
-                "tags": ["Account", "Content"]
+                "tags": []
             }
         },
         "/{account_id}/{username}/@all_permissions": {
@@ -7038,7 +7143,8 @@
                 ],
                 "summary": "See all permission settings for this resource",
                 "tags": [
-                    "Auth"
+                    "Auth",
+                    "Content"
                 ]
             }
         },
@@ -7098,13 +7204,13 @@
                 ],
                 "summary": "Asynchronously reindex entire container content",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             }
         },
         "/{account_id}/{username}/@backrefs": {
             "get": {
-                "description": "permission: .ViewContent",
+                "description": "View references to content \u301c permission: .ViewContent",
                 "parameters": [
                     {
                         "in": "query",
@@ -7211,7 +7317,7 @@
                 ],
                 "summary": "View references to content",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             }
         },
@@ -7265,7 +7371,7 @@
                     }
                 ],
                 "summary": "Remove behavior from resource",
-                "tags": ["Content"]
+                "tags": []
             },
             "get": {
                 "description": "permission: .AccessContent",
@@ -7310,7 +7416,7 @@
                     }
                 ],
                 "summary": "Get information on behaviors for this resource",
-                "tags": ["Content"]
+                "tags": []
             },
             "patch": {
                 "description": "permission: .ModifyContent",
@@ -7370,7 +7476,7 @@
                     }
                 ],
                 "summary": "Add behavior to resource",
-                "tags": ["Content"]
+                "tags": []
             }
         },
         "/{account_id}/{username}/@behaviors/{behavior}": {
@@ -7448,7 +7554,7 @@
                     }
                 ],
                 "summary": "Remove behavior from resource",
-                "tags": ["Content"]
+                "tags": []
             }
         },
         "/{account_id}/{username}/@canido": {
@@ -7506,7 +7612,8 @@
                 ],
                 "summary": "Check if user has permissions on context",
                 "tags": [
-                    "Auth"
+                    "Auth",
+                    "Content"
                 ]
             }
         },
@@ -7566,13 +7673,69 @@
                 ],
                 "summary": "Reindex entire container content",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
+            }
+        },
+        "/{account_id}/{username}/@consumer-stat": {
+            "get": {
+                "description": "permission: .AccessContent",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:.AccessContent"
+                        ]
+                    }
+                ],
+                "summary": "",
+                "tags": []
             }
         },
         "/{account_id}/{username}/@data": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "Data API \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Date string",
@@ -7646,7 +7809,7 @@
                 ]
             },
             "post": {
-                "description": "permission: .AccessContent",
+                "description": "Data API \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -7732,7 +7895,7 @@
         },
         "/{account_id}/{username}/@datasourceAuthCode/{type}": {
             "get": {
-                "description": "permission: .ModifyContent",
+                "description": "Retrieve an authorization code \u301c permission: .ModifyContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -7878,7 +8041,7 @@
                 ],
                 "summary": "",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             }
         },
@@ -7938,7 +8101,7 @@
                 ],
                 "summary": "Download the content of a file",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             }
         },
@@ -8021,7 +8184,7 @@
                 ],
                 "summary": "",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             }
         },
@@ -8089,7 +8252,7 @@
                 ],
                 "summary": "Download the content of a file",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             }
         },
@@ -8165,7 +8328,7 @@
                 ],
                 "summary": "Duplicate resource",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             }
         },
@@ -8223,7 +8386,7 @@
                 ],
                 "summary": "Get a list of available fields",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             }
         },
@@ -8287,7 +8450,7 @@
         },
         "/{account_id}/{username}/@exportCount": {
             "get": {
-                "description": "permission: .ViewContent",
+                "description": "Number of user's exports \u301c permission: .ViewContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -8444,7 +8607,7 @@
                         ]
                     }
                 ],
-                "summary": "",
+                "summary": "Remove a Resource from your list of favorites",
                 "tags": [
                     "Content"
                 ]
@@ -8509,7 +8672,7 @@
                         ]
                     }
                 ],
-                "summary": "",
+                "summary": "Mark a content item as a favorite, stored on your user account",
                 "tags": [
                     "Content"
                 ]
@@ -8577,13 +8740,13 @@
                 ],
                 "summary": "Get field value",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             }
         },
         "/{account_id}/{username}/@getAllChildren": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "leverages elasticsearch to get all the children of a resource \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "in": "query",
@@ -8667,7 +8830,7 @@
         },
         "/{account_id}/{username}/@getAllChildrenData": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "leverages elasticsearch to get all the children of a resource, with included data \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "in": "query",
@@ -8761,7 +8924,7 @@
         },
         "/{account_id}/{username}/@getBoxAuthCode": {
             "get": {
-                "description": "permission: .ModifyContent",
+                "description": "Get the Box OAuth code callback for a user \u301c permission: .ModifyContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -8830,7 +8993,7 @@
         },
         "/{account_id}/{username}/@getDOAuthCode": {
             "get": {
-                "description": "permission: .ModifyContent",
+                "description": "Get the Dropbox OAuth code callback for a user \u301c permission: .ModifyContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -8957,7 +9120,7 @@
         },
         "/{account_id}/{username}/@getEBoxAuthCode": {
             "get": {
-                "description": "permission: .ModifyContent",
+                "description": "Get the Enterprise Box OAuth code callback for a user \u301c permission: .ModifyContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -9026,7 +9189,7 @@
         },
         "/{account_id}/{username}/@getGDriveAuthCode": {
             "get": {
-                "description": "permission: .ModifyContent",
+                "description": "Get the GDrive OAuth code callback for a user \u301c permission: .ModifyContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -9095,7 +9258,7 @@
         },
         "/{account_id}/{username}/@getGOAuthCode": {
             "get": {
-                "description": "permission: .ModifyContent",
+                "description": "Get the GMail OAuth code callback for a user \u301c permission: .ModifyContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -9164,7 +9327,7 @@
         },
         "/{account_id}/{username}/@getGithubAuthCode": {
             "get": {
-                "description": "permission: .ModifyContent",
+                "description": "Get the GitHub OAuth code callback for a user \u301c permission: .ModifyContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -9233,7 +9396,7 @@
         },
         "/{account_id}/{username}/@getSalesforceAuthCode": {
             "get": {
-                "description": "permission: .ModifyContent",
+                "description": "Get the Salesforce OAuth code callback for a user \u301c permission: .ModifyContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -9302,7 +9465,7 @@
         },
         "/{account_id}/{username}/@getSlackAuthCode": {
             "get": {
-                "description": "permission: .ModifyContent",
+                "description": "Get the Slack OAuth code callback for a user \u301c permission: .ModifyContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -9371,7 +9534,7 @@
         },
         "/{account_id}/{username}/@getTwitterAuthCode": {
             "get": {
-                "description": "permission: .ModifyContent",
+                "description": "Get the Twitter OAuth code callback for a user \u301c permission: .ModifyContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -9440,7 +9603,7 @@
         },
         "/{account_id}/{username}/@getZendeskAuthCode": {
             "get": {
-                "description": "permission: .ModifyContent",
+                "description": "Get the Zendesk OAuth code callback for a user \u301c permission: .ModifyContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -9553,12 +9716,85 @@
                     }
                 ],
                 "summary": "Invalidate cache of object",
-                "tags": ["Content"]
+                "tags": []
+            }
+        },
+        "/{account_id}/{username}/@kafka-producer/{topic}": {
+            "post": {
+                "description": "permission: .ModifyContent",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "topic",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:.ModifyContent"
+                        ]
+                    }
+                ],
+                "summary": "",
+                "tags": []
             }
         },
         "/{account_id}/{username}/@keys": {
             "get": {
-                "description": "Return ordered list of keys",
+                "description": "Get a list of unique keys in a datasource \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Use last key in previous response to get further results.",
@@ -9643,7 +9879,7 @@
         },
         "/{account_id}/{username}/@move": {
             "post": {
-                "description": "permission: .MoveContent",
+                "description": "Move resource \u301c permission: .MoveContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -9708,13 +9944,13 @@
                 ],
                 "summary": "Move resource",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             }
         },
         "/{account_id}/{username}/@refs": {
             "delete": {
-                "description": "permission: .ModifyContent",
+                "description": "Delete reference to content \u301c permission: .ModifyContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -9778,11 +10014,11 @@
                 ],
                 "summary": "Delete reference to content",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             },
             "get": {
-                "description": "permission: .ViewContent",
+                "description": "View references to content \u301c permission: .ViewContent",
                 "parameters": [
                     {
                         "in": "query",
@@ -9890,11 +10126,11 @@
                 ],
                 "summary": "View references to content",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             },
             "post": {
-                "description": "permission: .ModifyContent",
+                "description": "Add references to content \u301c permission: .ModifyContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -10053,13 +10289,13 @@
                 ],
                 "summary": "Add references to content",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             }
         },
         "/{account_id}/{username}/@rules": {
             "get": {
-                "description": "permission: .ViewContent",
+                "description": "Get user's rules \u301c permission: .ViewContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -10289,13 +10525,13 @@
                 ],
                 "summary": "Make search request",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             }
         },
         "/{account_id}/{username}/@searchTemplate": {
             "post": {
-                "description": "permission: .AccessContent",
+                "description": "Upload an Excel like file with search fields \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -10414,11 +10650,12 @@
                 ],
                 "summary": "Get sharing settings for this resource",
                 "tags": [
-                    "Auth"
+                    "Auth",
+                    "Content"
                 ]
             },
             "post": {
-                "description": "permission: .ChangePermissions",
+                "description": "Change permissions for a resource \u301c permission: .ChangePermissions",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -10464,11 +10701,12 @@
                 ],
                 "summary": "Change permissions for a resource",
                 "tags": [
-                    "Auth"
+                    "Auth",
+                    "Content"
                 ]
             },
             "put": {
-                "description": "permission: .ChangePermissions",
+                "description": "Replace permissions for a resource \u301c permission: .ChangePermissions",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -10514,13 +10752,14 @@
                 ],
                 "summary": "Replace permissions for a resource",
                 "tags": [
-                    "Auth"
+                    "Auth",
+                    "Content"
                 ]
             }
         },
         "/{account_id}/{username}/@size": {
             "get": {
-                "description": "permission: .ViewContent",
+                "description": "Get size of all children \u301c permission: .ViewContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -10587,7 +10826,7 @@
         },
         "/{account_id}/{username}/@sourceAccountRefs": {
             "post": {
-                "description": "permission: onna.permission:ManageSourceAccounts",
+                "description": "Add references to content, create source account if it does not exist \u301c permission: onna.permission:ManageSourceAccounts",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -10692,7 +10931,7 @@
                 ],
                 "summary": "Add references to content, create source account if it does not exist",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             }
         },
@@ -10769,7 +11008,7 @@
                 ],
                 "summary": "TUS endpoint",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             },
             "patch": {
@@ -10860,7 +11099,7 @@
                 ],
                 "summary": "TUS endpoint",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             },
             "post": {
@@ -10954,7 +11193,7 @@
                 ],
                 "summary": "TUS endpoint",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             }
         },
@@ -11049,7 +11288,7 @@
                 ],
                 "summary": "TUS endpoint",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             },
             "patch": {
@@ -11148,7 +11387,7 @@
                 ],
                 "summary": "TUS endpoint",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             },
             "post": {
@@ -11298,7 +11537,7 @@
                 ],
                 "summary": "TUS endpoint",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             }
         },
@@ -11367,7 +11606,7 @@
                 ],
                 "summary": "Update the content of a file",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             }
         },
@@ -11444,13 +11683,13 @@
                 ],
                 "summary": "Update the content of a file",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             }
         },
         "/{account_id}/{username}/@userRoles": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "Get a list of user roles for this context \u301c permission: .AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
