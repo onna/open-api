@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.9]
+
+- more openapi coverage
+
 ## [1.0.8]
 
 - update openapi to include all endpoints
