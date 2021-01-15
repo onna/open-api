@@ -1944,9 +1944,9 @@
     },
     "openapi": "3.0.2",
     "paths": {
-        "/{account_id}/@availableEdatasources": {
+        "/{account_id}/{account_id}/@availableEdatasources": {
             "get": {
-                "description": "Get a list of available enterprise datasources for this account \u301c permission: .SearchContent",
+                "description": "Get a list of available enterprise datasources for this account \u301c permission: guillotina.SearchContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -1983,7 +1983,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.SearchContent"
+                            "permission:guillotina.SearchContent"
                         ]
                     }
                 ],
@@ -1993,9 +1993,9 @@
                 ]
             }
         },
-        "/{account_id}/@batch": {
+        "/{account_id}/{account_id}/@batch": {
             "post": {
-                "description": "permission: .AccessContent",
+                "description": "",
                 "parameters": [
                     {
                         "default": false,
@@ -2097,7 +2097,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -2107,9 +2107,9 @@
                 ]
             }
         },
-        "/{account_id}/@batchOnQuery": {
+        "/{account_id}/{account_id}/@batchOnQuery": {
             "post": {
-                "description": "Operations sent to task queue based on query results \u301c permission: .AccessContent",
+                "description": "Operations sent to task queue based on query results \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -2156,7 +2156,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -2166,9 +2166,9 @@
                 ]
             }
         },
-        "/{account_id}/@behaviors": {
+        "/{account_id}/{account_id}/@behaviors": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "Get information on behaviors for this resource",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -2205,7 +2205,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -2213,9 +2213,9 @@
                 "tags": []
             }
         },
-        "/{account_id}/@caniadd": {
+        "/{account_id}/{account_id}/@caniadd": {
             "get": {
-                "description": "Do some permission checks \u301c permission: .AccessContent",
+                "description": "Do some permission checks \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -2252,7 +2252,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -2262,9 +2262,9 @@
                 ]
             }
         },
-        "/{account_id}/@canido": {
+        "/{account_id}/{account_id}/@canido": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "Check if user has permissions on context",
                 "parameters": [
                     {
                         "in": "query",
@@ -2302,7 +2302,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -2313,9 +2313,9 @@
                 ]
             }
         },
-        "/{account_id}/@channelRecent": {
+        "/{account_id}/{account_id}/@channelRecent": {
             "post": {
-                "description": "Websocket channel activity \u301c permission: .AccessContent",
+                "description": "Websocket channel activity \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -2362,7 +2362,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -2372,9 +2372,9 @@
                 ]
             }
         },
-        "/{account_id}/@channelStatus": {
+        "/{account_id}/{account_id}/@channelStatus": {
             "get": {
-                "description": "Websocket message channel status \u301c permission: .AccessContent",
+                "description": "Websocket message channel status \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "in": "query",
@@ -2429,7 +2429,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -2439,9 +2439,9 @@
                 ]
             }
         },
-        "/{account_id}/@checkInvited": {
+        "/{account_id}/{account_id}/@checkInvited": {
             "post": {
-                "description": "Check if a set of users are guests on the system \u301c permission: .AccessContent",
+                "description": "Check if a set of users are guests on the system \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -2492,7 +2492,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -2502,7 +2502,7 @@
                 ]
             }
         },
-        "/{account_id}/@complianceQueries": {
+        "/{account_id}/{account_id}/@complianceQueries": {
             "get": {
                 "description": "Get a list of modifiers used with compliance queries \u301c permission: onna.SearchUsers",
                 "parameters": [
@@ -2551,9 +2551,9 @@
                 ]
             }
         },
-        "/{account_id}/@configuration": {
+        "/{account_id}/{account_id}/@configuration": {
             "get": {
-                "description": "Get account configuration \u301c permission: .AccessContent",
+                "description": "Get account configuration \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -2590,7 +2590,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -2600,56 +2600,9 @@
                 ]
             }
         },
-        "/{account_id}/@consumer-stat": {
-            "get": {
-                "description": "permission: .AccessContent",
-                "parameters": [
-                    {
-                        "description": "Account ID",
-                        "in": "path",
-                        "name": "account_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "OK"
-                    },
-                    "401": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": [
-                            "permission:.AccessContent"
-                        ]
-                    }
-                ],
-                "summary": "",
-                "tags": []
-            }
-        },
-        "/{account_id}/@copy": {
+        "/{account_id}/{account_id}/@copy": {
             "post": {
-                "description": "Copy resource and all the children \u301c permission: .AccessContent",
+                "description": "Copy resource and all the children \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -2722,7 +2675,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -2732,9 +2685,9 @@
                 ]
             }
         },
-        "/{account_id}/@data": {
+        "/{account_id}/{account_id}/@data": {
             "get": {
-                "description": "Data API \u301c permission: .AccessContent",
+                "description": "Data API \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Date string",
@@ -2747,6 +2700,7 @@
                     },
                     {
                         "description": "Comma seperated list of types",
+                        "example": "Rule, Workspace, User, WalletEntry, WebhookEntry, Export, SeverityLevel, _datasources_",
                         "in": "query",
                         "name": "types",
                         "required": false,
@@ -2798,7 +2752,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -2808,7 +2762,7 @@
                 ]
             },
             "post": {
-                "description": "Data API \u301c permission: .AccessContent",
+                "description": "Data API \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -2873,7 +2827,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -2883,9 +2837,9 @@
                 ]
             }
         },
-        "/{account_id}/@datasourceAuthCode/{type}": {
+        "/{account_id}/{account_id}/@datasourceAuthCode/{type}": {
             "get": {
-                "description": "Retrieve an authorization code \u301c permission: .AccessContent",
+                "description": "Retrieve an authorization code \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "in": "path",
@@ -2930,7 +2884,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -2940,9 +2894,9 @@
                 ]
             }
         },
-        "/{account_id}/@datasourceTypes": {
+        "/{account_id}/{account_id}/@datasourceTypes": {
             "get": {
-                "description": "Get available datasource information for account \u301c permission: .AccessContent",
+                "description": "Get available datasource information for account \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -2993,7 +2947,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -3003,9 +2957,9 @@
                 ]
             }
         },
-        "/{account_id}/@deprecated": {
+        "/{account_id}/{account_id}/@deprecated": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "Get a list of API endpoints that are being deprecated",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -3066,7 +3020,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -3076,7 +3030,7 @@
                 ]
             }
         },
-        "/{account_id}/@downloadHold/{legal_hold_id}/{action_type}": {
+        "/{account_id}/{account_id}/@downloadHold/{legal_hold_id}/{action_type}": {
             "get": {
                 "description": "Download hold with specific action \u301c permission: onna.Public",
                 "parameters": [
@@ -3134,7 +3088,7 @@
                 ]
             }
         },
-        "/{account_id}/@enableEDS": {
+        "/{account_id}/{account_id}/@enableEDS": {
             "get": {
                 "description": "Retrieves a list of Enterprise Datasource types enabled for this account",
                 "parameters": [
@@ -3173,7 +3127,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -3183,7 +3137,7 @@
                 ]
             }
         },
-        "/{account_id}/@enabledDSTypes": {
+        "/{account_id}/{account_id}/@enabledDSTypes": {
             "get": {
                 "description": "Retrieves a list of Datasource types enabled for this account",
                 "parameters": [
@@ -3222,7 +3176,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -3232,7 +3186,7 @@
                 ]
             }
         },
-        "/{account_id}/@enabledEDS": {
+        "/{account_id}/{account_id}/@enabledEDS": {
             "get": {
                 "description": "Retrieves a list of Enterprise Datasource types enabled for this account",
                 "parameters": [
@@ -3271,7 +3225,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -3281,7 +3235,7 @@
                 ]
             }
         },
-        "/{account_id}/@enabledSearchableFields": {
+        "/{account_id}/{account_id}/@enabledSearchableFields": {
             "get": {
                 "description": "Get a list of allowed searchable fields \u301c permission: onna.SearchUsers",
                 "parameters": [
@@ -3330,7 +3284,7 @@
                 ]
             }
         },
-        "/{account_id}/@exportable": {
+        "/{account_id}/{account_id}/@exportable": {
             "get": {
                 "description": "Deduplicate and filter specific exportable fields \u301c permission: onna.GetExportable",
                 "parameters": [
@@ -3380,9 +3334,9 @@
                 ]
             }
         },
-        "/{account_id}/@filters": {
+        "/{account_id}/{account_id}/@filters": {
             "get": {
-                "description": "Get various filters for a search query \u301c permission: .SearchContent",
+                "description": "Get various filters for a search query \u301c permission: guillotina.SearchContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -3419,7 +3373,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.SearchContent"
+                            "permission:guillotina.SearchContent"
                         ]
                     }
                 ],
@@ -3429,7 +3383,7 @@
                 ]
             }
         },
-        "/{account_id}/@findUsers": {
+        "/{account_id}/{account_id}/@findUsers": {
             "get": {
                 "description": "Search for a user in the user store \u301c permission: onna.SearchUsers",
                 "parameters": [
@@ -3499,9 +3453,9 @@
                 ]
             }
         },
-        "/{account_id}/@frontsearch": {
+        "/{account_id}/{account_id}/@frontsearch": {
             "post": {
-                "description": "Execute a search \u301c permission: .SearchContent",
+                "description": "Execute a search \u301c permission: guillotina.SearchContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -3541,7 +3495,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.SearchContent"
+                            "permission:guillotina.SearchContent"
                         ]
                     }
                 ],
@@ -3551,7 +3505,7 @@
                 ]
             }
         },
-        "/{account_id}/@getAccountFields": {
+        "/{account_id}/{account_id}/@getAccountFields": {
             "get": {
                 "description": "Get custom fields in an account \u301c permission: onna.ViewAccountFields",
                 "parameters": [
@@ -3600,9 +3554,9 @@
                 ]
             }
         },
-        "/{account_id}/@getAllChildren": {
+        "/{account_id}/{account_id}/@getAllChildren": {
             "get": {
-                "description": "leverages elasticsearch to get all the children of a resource \u301c permission: .AccessContent",
+                "description": "leverages elasticsearch to get all the children of a resource \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "in": "query",
@@ -3664,7 +3618,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -3675,9 +3629,9 @@
                 ]
             }
         },
-        "/{account_id}/@getAllChildrenData": {
+        "/{account_id}/{account_id}/@getAllChildrenData": {
             "get": {
-                "description": "leverages elasticsearch to get all the children of a resource, with included data \u301c permission: .AccessContent",
+                "description": "leverages elasticsearch to get all the children of a resource, with included data \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "in": "query",
@@ -3749,7 +3703,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -3760,9 +3714,9 @@
                 ]
             }
         },
-        "/{account_id}/@getDOAuthCode": {
+        "/{account_id}/{account_id}/@getDOAuthCode": {
             "get": {
-                "description": "Get the Dropbox OAuth code callback for an account \u301c permission: .AccessContent",
+                "description": "Get the Dropbox OAuth code callback for an account \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -3810,7 +3764,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -3820,9 +3774,9 @@
                 ]
             }
         },
-        "/{account_id}/@getEQuipAuthCode": {
+        "/{account_id}/{account_id}/@getEQuipAuthCode": {
             "post": {
-                "description": "Get the Enterprise Quip OAuth code callback for a user \u301c permission: .AccessContent",
+                "description": "Get the Enterprise Quip OAuth code callback for a user \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -3904,7 +3858,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -3914,9 +3868,9 @@
                 ]
             }
         },
-        "/{account_id}/@getESlackAuthCode": {
+        "/{account_id}/{account_id}/@getESlackAuthCode": {
             "get": {
-                "description": "Get the Enterprise Slack OAuth code callback for a user \u301c permission: .AccessContent",
+                "description": "Get the Enterprise Slack OAuth code callback for a user \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -3964,7 +3918,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -3974,9 +3928,9 @@
                 ]
             }
         },
-        "/{account_id}/@getMGraphAuthCode": {
+        "/{account_id}/{account_id}/@getMGraphAuthCode": {
             "get": {
-                "description": "Authenticate MGraph entreprise \u301c permission: .AccessContent",
+                "description": "Authenticate MGraph entreprise \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -4024,7 +3978,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -4035,9 +3989,9 @@
                 ]
             }
         },
-        "/{account_id}/@getMGraphEnterpriseAuthCode": {
+        "/{account_id}/{account_id}/@getMGraphEnterpriseAuthCode": {
             "get": {
-                "description": "Get MGraph entreprise auth code \u301c permission: .AccessContent",
+                "description": "Get MGraph entreprise auth code \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "in": "query",
@@ -4107,7 +4061,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -4118,7 +4072,7 @@
                 ]
             }
         },
-        "/{account_id}/@getUsers": {
+        "/{account_id}/{account_id}/@getUsers": {
             "post": {
                 "description": "Get a list of users from the user store for this account \u301c permission: onna.SearchUsers",
                 "parameters": [
@@ -4176,9 +4130,9 @@
                 ]
             }
         },
-        "/{account_id}/@globalAssignableRoles": {
+        "/{account_id}/{account_id}/@globalAssignableRoles": {
             "get": {
-                "description": "Get a list of available roles \u301c permission: .AccessContent",
+                "description": "Get a list of available roles \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -4215,7 +4169,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -4225,7 +4179,7 @@
                 ]
             }
         },
-        "/{account_id}/@groups": {
+        "/{account_id}/{account_id}/@groups": {
             "get": {
                 "description": "Retrieves a list of all types of groups including `people groups` as well as `workspaces` that a user is part of.",
                 "parameters": [
@@ -4277,7 +4231,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -4287,7 +4241,7 @@
                 ]
             }
         },
-        "/{account_id}/@groups/{group_id}": {
+        "/{account_id}/{account_id}/@groups/{group_id}": {
             "get": {
                 "description": "Retrieves a list of all types of groups including `people groups` as well as `workspaces` that a user is part of.",
                 "parameters": [
@@ -4334,7 +4288,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -4344,9 +4298,9 @@
                 ]
             }
         },
-        "/{account_id}/@initCheck": {
+        "/{account_id}/{account_id}/@initCheck": {
             "post": {
-                "description": "Set up a user object \u301c permission: .AccessContent",
+                "description": "Set up a user object \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -4392,7 +4346,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -4402,7 +4356,7 @@
                 ]
             }
         },
-        "/{account_id}/@inviteUser": {
+        "/{account_id}/{account_id}/@inviteUser": {
             "post": {
                 "description": "Invite a user to Onna \u301c permission: onna.Invite",
                 "parameters": [
@@ -4479,9 +4433,9 @@
                 ]
             }
         },
-        "/{account_id}/@keys": {
+        "/{account_id}/{account_id}/@keys": {
             "get": {
-                "description": "Get a list of unique keys in a datasource \u301c permission: .AccessContent",
+                "description": "Get a list of unique keys in a datasource \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Use last key in previous response to get further results.",
@@ -4544,7 +4498,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -4555,121 +4509,9 @@
                 ]
             }
         },
-        "/{account_id}/@login": {
+        "/{account_id}/{account_id}/@magicLink": {
             "post": {
-                "description": "permission: .Public",
-                "parameters": [
-                    {
-                        "description": "Account ID",
-                        "in": "path",
-                        "name": "account_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "OK"
-                    },
-                    "401": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": [
-                            "permission:.Public"
-                        ]
-                    }
-                ],
-                "summary": "Components for a resource",
-                "tags": []
-            }
-        },
-        "/{account_id}/@login-renew": {
-            "post": {
-                "description": "permission: .RefreshToken",
-                "parameters": [
-                    {
-                        "description": "Account ID",
-                        "in": "path",
-                        "name": "account_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "OK"
-                    },
-                    "401": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": [
-                            "permission:.RefreshToken"
-                        ]
-                    }
-                ],
-                "summary": "Refresh to a new token",
-                "tags": []
-            }
-        },
-        "/{account_id}/@magicLink": {
-            "post": {
-                "description": "Share a resource with a user \u301c permission: .Public",
+                "description": "Share a resource with a user \u301c permission: guillotina.Public",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -4717,7 +4559,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.Public"
+                            "permission:guillotina.Public"
                         ]
                     }
                 ],
@@ -4727,7 +4569,7 @@
                 ]
             }
         },
-        "/{account_id}/@metadataFields": {
+        "/{account_id}/{account_id}/@metadataFields": {
             "get": {
                 "description": "Get a list of metadata fields \u301c permission: onna.SearchUsers",
                 "parameters": [
@@ -4776,7 +4618,7 @@
                 ]
             }
         },
-        "/{account_id}/@multiFileDownload": {
+        "/{account_id}/{account_id}/@multiFileDownload": {
             "post": {
                 "description": "Process multi-file download \u301c permission: onna.MultiFileDownload",
                 "parameters": [
@@ -4829,7 +4671,7 @@
                 ]
             }
         },
-        "/{account_id}/@multiFileExport": {
+        "/{account_id}/{account_id}/@multiFileExport": {
             "post": {
                 "description": "Process multi-file export \u301c permission: onna.MultiFileExport",
                 "parameters": [
@@ -4882,7 +4724,7 @@
                 ]
             }
         },
-        "/{account_id}/@myManagedPermissions": {
+        "/{account_id}/{account_id}/@myManagedPermissions": {
             "get": {
                 "description": "Get assigned permissions on account for logged in user \u301c permission: onna.permission:ViewOwnPermissions",
                 "parameters": [
@@ -4934,9 +4776,9 @@
                 ]
             }
         },
-        "/{account_id}/@oauthgetcode": {
+        "/{account_id}/{account_id}/@oauthgetcode": {
             "get": {
-                "description": "permission: .GetOAuthGrant",
+                "description": "",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -4973,7 +4815,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.GetOAuthGrant"
+                            "permission:guillotina.GetOAuthGrant"
                         ]
                     }
                 ],
@@ -4983,7 +4825,7 @@
                 ]
             },
             "post": {
-                "description": "permission: .GetOAuthGrant",
+                "description": "",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -5029,7 +4871,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.GetOAuthGrant"
+                            "permission:guillotina.GetOAuthGrant"
                         ]
                     }
                 ],
@@ -5039,9 +4881,9 @@
                 ]
             }
         },
-        "/{account_id}/@openRegistry": {
+        "/{account_id}/{account_id}/@openRegistry": {
             "get": {
-                "description": "Return a open subset of registry values \u301c permission: .Public",
+                "description": "Return a open subset of registry values \u301c permission: guillotina.Public",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -5078,7 +4920,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.Public"
+                            "permission:guillotina.Public"
                         ]
                     }
                 ],
@@ -5088,9 +4930,9 @@
                 ]
             }
         },
-        "/{account_id}/@openSearch": {
+        "/{account_id}/{account_id}/@openSearch": {
             "get": {
-                "description": "Allow search via a browser's location bar \u301c permission: .Public",
+                "description": "Allow search via a browser's location bar \u301c permission: guillotina.Public",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -5127,7 +4969,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.Public"
+                            "permission:guillotina.Public"
                         ]
                     }
                 ],
@@ -5137,7 +4979,7 @@
                 ]
             }
         },
-        "/{account_id}/@originRetentionPolicies": {
+        "/{account_id}/{account_id}/@originRetentionPolicies": {
             "get": {
                 "description": "Get setting for origin retention policy tracking \u301c permission: onna.SeeRetentionPolicies",
                 "parameters": [
@@ -5186,9 +5028,9 @@
                 ]
             }
         },
-        "/{account_id}/@processingAggs": {
+        "/{account_id}/{account_id}/@processingAggs": {
             "post": {
-                "description": "Build a list of aggregations for a search \u301c permission: .SearchContent",
+                "description": "Build a list of aggregations for a search \u301c permission: guillotina.SearchContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -5234,7 +5076,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.SearchContent"
+                            "permission:guillotina.SearchContent"
                         ]
                     }
                 ],
@@ -5244,9 +5086,9 @@
                 ]
             }
         },
-        "/{account_id}/@recent": {
+        "/{account_id}/{account_id}/@recent": {
             "get": {
-                "description": "Get a list of the last visited resources \u301c permission: .SearchContent",
+                "description": "Get a list of the last visited resources \u301c permission: guillotina.SearchContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -5283,7 +5125,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.SearchContent"
+                            "permission:guillotina.SearchContent"
                         ]
                     }
                 ],
@@ -5294,9 +5136,9 @@
                 ]
             }
         },
-        "/{account_id}/@resolveuid/{uid}": {
+        "/{account_id}/{account_id}/@resolveuid/{uid}": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "Get content by UID",
                 "parameters": [
                     {
                         "in": "path",
@@ -5334,7 +5176,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -5342,7 +5184,7 @@
                 "tags": []
             }
         },
-        "/{account_id}/@retentionPolicies": {
+        "/{account_id}/{account_id}/@retentionPolicies": {
             "get": {
                 "description": "Modify the retention policy of a datasource type \u301c permission: onna.SeeRetentionPolicies",
                 "parameters": [
@@ -5391,9 +5233,9 @@
                 ]
             }
         },
-        "/{account_id}/@rules": {
+        "/{account_id}/{account_id}/@rules": {
             "get": {
-                "description": "Retrieves a list of content rules in this account.  \u301c permission: .AccessContent",
+                "description": "Retrieves a list of content rules in this account.  \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -5430,7 +5272,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -5440,9 +5282,9 @@
                 ]
             }
         },
-        "/{account_id}/@search": {
+        "/{account_id}/{account_id}/@search": {
             "get": {
-                "description": "permission: .SearchContent",
+                "description": "Make search request",
                 "parameters": [
                     {
                         "description": "Generic search term support. See modifier list below for usage",
@@ -5599,7 +5441,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.SearchContent"
+                            "permission:guillotina.SearchContent"
                         ]
                     }
                 ],
@@ -5609,9 +5451,9 @@
                 ]
             }
         },
-        "/{account_id}/@searchTemplate": {
+        "/{account_id}/{account_id}/@searchTemplate": {
             "get": {
-                "description": "Generate an Excel like file with search fields \u301c permission: .AccessContent",
+                "description": "Generate an Excel like file with search fields \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -5648,7 +5490,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -5658,7 +5500,7 @@
                 ]
             }
         },
-        "/{account_id}/@searchableFields": {
+        "/{account_id}/{account_id}/@searchableFields": {
             "get": {
                 "description": "Get a list of searchable fields \u301c permission: onna.SearchUsers",
                 "parameters": [
@@ -5707,9 +5549,9 @@
                 ]
             }
         },
-        "/{account_id}/@sendToStatic": {
+        "/{account_id}/{account_id}/@sendToStatic": {
             "post": {
-                "description": "Process files in a static datasource \u301c permission: .AccessContent",
+                "description": "Process files in a static datasource \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -5750,7 +5592,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -5760,9 +5602,9 @@
                 ]
             }
         },
-        "/{account_id}/@setupInvitedMembers": {
+        "/{account_id}/{account_id}/@setupInvitedMembers": {
             "post": {
-                "description": "Add billing and technical contact information to an account \u301c permission: .AccessContent",
+                "description": "Add billing and technical contact information to an account \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -5828,7 +5670,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -5839,9 +5681,9 @@
                 ]
             }
         },
-        "/{account_id}/@sizes": {
+        "/{account_id}/{account_id}/@sizes": {
             "get": {
-                "description": "Get the size of various user owned content items \u301c permission: .SearchContent",
+                "description": "Get the size of various user owned content items \u301c permission: guillotina.SearchContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -5878,7 +5720,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.SearchContent"
+                            "permission:guillotina.SearchContent"
                         ]
                     }
                 ],
@@ -5888,7 +5730,7 @@
                 ]
             }
         },
-        "/{account_id}/@status": {
+        "/{account_id}/{account_id}/@status": {
             "get": {
                 "description": "Get the status of an account \u301c permission: onna.Public",
                 "parameters": [
@@ -5937,9 +5779,9 @@
                 ]
             }
         },
-        "/{account_id}/@statusAccount": {
+        "/{account_id}/{account_id}/@statusAccount": {
             "get": {
-                "description": "Get the account status \u301c permission: .AccessContent",
+                "description": "Get the account status \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -5976,7 +5818,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -5986,9 +5828,9 @@
                 ]
             }
         },
-        "/{account_id}/@suggestions": {
+        "/{account_id}/{account_id}/@suggestions": {
             "get": {
-                "description": "Get a list of suggested search terms \u301c permission: .SearchContent",
+                "description": "Get a list of suggested search terms \u301c permission: guillotina.SearchContent",
                 "parameters": [
                     {
                         "description": "Suggestion term string",
@@ -6043,7 +5885,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.SearchContent"
+                            "permission:guillotina.SearchContent"
                         ]
                     }
                 ],
@@ -6053,9 +5895,9 @@
                 ]
             }
         },
-        "/{account_id}/@syncUsers": {
+        "/{account_id}/{account_id}/@syncUsers": {
             "post": {
-                "description": "Ensure users in user store exist in the account \u301c permission: .AccessContent",
+                "description": "Ensure users in user store exist in the account \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -6101,7 +5943,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -6111,9 +5953,9 @@
                 ]
             }
         },
-        "/{account_id}/@types": {
+        "/{account_id}/{account_id}/@types": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "Read information on available types",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -6150,7 +5992,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -6160,9 +6002,9 @@
                 ]
             }
         },
-        "/{account_id}/@types/{type_name}": {
+        "/{account_id}/{account_id}/@types/{type_name}": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "Read information on available types",
                 "parameters": [
                     {
                         "in": "path",
@@ -6207,7 +6049,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -6217,9 +6059,9 @@
                 ]
             }
         },
-        "/{account_id}/@user": {
+        "/{account_id}/{account_id}/@user": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "Get information on the currently logged in user",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -6256,7 +6098,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -6266,9 +6108,9 @@
                 ]
             }
         },
-        "/{account_id}/@userRoles": {
+        "/{account_id}/{account_id}/@userRoles": {
             "get": {
-                "description": "Get a list of user roles for this context \u301c permission: .AccessContent",
+                "description": "Get a list of user roles for this context \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -6308,7 +6150,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -6318,9 +6160,9 @@
                 ]
             }
         },
-        "/{account_id}/@wallet": {
+        "/{account_id}/{account_id}/@wallet": {
             "get": {
-                "description": "Get wallet metadata \u301c permission: .AccessContent",
+                "description": "Get wallet metadata \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -6402,7 +6244,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -6412,9 +6254,9 @@
                 ]
             }
         },
-        "/{account_id}/@webhookRefs": {
+        "/{account_id}/{account_id}/@webhookRefs": {
             "get": {
-                "description": "Webhook references \u301c permission: .AccessContent",
+                "description": "Webhook references \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -6451,7 +6293,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -6461,7 +6303,7 @@
                 ]
             }
         },
-        "/{account_id}/@workspaces": {
+        "/{account_id}/{account_id}/@workspaces": {
             "get": {
                 "description": "Get a list of workspaces in this account \u301c permission: onna.permission:GetWorkspaces",
                 "parameters": [
@@ -6510,9 +6352,9 @@
                 ]
             }
         },
-        "/{account_id}/@ws": {
+        "/{account_id}/{account_id}/@ws": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "Make a web socket connection",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -6549,7 +6391,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -6559,9 +6401,9 @@
                 ]
             }
         },
-        "/{account_id}/@wstoken": {
+        "/{account_id}/{account_id}/@wstoken": {
             "get": {
-                "description": "permission: .UseWebSockets",
+                "description": "Return a web socket token",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -6602,7 +6444,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.UseWebSockets"
+                            "permission:guillotina.UseWebSockets"
                         ]
                     }
                 ],
@@ -6612,9 +6454,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}": {
+        "/{account_id}/{account_id}/{username}": {
             "delete": {
-                "description": "Delete resource \u301c permission: .DeleteContent",
+                "description": "Delete resource \u301c permission: guillotina.DeleteContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -6644,7 +6486,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.DeleteContent"
+                            "permission:guillotina.DeleteContent"
                         ]
                     }
                 ],
@@ -6655,7 +6497,7 @@
                 ]
             },
             "get": {
-                "description": "permission: .ViewContent",
+                "description": "Retrieves serialization of resource",
                 "parameters": [
                     {
                         "in": "query",
@@ -6735,7 +6577,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ViewContent"
+                            "permission:guillotina.ViewContent"
                         ]
                     }
                 ],
@@ -6746,7 +6588,7 @@
                 ]
             },
             "head": {
-                "description": "permission: .ViewContent",
+                "description": "",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -6801,7 +6643,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ViewContent"
+                            "permission:guillotina.ViewContent"
                         ]
                     }
                 ],
@@ -6812,7 +6654,7 @@
                 ]
             },
             "patch": {
-                "description": "permission: .ModifyContent",
+                "description": "Modify the content of this resource",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -6886,7 +6728,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -6897,7 +6739,7 @@
                 ]
             },
             "post": {
-                "description": "permission: .AddContent",
+                "description": "Add new resouce inside this container resource",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -6944,7 +6786,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AddContent"
+                            "permission:guillotina.AddContent"
                         ]
                     }
                 ],
@@ -6955,7 +6797,7 @@
                 ]
             },
             "put": {
-                "description": "permission: .ModifyContent",
+                "description": "Replace the content of this resource",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -7029,7 +6871,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -7040,9 +6882,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@addable-types": {
+        "/{account_id}/{account_id}/{username}/@addable-types": {
             "get": {
-                "description": "permission: .AddContent",
+                "description": "Return a list of type names that can be added to container",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -7081,7 +6923,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AddContent"
+                            "permission:guillotina.AddContent"
                         ]
                     }
                 ],
@@ -7089,9 +6931,9 @@
                 "tags": []
             }
         },
-        "/{account_id}/{username}/@all_permissions": {
+        "/{account_id}/{account_id}/{username}/@all_permissions": {
             "get": {
-                "description": "permission: .SeePermissions",
+                "description": "See all permission settings for this resource",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -7137,7 +6979,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.SeePermissions"
+                            "permission:guillotina.SeePermissions"
                         ]
                     }
                 ],
@@ -7148,9 +6990,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@async-catalog-reindex": {
+        "/{account_id}/{account_id}/{username}/@async-catalog-reindex": {
             "post": {
-                "description": "permission: .ReindexContent",
+                "description": "Asynchronously reindex entire container content",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -7198,7 +7040,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ReindexContent"
+                            "permission:guillotina.ReindexContent"
                         ]
                     }
                 ],
@@ -7208,9 +7050,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@backrefs": {
+        "/{account_id}/{account_id}/{username}/@backrefs": {
             "get": {
-                "description": "View references to content \u301c permission: .ViewContent",
+                "description": "View references to content \u301c permission: guillotina.ViewContent",
                 "parameters": [
                     {
                         "in": "query",
@@ -7311,7 +7153,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ViewContent"
+                            "permission:guillotina.ViewContent"
                         ]
                     }
                 ],
@@ -7321,9 +7163,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@behaviors": {
+        "/{account_id}/{account_id}/{username}/@behaviors": {
             "delete": {
-                "description": "permission: .ModifyContent",
+                "description": "Remove behavior from resource",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -7366,7 +7208,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -7374,7 +7216,7 @@
                 "tags": []
             },
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "Get information on behaviors for this resource",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -7411,7 +7253,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -7419,7 +7261,7 @@
                 "tags": []
             },
             "patch": {
-                "description": "permission: .ModifyContent",
+                "description": "Add behavior to resource",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -7471,7 +7313,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -7479,9 +7321,9 @@
                 "tags": []
             }
         },
-        "/{account_id}/{username}/@behaviors/{behavior}": {
+        "/{account_id}/{account_id}/{username}/@behaviors/{behavior}": {
             "delete": {
-                "description": "permission: .ModifyContent",
+                "description": "Remove behavior from resource",
                 "parameters": [
                     {
                         "in": "path",
@@ -7549,7 +7391,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -7557,9 +7399,9 @@
                 "tags": []
             }
         },
-        "/{account_id}/{username}/@canido": {
+        "/{account_id}/{account_id}/{username}/@canido": {
             "get": {
-                "description": "permission: .AccessContent",
+                "description": "Check if user has permissions on context",
                 "parameters": [
                     {
                         "in": "query",
@@ -7606,7 +7448,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -7617,9 +7459,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@catalog-reindex": {
+        "/{account_id}/{account_id}/{username}/@catalog-reindex": {
             "post": {
-                "description": "permission: .ReindexContent",
+                "description": "Reindex entire container content",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -7667,7 +7509,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ReindexContent"
+                            "permission:guillotina.ReindexContent"
                         ]
                     }
                 ],
@@ -7677,65 +7519,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@consumer-stat": {
+        "/{account_id}/{account_id}/{username}/@data": {
             "get": {
-                "description": "permission: .AccessContent",
-                "parameters": [
-                    {
-                        "description": "Account ID",
-                        "in": "path",
-                        "name": "account_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Username",
-                        "in": "path",
-                        "name": "username",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "OK"
-                    },
-                    "401": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": [
-                            "permission:.AccessContent"
-                        ]
-                    }
-                ],
-                "summary": "",
-                "tags": []
-            }
-        },
-        "/{account_id}/{username}/@data": {
-            "get": {
-                "description": "Data API \u301c permission: .AccessContent",
+                "description": "Data API \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Date string",
@@ -7748,6 +7534,7 @@
                     },
                     {
                         "description": "Comma seperated list of types",
+                        "example": "Rule, Workspace, User, WalletEntry, WebhookEntry, Export, SeverityLevel, _datasources_",
                         "in": "query",
                         "name": "types",
                         "required": false,
@@ -7799,7 +7586,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -7809,7 +7596,7 @@
                 ]
             },
             "post": {
-                "description": "Data API \u301c permission: .AccessContent",
+                "description": "Data API \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -7883,7 +7670,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -7893,9 +7680,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@datasourceAuthCode/{type}": {
+        "/{account_id}/{account_id}/{username}/@datasourceAuthCode/{type}": {
             "get": {
-                "description": "Retrieve an authorization code \u301c permission: .ModifyContent",
+                "description": "Retrieve an authorization code \u301c permission: guillotina.ModifyContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -7960,7 +7747,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -7970,9 +7757,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@download/{field_name}": {
+        "/{account_id}/{account_id}/{username}/@download/{field_name}": {
             "head": {
-                "description": "permission: .ViewContent",
+                "description": "",
                 "parameters": [
                     {
                         "in": "path",
@@ -8035,7 +7822,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ViewContent"
+                            "permission:guillotina.ViewContent"
                         ]
                     }
                 ],
@@ -8045,9 +7832,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@download/{field_name}/{field_name}": {
+        "/{account_id}/{account_id}/{username}/@download/{field_name}/{field_name}": {
             "get": {
-                "description": "permission: .ViewContent",
+                "description": "Download the content of a file",
                 "parameters": [
                     {
                         "description": "Name of file field",
@@ -8095,7 +7882,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ViewContent"
+                            "permission:guillotina.ViewContent"
                         ]
                     }
                 ],
@@ -8105,9 +7892,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@download/{field_name}/{filename}": {
+        "/{account_id}/{account_id}/{username}/@download/{field_name}/{filename}": {
             "head": {
-                "description": "permission: .ViewContent",
+                "description": "",
                 "parameters": [
                     {
                         "in": "path",
@@ -8178,7 +7965,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ViewContent"
+                            "permission:guillotina.ViewContent"
                         ]
                     }
                 ],
@@ -8188,9 +7975,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@download/{field_name}/{filename}/{field_name}": {
+        "/{account_id}/{account_id}/{username}/@download/{field_name}/{filename}/{field_name}": {
             "get": {
-                "description": "permission: .ViewContent",
+                "description": "Download the content of a file",
                 "parameters": [
                     {
                         "description": "Name of file field",
@@ -8246,7 +8033,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ViewContent"
+                            "permission:guillotina.ViewContent"
                         ]
                     }
                 ],
@@ -8256,9 +8043,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@duplicate": {
+        "/{account_id}/{account_id}/{username}/@duplicate": {
             "post": {
-                "description": "permission: .DuplicateContent",
+                "description": "Duplicate resource",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -8322,7 +8109,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.DuplicateContent"
+                            "permission:guillotina.DuplicateContent"
                         ]
                     }
                 ],
@@ -8332,9 +8119,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@dynamic-fields": {
+        "/{account_id}/{account_id}/{username}/@dynamic-fields": {
             "get": {
-                "description": "permission: .ModifyContent",
+                "description": "Get a list of available fields",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -8380,7 +8167,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -8390,7 +8177,7 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@enabledDSTypes": {
+        "/{account_id}/{account_id}/{username}/@enabledDSTypes": {
             "get": {
                 "description": "Retrieves a list of Datasource types enabled for this user",
                 "parameters": [
@@ -8438,7 +8225,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -8448,9 +8235,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@exportCount": {
+        "/{account_id}/{account_id}/{username}/@exportCount": {
             "get": {
-                "description": "Number of user's exports \u301c permission: .ViewContent",
+                "description": "Number of user's exports \u301c permission: guillotina.ViewContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -8496,7 +8283,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ViewContent"
+                            "permission:guillotina.ViewContent"
                         ]
                     }
                 ],
@@ -8506,7 +8293,7 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@exports": {
+        "/{account_id}/{account_id}/{username}/@exports": {
             "get": {
                 "description": "Retrieves all exports belonging to a user, including expired.",
                 "parameters": [
@@ -8554,7 +8341,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ViewContent"
+                            "permission:guillotina.ViewContent"
                         ]
                     }
                 ],
@@ -8564,9 +8351,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@favorite": {
+        "/{account_id}/{account_id}/{username}/@favorite": {
             "delete": {
-                "description": "permission: .AccessContent",
+                "description": "Remove a Resource from your list of favorites",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -8603,7 +8390,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -8613,7 +8400,7 @@
                 ]
             },
             "post": {
-                "description": "Mark a content item as a favorite, stored on your user account \u301c permission: .AccessContent",
+                "description": "Mark a content item as a favorite, stored on your user account \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -8668,7 +8455,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -8678,9 +8465,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@fieldvalue/{dotted_name}": {
+        "/{account_id}/{account_id}/{username}/@fieldvalue/{dotted_name}": {
             "get": {
-                "description": "permission: .ViewContent",
+                "description": "Get field value",
                 "parameters": [
                     {
                         "in": "path",
@@ -8734,7 +8521,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ViewContent"
+                            "permission:guillotina.ViewContent"
                         ]
                     }
                 ],
@@ -8744,9 +8531,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@getAllChildren": {
+        "/{account_id}/{account_id}/{username}/@getAllChildren": {
             "get": {
-                "description": "leverages elasticsearch to get all the children of a resource \u301c permission: .AccessContent",
+                "description": "leverages elasticsearch to get all the children of a resource \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "in": "query",
@@ -8817,7 +8604,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -8828,9 +8615,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@getAllChildrenData": {
+        "/{account_id}/{account_id}/{username}/@getAllChildrenData": {
             "get": {
-                "description": "leverages elasticsearch to get all the children of a resource, with included data \u301c permission: .AccessContent",
+                "description": "leverages elasticsearch to get all the children of a resource, with included data \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "in": "query",
@@ -8911,7 +8698,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -8922,9 +8709,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@getBoxAuthCode": {
+        "/{account_id}/{account_id}/{username}/@getBoxAuthCode": {
             "get": {
-                "description": "Get the Box OAuth code callback for a user \u301c permission: .ModifyContent",
+                "description": "Get the Box OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -8981,7 +8768,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -8991,9 +8778,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@getDOAuthCode": {
+        "/{account_id}/{account_id}/{username}/@getDOAuthCode": {
             "get": {
-                "description": "Get the Dropbox OAuth code callback for a user \u301c permission: .ModifyContent",
+                "description": "Get the Dropbox OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -9050,7 +8837,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -9060,9 +8847,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@getDatasources": {
+        "/{account_id}/{account_id}/{username}/@getDatasources": {
             "get": {
-                "description": "permission: .ViewContent",
+                "description": "",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -9108,7 +8895,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ViewContent"
+                            "permission:guillotina.ViewContent"
                         ]
                     }
                 ],
@@ -9118,9 +8905,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@getEBoxAuthCode": {
+        "/{account_id}/{account_id}/{username}/@getEBoxAuthCode": {
             "get": {
-                "description": "Get the Enterprise Box OAuth code callback for a user \u301c permission: .ModifyContent",
+                "description": "Get the Enterprise Box OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -9177,7 +8964,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -9187,9 +8974,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@getGDriveAuthCode": {
+        "/{account_id}/{account_id}/{username}/@getGDriveAuthCode": {
             "get": {
-                "description": "Get the GDrive OAuth code callback for a user \u301c permission: .ModifyContent",
+                "description": "Get the GDrive OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -9246,7 +9033,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -9256,9 +9043,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@getGOAuthCode": {
+        "/{account_id}/{account_id}/{username}/@getGOAuthCode": {
             "get": {
-                "description": "Get the GMail OAuth code callback for a user \u301c permission: .ModifyContent",
+                "description": "Get the GMail OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -9315,7 +9102,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -9325,9 +9112,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@getGithubAuthCode": {
+        "/{account_id}/{account_id}/{username}/@getGithubAuthCode": {
             "get": {
-                "description": "Get the GitHub OAuth code callback for a user \u301c permission: .ModifyContent",
+                "description": "Get the GitHub OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -9384,7 +9171,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -9394,9 +9181,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@getSalesforceAuthCode": {
+        "/{account_id}/{account_id}/{username}/@getSalesforceAuthCode": {
             "get": {
-                "description": "Get the Salesforce OAuth code callback for a user \u301c permission: .ModifyContent",
+                "description": "Get the Salesforce OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -9453,7 +9240,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -9463,9 +9250,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@getSlackAuthCode": {
+        "/{account_id}/{account_id}/{username}/@getSlackAuthCode": {
             "get": {
-                "description": "Get the Slack OAuth code callback for a user \u301c permission: .ModifyContent",
+                "description": "Get the Slack OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -9522,7 +9309,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -9532,9 +9319,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@getTwitterAuthCode": {
+        "/{account_id}/{account_id}/{username}/@getTwitterAuthCode": {
             "get": {
-                "description": "Get the Twitter OAuth code callback for a user \u301c permission: .ModifyContent",
+                "description": "Get the Twitter OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -9591,7 +9378,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -9601,9 +9388,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@getZendeskAuthCode": {
+        "/{account_id}/{account_id}/{username}/@getZendeskAuthCode": {
             "get": {
-                "description": "Get the Zendesk OAuth code callback for a user \u301c permission: .ModifyContent",
+                "description": "Get the Zendesk OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
                 "parameters": [
                     {
                         "description": "Url where front-end is redirected to after the auth flow is completed",
@@ -9660,7 +9447,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -9670,9 +9457,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@invalidate-cache": {
+        "/{account_id}/{account_id}/{username}/@invalidate-cache": {
             "get": {
-                "description": "permission: .ModifyContent",
+                "description": "Invalidate cache of object",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -9711,7 +9498,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -9719,82 +9506,9 @@
                 "tags": []
             }
         },
-        "/{account_id}/{username}/@kafka-producer/{topic}": {
-            "post": {
-                "description": "permission: .ModifyContent",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "topic",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Account ID",
-                        "in": "path",
-                        "name": "account_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Username",
-                        "in": "path",
-                        "name": "username",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "OK"
-                    },
-                    "401": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": [
-                            "permission:.ModifyContent"
-                        ]
-                    }
-                ],
-                "summary": "",
-                "tags": []
-            }
-        },
-        "/{account_id}/{username}/@keys": {
+        "/{account_id}/{account_id}/{username}/@keys": {
             "get": {
-                "description": "Get a list of unique keys in a datasource \u301c permission: .AccessContent",
+                "description": "Get a list of unique keys in a datasource \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Use last key in previous response to get further results.",
@@ -9866,7 +9580,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -9877,9 +9591,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@move": {
+        "/{account_id}/{account_id}/{username}/@move": {
             "post": {
-                "description": "Move resource \u301c permission: .MoveContent",
+                "description": "Move resource \u301c permission: guillotina.MoveContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -9938,7 +9652,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.MoveContent"
+                            "permission:guillotina.MoveContent"
                         ]
                     }
                 ],
@@ -9948,9 +9662,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@refs": {
+        "/{account_id}/{account_id}/{username}/@refs": {
             "delete": {
-                "description": "Delete reference to content \u301c permission: .ModifyContent",
+                "description": "Delete reference to content \u301c permission: guillotina.ModifyContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -10008,7 +9722,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -10018,7 +9732,7 @@
                 ]
             },
             "get": {
-                "description": "View references to content \u301c permission: .ViewContent",
+                "description": "View references to content \u301c permission: guillotina.ViewContent",
                 "parameters": [
                     {
                         "in": "query",
@@ -10120,7 +9834,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ViewContent"
+                            "permission:guillotina.ViewContent"
                         ]
                     }
                 ],
@@ -10130,7 +9844,7 @@
                 ]
             },
             "post": {
-                "description": "Add references to content \u301c permission: .ModifyContent",
+                "description": "Add references to content \u301c permission: guillotina.ModifyContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -10283,7 +9997,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -10293,9 +10007,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@rules": {
+        "/{account_id}/{account_id}/{username}/@rules": {
             "get": {
-                "description": "Get user's rules \u301c permission: .ViewContent",
+                "description": "Get user's rules \u301c permission: guillotina.ViewContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -10341,7 +10055,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ViewContent"
+                            "permission:guillotina.ViewContent"
                         ]
                     }
                 ],
@@ -10351,9 +10065,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@search": {
+        "/{account_id}/{account_id}/{username}/@search": {
             "get": {
-                "description": "permission: .SearchContent",
+                "description": "Make search request",
                 "parameters": [
                     {
                         "description": "Generic search term support. See modifier list below for usage",
@@ -10519,7 +10233,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.SearchContent"
+                            "permission:guillotina.SearchContent"
                         ]
                     }
                 ],
@@ -10529,9 +10243,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@searchTemplate": {
+        "/{account_id}/{account_id}/{username}/@searchTemplate": {
             "post": {
-                "description": "Upload an Excel like file with search fields \u301c permission: .AccessContent",
+                "description": "Upload an Excel like file with search fields \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -10586,7 +10300,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
@@ -10596,9 +10310,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@sharing": {
+        "/{account_id}/{account_id}/{username}/@sharing": {
             "get": {
-                "description": "permission: .SeePermissions",
+                "description": "Get sharing settings for this resource",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -10644,7 +10358,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.SeePermissions"
+                            "permission:guillotina.SeePermissions"
                         ]
                     }
                 ],
@@ -10655,7 +10369,7 @@
                 ]
             },
             "post": {
-                "description": "Change permissions for a resource \u301c permission: .ChangePermissions",
+                "description": "Change permissions for a resource \u301c permission: guillotina.ChangePermissions",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -10695,7 +10409,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ChangePermissions"
+                            "permission:guillotina.ChangePermissions"
                         ]
                     }
                 ],
@@ -10706,7 +10420,7 @@
                 ]
             },
             "put": {
-                "description": "Replace permissions for a resource \u301c permission: .ChangePermissions",
+                "description": "Replace permissions for a resource \u301c permission: guillotina.ChangePermissions",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -10746,7 +10460,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ChangePermissions"
+                            "permission:guillotina.ChangePermissions"
                         ]
                     }
                 ],
@@ -10757,9 +10471,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@size": {
+        "/{account_id}/{account_id}/{username}/@size": {
             "get": {
-                "description": "Get size of all children \u301c permission: .ViewContent",
+                "description": "Get size of all children \u301c permission: guillotina.ViewContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -10813,7 +10527,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ViewContent"
+                            "permission:guillotina.ViewContent"
                         ]
                     }
                 ],
@@ -10824,7 +10538,7 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@sourceAccountRefs": {
+        "/{account_id}/{account_id}/{username}/@sourceAccountRefs": {
             "post": {
                 "description": "Add references to content, create source account if it does not exist \u301c permission: onna.permission:ManageSourceAccounts",
                 "parameters": [
@@ -10935,9 +10649,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@tusupload/{field_name}/{field_name}": {
+        "/{account_id}/{account_id}/{username}/@tusupload/{field_name}/{field_name}": {
             "head": {
-                "description": "permission: .ModifyContent",
+                "description": "TUS endpoint",
                 "parameters": [
                     {
                         "description": "Name of file field",
@@ -11002,7 +10716,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -11012,7 +10726,7 @@
                 ]
             },
             "patch": {
-                "description": "permission: .ModifyContent",
+                "description": "TUS endpoint",
                 "parameters": [
                     {
                         "description": "Name of file field",
@@ -11093,7 +10807,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -11103,7 +10817,7 @@
                 ]
             },
             "post": {
-                "description": "permission: .ModifyContent",
+                "description": "TUS endpoint",
                 "parameters": [
                     {
                         "description": "Name of file field",
@@ -11187,7 +10901,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -11197,9 +10911,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@tusupload/{field_name}/{filename}/{field_name}": {
+        "/{account_id}/{account_id}/{username}/@tusupload/{field_name}/{filename}/{field_name}": {
             "head": {
-                "description": "permission: .ModifyContent",
+                "description": "TUS endpoint",
                 "parameters": [
                     {
                         "description": "Name of file field",
@@ -11282,7 +10996,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -11292,7 +11006,7 @@
                 ]
             },
             "patch": {
-                "description": "permission: .ModifyContent",
+                "description": "TUS endpoint",
                 "parameters": [
                     {
                         "description": "Name of file field",
@@ -11381,7 +11095,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -11391,7 +11105,7 @@
                 ]
             },
             "post": {
-                "description": "permission: .ModifyContent",
+                "description": "TUS endpoint",
                 "parameters": [
                     {
                         "description": "Name of file field",
@@ -11531,7 +11245,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -11541,9 +11255,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@upload/{field_name}/{field_name}": {
+        "/{account_id}/{account_id}/{username}/@upload/{field_name}/{field_name}": {
             "patch": {
-                "description": "permission: .ModifyContent",
+                "description": "Update the content of a file",
                 "parameters": [
                     {
                         "description": "Name of file field",
@@ -11600,7 +11314,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -11610,9 +11324,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@upload/{field_name}/{filename}/{field_name}": {
+        "/{account_id}/{account_id}/{username}/@upload/{field_name}/{filename}/{field_name}": {
             "patch": {
-                "description": "permission: .ModifyContent",
+                "description": "Update the content of a file",
                 "parameters": [
                     {
                         "description": "Name of file field",
@@ -11677,7 +11391,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.ModifyContent"
+                            "permission:guillotina.ModifyContent"
                         ]
                     }
                 ],
@@ -11687,9 +11401,9 @@
                 ]
             }
         },
-        "/{account_id}/{username}/@userRoles": {
+        "/{account_id}/{account_id}/{username}/@userRoles": {
             "get": {
-                "description": "Get a list of user roles for this context \u301c permission: .AccessContent",
+                "description": "Get a list of user roles for this context \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -11738,7 +11452,7 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:.AccessContent"
+                            "permission:guillotina.AccessContent"
                         ]
                     }
                 ],
