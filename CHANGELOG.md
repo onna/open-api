@@ -1,12 +1,16 @@
 # Changelog
 
+## [1.0.10]
+
+- Add GitHub Action for checking links, once a week
+
 ## [1.0.9]
 
-- more openapi coverage
+- More OpenAPI coverage
 
 ## [1.0.8]
 
-- update openapi to include all endpoints
+- Update OpenAPI to include all endpoints
 
 ## [1.0.7]
 
