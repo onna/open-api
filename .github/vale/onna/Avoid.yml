@@ -11,7 +11,7 @@ tokens:
   - application program
   - applications developer
   - app(?:lication)? file
-  - as well as
+    #- as well as
   - ask
   - backbone
   - abortion
