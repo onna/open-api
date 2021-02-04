@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.11]
+
+- Add vle config and GitHub Action (check on PR)
+
 ## [1.0.10]
 
 - Add GitHub Action for checking links, once a week
