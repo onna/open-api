@@ -3499,7 +3499,7 @@
                         ]
                     }
                 ],
-                "summary": "Execute a search",
+                "summary": "Run a search",
                 "tags": [
                     "Search"
                 ]
