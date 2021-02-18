@@ -1,4 +1,7 @@
 # Changelog
+## [1.0.12]
+
+- disambiguate container and account
 
 ## [1.0.11]
 

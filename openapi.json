@@ -663,6 +663,10 @@
                             },
                             "size": {
                                 "$ref": "#/components/schemas/IdentitiesDiscovery_size"
+                            },
+                            "suggestions": {
+                                "default": false,
+                                "type": "boolean"
                             }
                         },
                         "required": [
@@ -1944,7 +1948,7 @@
     },
     "openapi": "3.0.2",
     "paths": {
-        "/{container_id}/{account_id}/@availableEdatasources": {
+        "/CONTAINER/ACCOUNT/@availableEdatasources": {
             "get": {
                 "description": "Get a list of available enterprise Datasources for this account \u301c permission: guillotina.SearchContent",
                 "parameters": [
@@ -1993,7 +1997,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@batch": {
+        "/CONTAINER/ACCOUNT/@batch": {
             "post": {
                 "description": "",
                 "parameters": [
@@ -2107,7 +2111,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@batchOnQuery": {
+        "/CONTAINER/ACCOUNT/@batchOnQuery": {
             "post": {
                 "description": "Operations sent to task queue based on query results \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -2166,7 +2170,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@behaviors": {
+        "/CONTAINER/ACCOUNT/@behaviors": {
             "get": {
                 "description": "Get information on behaviors for this resource",
                 "parameters": [
@@ -2213,56 +2217,7 @@
                 "tags": []
             }
         },
-        "/{container_id}/{account_id}/@caniadd": {
-            "get": {
-                "description": "Do some permission checks \u301c permission: guillotina.AccessContent",
-                "parameters": [
-                    {
-                        "description": "Account ID",
-                        "in": "path",
-                        "name": "account_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "OK"
-                    },
-                    "401": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": [
-                            "permission:guillotina.AccessContent"
-                        ]
-                    }
-                ],
-                "summary": "Do some permission checks",
-                "tags": [
-                    "Account"
-                ]
-            }
-        },
-        "/{container_id}/{account_id}/@canido": {
+        "/CONTAINER/ACCOUNT/@canido": {
             "get": {
                 "description": "Check if user has permissions on context",
                 "parameters": [
@@ -2313,7 +2268,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@channelRecent": {
+        "/CONTAINER/ACCOUNT/@channelRecent": {
             "post": {
                 "description": "Websocket channel activity \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -2372,7 +2327,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@channelStatus": {
+        "/CONTAINER/ACCOUNT/@channelStatus": {
             "get": {
                 "description": "Websocket message channel status \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -2439,7 +2394,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@checkInvited": {
+        "/CONTAINER/ACCOUNT/@checkInvited": {
             "post": {
                 "description": "Check if a set of users are guests on the system \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -2502,7 +2457,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@complianceQueries": {
+        "/CONTAINER/ACCOUNT/@complianceQueries": {
             "get": {
                 "description": "Get a list of modifiers used with compliance queries \u301c permission: onna.SearchUsers",
                 "parameters": [
@@ -2551,7 +2506,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@configuration": {
+        "/CONTAINER/ACCOUNT/@configuration": {
             "get": {
                 "description": "Get account configuration \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -2600,7 +2555,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@copy": {
+        "/CONTAINER/ACCOUNT/@copy": {
             "post": {
                 "description": "Copy resource and all the children \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -2685,7 +2640,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@data": {
+        "/CONTAINER/ACCOUNT/@data": {
             "get": {
                 "description": "Data API \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -2837,7 +2792,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@datasourceAuthCode/{type}": {
+        "/CONTAINER/ACCOUNT/@datasourceAuthCode/{type}": {
             "get": {
                 "description": "Retrieve an authorization code \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -2894,7 +2849,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@datasourceTypes": {
+        "/CONTAINER/ACCOUNT/@datasourceTypes": {
             "get": {
                 "description": "Get available Datasource information for account \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -2957,7 +2912,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@deprecated": {
+        "/CONTAINER/ACCOUNT/@deprecated": {
             "get": {
                 "description": "Get a list of API endpoints that are being deprecated",
                 "parameters": [
@@ -3030,7 +2985,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@downloadHold/{legal_hold_id}/{action_type}": {
+        "/CONTAINER/ACCOUNT/@downloadHold/{legal_hold_id}/{action_type}": {
             "get": {
                 "description": "Download hold with specific action \u301c permission: onna.Public",
                 "parameters": [
@@ -3088,7 +3043,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@enableEDS": {
+        "/CONTAINER/ACCOUNT/@enableEDS": {
             "get": {
                 "description": "Retrieves a list of Enterprise Datasource types enabled for this account",
                 "parameters": [
@@ -3137,7 +3092,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@enabledDSTypes": {
+        "/CONTAINER/ACCOUNT/@enabledDSTypes": {
             "get": {
                 "description": "Retrieves a list of Datasource types enabled for this account",
                 "parameters": [
@@ -3186,7 +3141,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@enabledEDS": {
+        "/CONTAINER/ACCOUNT/@enabledEDS": {
             "get": {
                 "description": "Retrieves a list of Enterprise Datasource types enabled for this account",
                 "parameters": [
@@ -3235,7 +3190,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@enabledSearchableFields": {
+        "/CONTAINER/ACCOUNT/@enabledSearchableFields": {
             "get": {
                 "description": "Get a list of allowed searchable fields \u301c permission: onna.SearchUsers",
                 "parameters": [
@@ -3284,7 +3239,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@exportable": {
+        "/CONTAINER/ACCOUNT/@exportable": {
             "get": {
                 "description": "Deduplicate and filter specific exportable fields \u301c permission: onna.GetExportable",
                 "parameters": [
@@ -3334,7 +3289,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@filters": {
+        "/CONTAINER/ACCOUNT/@filters": {
             "get": {
                 "description": "Get various filters for a search query \u301c permission: guillotina.SearchContent",
                 "parameters": [
@@ -3383,7 +3338,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@findUsers": {
+        "/CONTAINER/ACCOUNT/@findUsers": {
             "get": {
                 "description": "Search for a user in the user store \u301c permission: onna.SearchUsers",
                 "parameters": [
@@ -3453,7 +3408,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@frontsearch": {
+        "/CONTAINER/ACCOUNT/@frontsearch": {
             "post": {
                 "description": "Run a search.\n\nSee the [reference documentation](https://developers.onna.com/tutorial/primer/search-and-triggers.html#search). \u301c permission: guillotina.SearchContent",
                 "parameters": [
@@ -3505,7 +3460,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@getAccountFields": {
+        "/CONTAINER/ACCOUNT/@getAccountFields": {
             "get": {
                 "description": "Get custom fields in an account \u301c permission: onna.ViewAccountFields",
                 "parameters": [
@@ -3554,7 +3509,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@getAllChildren": {
+        "/CONTAINER/ACCOUNT/@getAllChildren": {
             "get": {
                 "description": "leverages elasticsearch to get all the children of a resource \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -3629,7 +3584,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@getAllChildrenData": {
+        "/CONTAINER/ACCOUNT/@getAllChildrenData": {
             "get": {
                 "description": "leverages elasticsearch to get all the children of a resource, with included data \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -3714,7 +3669,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@getDOAuthCode": {
+        "/CONTAINER/ACCOUNT/@getDOAuthCode": {
             "get": {
                 "description": "Get the Dropbox OAuth code callback for an account \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -3774,7 +3729,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@getEQuipAuthCode": {
+        "/CONTAINER/ACCOUNT/@getEQuipAuthCode": {
             "post": {
                 "description": "For using this endpoint you must authenticate with [Quip](https://quip.com/) \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -3868,7 +3823,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@getESlackAuthCode": {
+        "/CONTAINER/ACCOUNT/@getESlackAuthCode": {
             "get": {
                 "description": "Get the Enterprise Slack OAuth code callback for a user \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -3928,7 +3883,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@getMGraphAuthCode": {
+        "/CONTAINER/ACCOUNT/@getMGraphAuthCode": {
             "get": {
                 "description": "Authenticate MGraph entreprise \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -3989,7 +3944,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@getMGraphEnterpriseAuthCode": {
+        "/CONTAINER/ACCOUNT/@getMGraphEnterpriseAuthCode": {
             "get": {
                 "description": "Get MGraph entreprise auth code \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -4072,7 +4027,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@getUsers": {
+        "/CONTAINER/ACCOUNT/@getUsers": {
             "post": {
                 "description": "Get a list of users from the user store for this account \u301c permission: onna.SearchUsers",
                 "parameters": [
@@ -4130,7 +4085,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@globalAssignableRoles": {
+        "/CONTAINER/ACCOUNT/@globalAssignableRoles": {
             "get": {
                 "description": "Get a list of available roles \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -4179,7 +4134,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@groups": {
+        "/CONTAINER/ACCOUNT/@groups": {
             "get": {
                 "description": "Retrieves a list of all types of groups including `people groups` as well as `workspaces` that a user is part of.",
                 "parameters": [
@@ -4241,7 +4196,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@groups/{group_id}": {
+        "/CONTAINER/ACCOUNT/@groups/{group_id}": {
             "get": {
                 "description": "Retrieves a list of all types of groups including `people groups` as well as `workspaces` that a user is part of.",
                 "parameters": [
@@ -4298,7 +4253,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@initCheck": {
+        "/CONTAINER/ACCOUNT/@initCheck": {
             "post": {
                 "description": "Set up a user object \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -4356,7 +4311,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@inviteUser": {
+        "/CONTAINER/ACCOUNT/@inviteUser": {
             "post": {
                 "description": "Invite a user to Onna \u301c permission: onna.Invite",
                 "parameters": [
@@ -4433,7 +4388,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@keys": {
+        "/CONTAINER/ACCOUNT/@keys": {
             "get": {
                 "description": "Get a list of unique keys in a Datasource \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -4509,7 +4464,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@magicLink": {
+        "/CONTAINER/ACCOUNT/@magicLink": {
             "post": {
                 "description": "Share a resource with a user \u301c permission: guillotina.Public",
                 "parameters": [
@@ -4569,7 +4524,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@metadataFields": {
+        "/CONTAINER/ACCOUNT/@metadataFields": {
             "get": {
                 "description": "Get a list of metadata fields \u301c permission: onna.SearchUsers",
                 "parameters": [
@@ -4618,7 +4573,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@multiFileDownload": {
+        "/CONTAINER/ACCOUNT/@multiFileDownload": {
             "post": {
                 "description": "Process multi-file download \u301c permission: onna.MultiFileDownload",
                 "parameters": [
@@ -4671,7 +4626,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@multiFileExport": {
+        "/CONTAINER/ACCOUNT/@multiFileExport": {
             "post": {
                 "description": "Process multi-file export \u301c permission: onna.MultiFileExport",
                 "parameters": [
@@ -4724,7 +4679,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@myManagedPermissions": {
+        "/CONTAINER/ACCOUNT/@myManagedPermissions": {
             "get": {
                 "description": "Get assigned permissions on account for logged in user \u301c permission: onna.permission:ViewOwnPermissions",
                 "parameters": [
@@ -4776,7 +4731,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@oauthgetcode": {
+        "/CONTAINER/ACCOUNT/@oauthgetcode": {
             "get": {
                 "description": "",
                 "parameters": [
@@ -4881,7 +4836,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@openRegistry": {
+        "/CONTAINER/ACCOUNT/@openRegistry": {
             "get": {
                 "description": "Return a open subset of registry values \u301c permission: guillotina.Public",
                 "parameters": [
@@ -4930,7 +4885,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@openSearch": {
+        "/CONTAINER/ACCOUNT/@openSearch": {
             "get": {
                 "description": "Allow search via a browser's location bar \u301c permission: guillotina.Public",
                 "parameters": [
@@ -4979,7 +4934,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@originRetentionPolicies": {
+        "/CONTAINER/ACCOUNT/@originRetentionPolicies": {
             "get": {
                 "description": "Get setting for origin retention policy tracking \u301c permission: onna.SeeRetentionPolicies",
                 "parameters": [
@@ -5028,7 +4983,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@processingAggs": {
+        "/CONTAINER/ACCOUNT/@processingAggs": {
             "post": {
                 "description": "Build a list of aggregations for a search \u301c permission: guillotina.SearchContent",
                 "parameters": [
@@ -5086,7 +5041,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@recent": {
+        "/CONTAINER/ACCOUNT/@recent": {
             "get": {
                 "description": "Get a list of the last visited resources \u301c permission: guillotina.SearchContent",
                 "parameters": [
@@ -5136,7 +5091,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@resolveuid/{uid}": {
+        "/CONTAINER/ACCOUNT/@resolveuid/{uid}": {
             "get": {
                 "description": "Get content by UID",
                 "parameters": [
@@ -5184,7 +5139,7 @@
                 "tags": []
             }
         },
-        "/{container_id}/{account_id}/@retentionPolicies": {
+        "/CONTAINER/ACCOUNT/@retentionPolicies": {
             "get": {
                 "description": "Modify the retention policy of a Datasource type \u301c permission: onna.SeeRetentionPolicies",
                 "parameters": [
@@ -5233,7 +5188,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@rules": {
+        "/CONTAINER/ACCOUNT/@rules": {
             "get": {
                 "description": "Retrieves a list of content rules in this account.  \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -5282,7 +5237,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@search": {
+        "/CONTAINER/ACCOUNT/@search": {
             "get": {
                 "description": "Make search request",
                 "parameters": [
@@ -5451,7 +5406,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@searchTemplate": {
+        "/CONTAINER/ACCOUNT/@searchTemplate": {
             "get": {
                 "description": "Generate an Excel like file with search fields \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -5500,7 +5455,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@searchableFields": {
+        "/CONTAINER/ACCOUNT/@searchableFields": {
             "get": {
                 "description": "Get a list of searchable fields \u301c permission: onna.SearchUsers",
                 "parameters": [
@@ -5549,7 +5504,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@sendToStatic": {
+        "/CONTAINER/ACCOUNT/@sendToStatic": {
             "post": {
                 "description": "Process files in a static Datasource \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -5602,7 +5557,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@setupInvitedMembers": {
+        "/CONTAINER/ACCOUNT/@setupInvitedMembers": {
             "post": {
                 "description": "Add billing and technical contact information to an account \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -5681,7 +5636,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@sizes": {
+        "/CONTAINER/ACCOUNT/@sizes": {
             "get": {
                 "description": "Get the size of various user owned content items \u301c permission: guillotina.SearchContent",
                 "parameters": [
@@ -5730,7 +5685,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@status": {
+        "/CONTAINER/ACCOUNT/@status": {
             "get": {
                 "description": "Get the status of an account \u301c permission: onna.Public",
                 "parameters": [
@@ -5779,7 +5734,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@statusAccount": {
+        "/CONTAINER/ACCOUNT/@statusAccount": {
             "get": {
                 "description": "Get the account status \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -5828,7 +5783,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@suggestions": {
+        "/CONTAINER/ACCOUNT/@suggestions": {
             "get": {
                 "description": "Get a list of suggested search terms \u301c permission: guillotina.SearchContent",
                 "parameters": [
@@ -5895,7 +5850,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@syncUsers": {
+        "/CONTAINER/ACCOUNT/@syncUsers": {
             "post": {
                 "description": "Ensure users in user store exist in the account \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -5953,7 +5908,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@types": {
+        "/CONTAINER/ACCOUNT/@types": {
             "get": {
                 "description": "Read information on available types",
                 "parameters": [
@@ -6002,7 +5957,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@types/{type_name}": {
+        "/CONTAINER/ACCOUNT/@types/{type_name}": {
             "get": {
                 "description": "Read information on available types",
                 "parameters": [
@@ -6059,7 +6014,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@user": {
+        "/CONTAINER/ACCOUNT/@user": {
             "get": {
                 "description": "Get information on the currently logged in user",
                 "parameters": [
@@ -6108,7 +6063,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@userRoles": {
+        "/CONTAINER/ACCOUNT/@userRoles": {
             "get": {
                 "description": "Get a list of user roles for this context \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -6160,7 +6115,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@wallet": {
+        "/CONTAINER/ACCOUNT/@wallet": {
             "get": {
                 "description": "Get wallet metadata \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -6254,7 +6209,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@webhookRefs": {
+        "/CONTAINER/ACCOUNT/@webhookRefs": {
             "get": {
                 "description": "Webhook references \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -6303,7 +6258,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@workspaces": {
+        "/CONTAINER/ACCOUNT/@workspaces": {
             "get": {
                 "description": "Get a list of workspaces in this account \u301c permission: onna.permission:GetWorkspaces",
                 "parameters": [
@@ -6352,7 +6307,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@ws": {
+        "/CONTAINER/ACCOUNT/@ws": {
             "get": {
                 "description": "Make a web socket connection",
                 "parameters": [
@@ -6401,7 +6356,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/@wstoken": {
+        "/CONTAINER/ACCOUNT/@wstoken": {
             "get": {
                 "description": "Return a web socket token",
                 "parameters": [
@@ -6454,7 +6409,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}": {
+        "/CONTAINER/ACCOUNT/{username}": {
             "delete": {
                 "description": "Delete resource \u301c permission: guillotina.DeleteContent",
                 "parameters": [
@@ -6492,7 +6447,6 @@
                 ],
                 "summary": "Delete resource",
                 "tags": [
-                    "Workspace",
                     "Content"
                 ]
             },
@@ -6583,7 +6537,6 @@
                 ],
                 "summary": "Retrieves serialization of resource",
                 "tags": [
-                    "Workspace",
                     "Content"
                 ]
             },
@@ -6649,7 +6602,6 @@
                 ],
                 "summary": "",
                 "tags": [
-                    "Workspace",
                     "Content"
                 ]
             },
@@ -6734,7 +6686,6 @@
                 ],
                 "summary": "Modify the content of this resource",
                 "tags": [
-                    "Workspace",
                     "Content"
                 ]
             },
@@ -6792,7 +6743,6 @@
                 ],
                 "summary": "Add new resouce inside this container resource",
                 "tags": [
-                    "Workspace",
                     "Content"
                 ]
             },
@@ -6877,12 +6827,11 @@
                 ],
                 "summary": "Replace the content of this resource",
                 "tags": [
-                    "Workspace",
                     "Content"
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@addable-types": {
+        "/CONTAINER/ACCOUNT/{username}/@addable-types": {
             "get": {
                 "description": "Return a list of type names that can be added to container",
                 "parameters": [
@@ -6931,7 +6880,7 @@
                 "tags": []
             }
         },
-        "/{container_id}/{account_id}/{username}/@all_permissions": {
+        "/CONTAINER/ACCOUNT/{username}/@all_permissions": {
             "get": {
                 "description": "See all permission settings for this resource",
                 "parameters": [
@@ -6990,7 +6939,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@async-catalog-reindex": {
+        "/CONTAINER/ACCOUNT/{username}/@async-catalog-reindex": {
             "post": {
                 "description": "Asynchronously reindex entire container content",
                 "parameters": [
@@ -7050,7 +6999,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@backrefs": {
+        "/CONTAINER/ACCOUNT/{username}/@backrefs": {
             "get": {
                 "description": "View references to content \u301c permission: guillotina.ViewContent",
                 "parameters": [
@@ -7163,7 +7112,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@behaviors": {
+        "/CONTAINER/ACCOUNT/{username}/@behaviors": {
             "delete": {
                 "description": "Remove behavior from resource",
                 "parameters": [
@@ -7321,7 +7270,7 @@
                 "tags": []
             }
         },
-        "/{container_id}/{account_id}/{username}/@behaviors/{behavior}": {
+        "/CONTAINER/ACCOUNT/{username}/@behaviors/{behavior}": {
             "delete": {
                 "description": "Remove behavior from resource",
                 "parameters": [
@@ -7399,7 +7348,7 @@
                 "tags": []
             }
         },
-        "/{container_id}/{account_id}/{username}/@canido": {
+        "/CONTAINER/ACCOUNT/{username}/@canido": {
             "get": {
                 "description": "Check if user has permissions on context",
                 "parameters": [
@@ -7459,7 +7408,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@catalog-reindex": {
+        "/CONTAINER/ACCOUNT/{username}/@catalog-reindex": {
             "post": {
                 "description": "Reindex entire container content",
                 "parameters": [
@@ -7519,7 +7468,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@data": {
+        "/CONTAINER/ACCOUNT/{username}/@data": {
             "get": {
                 "description": "Data API \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -7680,7 +7629,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@datasourceAuthCode/{type}": {
+        "/CONTAINER/ACCOUNT/{username}/@datasourceAuthCode/{type}": {
             "get": {
                 "description": "Retrieve an authorization code \u301c permission: guillotina.ModifyContent",
                 "parameters": [
@@ -7757,7 +7706,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@download/{field_name}": {
+        "/CONTAINER/ACCOUNT/{username}/@download/{field_name}": {
             "head": {
                 "description": "",
                 "parameters": [
@@ -7832,7 +7781,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@download/{field_name}/{field_name}": {
+        "/CONTAINER/ACCOUNT/{username}/@download/{field_name}/{field_name}": {
             "get": {
                 "description": "Download the content of a file",
                 "parameters": [
@@ -7892,7 +7841,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@download/{field_name}/{filename}": {
+        "/CONTAINER/ACCOUNT/{username}/@download/{field_name}/{filename}": {
             "head": {
                 "description": "",
                 "parameters": [
@@ -7975,7 +7924,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@download/{field_name}/{filename}/{field_name}": {
+        "/CONTAINER/ACCOUNT/{username}/@download/{field_name}/{filename}/{field_name}": {
             "get": {
                 "description": "Download the content of a file",
                 "parameters": [
@@ -8043,7 +7992,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@duplicate": {
+        "/CONTAINER/ACCOUNT/{username}/@duplicate": {
             "post": {
                 "description": "Duplicate resource",
                 "parameters": [
@@ -8119,7 +8068,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@dynamic-fields": {
+        "/CONTAINER/ACCOUNT/{username}/@dynamic-fields": {
             "get": {
                 "description": "Get a list of available fields",
                 "parameters": [
@@ -8177,7 +8126,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@enabledDSTypes": {
+        "/CONTAINER/ACCOUNT/{username}/@enabledDSTypes": {
             "get": {
                 "description": "Retrieves a list of Datasource types enabled for this user",
                 "parameters": [
@@ -8235,7 +8184,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@exportCount": {
+        "/CONTAINER/ACCOUNT/{username}/@exportCount": {
             "get": {
                 "description": "Number of user's exports \u301c permission: guillotina.ViewContent",
                 "parameters": [
@@ -8293,7 +8242,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@exports": {
+        "/CONTAINER/ACCOUNT/{username}/@exports": {
             "get": {
                 "description": "Retrieves all exports belonging to a user, including expired.",
                 "parameters": [
@@ -8351,7 +8300,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@favorite": {
+        "/CONTAINER/ACCOUNT/{username}/@favorite": {
             "delete": {
                 "description": "Remove a Resource from your list of favorites",
                 "parameters": [
@@ -8465,7 +8414,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@fieldvalue/{dotted_name}": {
+        "/CONTAINER/ACCOUNT/{username}/@fieldvalue/{dotted_name}": {
             "get": {
                 "description": "Get field value",
                 "parameters": [
@@ -8531,7 +8480,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@getAllChildren": {
+        "/CONTAINER/ACCOUNT/{username}/@getAllChildren": {
             "get": {
                 "description": "leverages elasticsearch to get all the children of a resource \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -8615,7 +8564,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@getAllChildrenData": {
+        "/CONTAINER/ACCOUNT/{username}/@getAllChildrenData": {
             "get": {
                 "description": "leverages elasticsearch to get all the children of a resource, with included data \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -8709,7 +8658,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@getBoxAuthCode": {
+        "/CONTAINER/ACCOUNT/{username}/@getBoxAuthCode": {
             "get": {
                 "description": "Get the Box OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
                 "parameters": [
@@ -8778,7 +8727,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@getDOAuthCode": {
+        "/CONTAINER/ACCOUNT/{username}/@getDOAuthCode": {
             "get": {
                 "description": "Get the Dropbox OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
                 "parameters": [
@@ -8847,7 +8796,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@getDatasources": {
+        "/CONTAINER/ACCOUNT/{username}/@getDatasources": {
             "get": {
                 "description": "",
                 "parameters": [
@@ -8905,7 +8854,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@getEBoxAuthCode": {
+        "/CONTAINER/ACCOUNT/{username}/@getEBoxAuthCode": {
             "get": {
                 "description": "Get the Enterprise Box OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
                 "parameters": [
@@ -8974,7 +8923,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@getGDriveAuthCode": {
+        "/CONTAINER/ACCOUNT/{username}/@getGDriveAuthCode": {
             "get": {
                 "description": "Get the GDrive OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
                 "parameters": [
@@ -9043,7 +8992,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@getGOAuthCode": {
+        "/CONTAINER/ACCOUNT/{username}/@getGOAuthCode": {
             "get": {
                 "description": "Get the GMail OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
                 "parameters": [
@@ -9112,7 +9061,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@getGithubAuthCode": {
+        "/CONTAINER/ACCOUNT/{username}/@getGithubAuthCode": {
             "get": {
                 "description": "Get the GitHub OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
                 "parameters": [
@@ -9181,7 +9130,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@getSalesforceAuthCode": {
+        "/CONTAINER/ACCOUNT/{username}/@getSalesforceAuthCode": {
             "get": {
                 "description": "Get the Salesforce OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
                 "parameters": [
@@ -9250,7 +9199,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@getSlackAuthCode": {
+        "/CONTAINER/ACCOUNT/{username}/@getSlackAuthCode": {
             "get": {
                 "description": "Get the Slack OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
                 "parameters": [
@@ -9319,7 +9268,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@getTwitterAuthCode": {
+        "/CONTAINER/ACCOUNT/{username}/@getTwitterAuthCode": {
             "get": {
                 "description": "Get the Twitter OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
                 "parameters": [
@@ -9388,7 +9337,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@getZendeskAuthCode": {
+        "/CONTAINER/ACCOUNT/{username}/@getZendeskAuthCode": {
             "get": {
                 "description": "Get the Zendesk OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
                 "parameters": [
@@ -9457,7 +9406,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@invalidate-cache": {
+        "/CONTAINER/ACCOUNT/{username}/@invalidate-cache": {
             "get": {
                 "description": "Invalidate cache of object",
                 "parameters": [
@@ -9506,7 +9455,7 @@
                 "tags": []
             }
         },
-        "/{container_id}/{account_id}/{username}/@keys": {
+        "/CONTAINER/ACCOUNT/{username}/@keys": {
             "get": {
                 "description": "Get a list of unique keys in a Datasource \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -9591,7 +9540,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@move": {
+        "/CONTAINER/ACCOUNT/{username}/@move": {
             "post": {
                 "description": "Move resource \u301c permission: guillotina.MoveContent",
                 "parameters": [
@@ -9662,7 +9611,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@refs": {
+        "/CONTAINER/ACCOUNT/{username}/@refs": {
             "delete": {
                 "description": "Delete reference to content \u301c permission: guillotina.ModifyContent",
                 "parameters": [
@@ -10007,7 +9956,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@rules": {
+        "/CONTAINER/ACCOUNT/{username}/@rules": {
             "get": {
                 "description": "Get user's rules \u301c permission: guillotina.ViewContent",
                 "parameters": [
@@ -10065,7 +10014,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@search": {
+        "/CONTAINER/ACCOUNT/{username}/@search": {
             "get": {
                 "description": "Make search request",
                 "parameters": [
@@ -10243,7 +10192,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@searchTemplate": {
+        "/CONTAINER/ACCOUNT/{username}/@searchTemplate": {
             "post": {
                 "description": "Upload an Excel like file with search fields \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -10310,7 +10259,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@sharing": {
+        "/CONTAINER/ACCOUNT/{username}/@sharing": {
             "get": {
                 "description": "Get sharing settings for this resource",
                 "parameters": [
@@ -10471,7 +10420,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@size": {
+        "/CONTAINER/ACCOUNT/{username}/@size": {
             "get": {
                 "description": "Get size of all children \u301c permission: guillotina.ViewContent",
                 "parameters": [
@@ -10538,7 +10487,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@sourceAccountRefs": {
+        "/CONTAINER/ACCOUNT/{username}/@sourceAccountRefs": {
             "post": {
                 "description": "Add references to content, create source account if it does not exist \u301c permission: onna.permission:ManageSourceAccounts",
                 "parameters": [
@@ -10649,7 +10598,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@tusupload/{field_name}/{field_name}": {
+        "/CONTAINER/ACCOUNT/{username}/@tusupload/{field_name}/{field_name}": {
             "head": {
                 "description": "TUS endpoint",
                 "parameters": [
@@ -10911,7 +10860,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@tusupload/{field_name}/{filename}/{field_name}": {
+        "/CONTAINER/ACCOUNT/{username}/@tusupload/{field_name}/{filename}/{field_name}": {
             "head": {
                 "description": "TUS endpoint",
                 "parameters": [
@@ -11255,7 +11204,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@upload/{field_name}/{field_name}": {
+        "/CONTAINER/ACCOUNT/{username}/@upload/{field_name}/{field_name}": {
             "patch": {
                 "description": "Update the content of a file",
                 "parameters": [
@@ -11324,7 +11273,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@upload/{field_name}/{filename}/{field_name}": {
+        "/CONTAINER/ACCOUNT/{username}/@upload/{field_name}/{filename}/{field_name}": {
             "patch": {
                 "description": "Update the content of a file",
                 "parameters": [
@@ -11401,7 +11350,7 @@
                 ]
             }
         },
-        "/{container_id}/{account_id}/{username}/@userRoles": {
+        "/CONTAINER/ACCOUNT/{username}/@userRoles": {
             "get": {
                 "description": "Get a list of user roles for this context \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -11475,7 +11424,7 @@
     ],
     "tags": [
         {
-            "description": "Manage User And Groups",
+            "description": "### Manage User And Groups\n\nPlease read [Roles and permissions](https://developers.onna.com/roles-and-permissions.html) for more information.",
             "name": "Account"
         },
         {
@@ -11483,7 +11432,7 @@
             "name": "Auth"
         },
         {
-            "description": "List, Search And Export Content",
+            "description": "### List, Search And Export Content\n\nPlease check our [support docs](https://support.onna.com/en/?q=content) for more information.",
             "name": "Content"
         },
         {
