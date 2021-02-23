@@ -3511,7 +3511,7 @@
         },
         "/CONTAINER/ACCOUNT/@getAllChildren": {
             "get": {
-                "description": "leverages elasticsearch to get all the children of a resource \u301c permission: guillotina.AccessContent",
+                "description": "Leverages [Elasticsearch](https://www.elastic.co/elasticsearch/) to get all the children of a resource \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "in": "query",
@@ -3577,7 +3577,7 @@
                         ]
                     }
                 ],
-                "summary": "leverages elasticsearch to get all the children of a resource",
+                "summary": "Leverages Elasticsearch to get all the children of a resource",
                 "tags": [
                     "Content",
                     "Search"
@@ -3586,7 +3586,7 @@
         },
         "/CONTAINER/ACCOUNT/@getAllChildrenData": {
             "get": {
-                "description": "leverages elasticsearch to get all the children of a resource, with included data \u301c permission: guillotina.AccessContent",
+                "description": "Leverages [Elasticsearch](https://www.elastic.co/elasticsearch/) to get all the children of a resource, with included data \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "in": "query",
@@ -3662,7 +3662,7 @@
                         ]
                     }
                 ],
-                "summary": "leverages elasticsearch to get all the children of a resource, with included data",
+                "summary": "Leverages Elasticsearch to get all the children of a resource, with included data",
                 "tags": [
                     "Content",
                     "Search"
@@ -6409,7 +6409,7 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}": {
             "delete": {
                 "description": "Delete resource \u301c permission: guillotina.DeleteContent",
                 "parameters": [
@@ -6490,6 +6490,77 @@
                                         },
                                         {
                                             "properties": {
+                                                "guillotina.behaviors.dublincore.IDublinCore": {
+                                                    "properties": {
+                                                        "contributors": {
+                                                            "description": "The unqualified Dublin Core 'Contributor' element values",
+                                                            "items": {
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 10000,
+                                                            "title": "Contributors",
+                                                            "type": "array"
+                                                        },
+                                                        "creation_date": {
+                                                            "description": "The date and time that an object is created. \nThis is normally set automatically.",
+                                                            "format": "date-time",
+                                                            "title": "Added to Onna",
+                                                            "type": "string"
+                                                        },
+                                                        "creators": {
+                                                            "description": "The unqualified Dublin Core 'Creator' element values",
+                                                            "items": {
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 1000,
+                                                            "title": "Creators",
+                                                            "type": "array"
+                                                        },
+                                                        "description": {
+                                                            "description": "The first unqualified Dublin Core 'Description' element value.",
+                                                            "title": "Description",
+                                                            "type": "string"
+                                                        },
+                                                        "effective_date": {
+                                                            "description": "The date and time that an object should be published. ",
+                                                            "format": "date-time",
+                                                            "title": "Effective date",
+                                                            "type": "string"
+                                                        },
+                                                        "expiration_date": {
+                                                            "description": "The date and time that the object should become unpublished.",
+                                                            "format": "date-time",
+                                                            "title": "Expiration date",
+                                                            "type": "string"
+                                                        },
+                                                        "modification_date": {
+                                                            "description": "The date and time that the object was last modified in a\nmeaningful way.",
+                                                            "format": "date-time",
+                                                            "title": "Last update",
+                                                            "type": "string"
+                                                        },
+                                                        "publisher": {
+                                                            "description": "The first unqualified Dublin Core 'Publisher' element value.",
+                                                            "title": "Publisher",
+                                                            "type": "string"
+                                                        },
+                                                        "tags": {
+                                                            "description": "The unqualified Dublin Core 'Tags' element values",
+                                                            "items": {
+                                                                "type": "string"
+                                                            },
+                                                            "maxItems": 10000,
+                                                            "title": "Tags",
+                                                            "type": "array"
+                                                        },
+                                                        "title": {
+                                                            "description": "The first unqualified Dublin Core 'Title' element value.",
+                                                            "title": "Title",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
                                                 "onna.canonical.behaviors.following.IFollowing": {
                                                     "properties": {
                                                         "favorite": {
@@ -6556,6 +6627,15 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -6628,6 +6708,77 @@
                                     },
                                     {
                                         "properties": {
+                                            "guillotina.behaviors.dublincore.IDublinCore": {
+                                                "properties": {
+                                                    "contributors": {
+                                                        "description": "The unqualified Dublin Core 'Contributor' element values",
+                                                        "items": {
+                                                            "type": "string"
+                                                        },
+                                                        "maxItems": 10000,
+                                                        "title": "Contributors",
+                                                        "type": "array"
+                                                    },
+                                                    "creation_date": {
+                                                        "description": "The date and time that an object is created. \nThis is normally set automatically.",
+                                                        "format": "date-time",
+                                                        "title": "Added to Onna",
+                                                        "type": "string"
+                                                    },
+                                                    "creators": {
+                                                        "description": "The unqualified Dublin Core 'Creator' element values",
+                                                        "items": {
+                                                            "type": "string"
+                                                        },
+                                                        "maxItems": 1000,
+                                                        "title": "Creators",
+                                                        "type": "array"
+                                                    },
+                                                    "description": {
+                                                        "description": "The first unqualified Dublin Core 'Description' element value.",
+                                                        "title": "Description",
+                                                        "type": "string"
+                                                    },
+                                                    "effective_date": {
+                                                        "description": "The date and time that an object should be published. ",
+                                                        "format": "date-time",
+                                                        "title": "Effective date",
+                                                        "type": "string"
+                                                    },
+                                                    "expiration_date": {
+                                                        "description": "The date and time that the object should become unpublished.",
+                                                        "format": "date-time",
+                                                        "title": "Expiration date",
+                                                        "type": "string"
+                                                    },
+                                                    "modification_date": {
+                                                        "description": "The date and time that the object was last modified in a\nmeaningful way.",
+                                                        "format": "date-time",
+                                                        "title": "Last update",
+                                                        "type": "string"
+                                                    },
+                                                    "publisher": {
+                                                        "description": "The first unqualified Dublin Core 'Publisher' element value.",
+                                                        "title": "Publisher",
+                                                        "type": "string"
+                                                    },
+                                                    "tags": {
+                                                        "description": "The unqualified Dublin Core 'Tags' element values",
+                                                        "items": {
+                                                            "type": "string"
+                                                        },
+                                                        "maxItems": 10000,
+                                                        "title": "Tags",
+                                                        "type": "array"
+                                                    },
+                                                    "title": {
+                                                        "description": "The first unqualified Dublin Core 'Title' element value.",
+                                                        "title": "Title",
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
                                             "onna.canonical.behaviors.following.IFollowing": {
                                                 "properties": {
                                                     "favorite": {
@@ -6769,6 +6920,77 @@
                                     },
                                     {
                                         "properties": {
+                                            "guillotina.behaviors.dublincore.IDublinCore": {
+                                                "properties": {
+                                                    "contributors": {
+                                                        "description": "The unqualified Dublin Core 'Contributor' element values",
+                                                        "items": {
+                                                            "type": "string"
+                                                        },
+                                                        "maxItems": 10000,
+                                                        "title": "Contributors",
+                                                        "type": "array"
+                                                    },
+                                                    "creation_date": {
+                                                        "description": "The date and time that an object is created. \nThis is normally set automatically.",
+                                                        "format": "date-time",
+                                                        "title": "Added to Onna",
+                                                        "type": "string"
+                                                    },
+                                                    "creators": {
+                                                        "description": "The unqualified Dublin Core 'Creator' element values",
+                                                        "items": {
+                                                            "type": "string"
+                                                        },
+                                                        "maxItems": 1000,
+                                                        "title": "Creators",
+                                                        "type": "array"
+                                                    },
+                                                    "description": {
+                                                        "description": "The first unqualified Dublin Core 'Description' element value.",
+                                                        "title": "Description",
+                                                        "type": "string"
+                                                    },
+                                                    "effective_date": {
+                                                        "description": "The date and time that an object should be published. ",
+                                                        "format": "date-time",
+                                                        "title": "Effective date",
+                                                        "type": "string"
+                                                    },
+                                                    "expiration_date": {
+                                                        "description": "The date and time that the object should become unpublished.",
+                                                        "format": "date-time",
+                                                        "title": "Expiration date",
+                                                        "type": "string"
+                                                    },
+                                                    "modification_date": {
+                                                        "description": "The date and time that the object was last modified in a\nmeaningful way.",
+                                                        "format": "date-time",
+                                                        "title": "Last update",
+                                                        "type": "string"
+                                                    },
+                                                    "publisher": {
+                                                        "description": "The first unqualified Dublin Core 'Publisher' element value.",
+                                                        "title": "Publisher",
+                                                        "type": "string"
+                                                    },
+                                                    "tags": {
+                                                        "description": "The unqualified Dublin Core 'Tags' element values",
+                                                        "items": {
+                                                            "type": "string"
+                                                        },
+                                                        "maxItems": 10000,
+                                                        "title": "Tags",
+                                                        "type": "array"
+                                                    },
+                                                    "title": {
+                                                        "description": "The first unqualified Dublin Core 'Title' element value.",
+                                                        "title": "Title",
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
                                             "onna.canonical.behaviors.following.IFollowing": {
                                                 "properties": {
                                                     "favorite": {
@@ -6831,7 +7053,7 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@addable-types": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@addable-types": {
             "get": {
                 "description": "Return a list of type names that can be added to container",
                 "parameters": [
@@ -6848,6 +7070,15 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -6880,7 +7111,7 @@
                 "tags": []
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@all_permissions": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@all_permissions": {
             "get": {
                 "description": "See all permission settings for this resource",
                 "parameters": [
@@ -6897,6 +7128,15 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -6939,7 +7179,265 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@async-catalog-reindex": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@api/{action}": {
+            "delete": {
+                "description": "",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "action",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.ModifyContent"
+                        ]
+                    }
+                ],
+                "summary": "",
+                "tags": [
+                    "Content"
+                ]
+            },
+            "get": {
+                "description": "",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "action",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.ModifyContent"
+                        ]
+                    }
+                ],
+                "summary": "",
+                "tags": [
+                    "Content"
+                ]
+            },
+            "patch": {
+                "description": "",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "action",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.ModifyContent"
+                        ]
+                    }
+                ],
+                "summary": "",
+                "tags": [
+                    "Content"
+                ]
+            },
+            "post": {
+                "description": "",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "action",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.ModifyContent"
+                        ]
+                    }
+                ],
+                "summary": "",
+                "tags": [
+                    "Content"
+                ]
+            }
+        },
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@async-catalog-reindex": {
             "post": {
                 "description": "Asynchronously reindex entire container content",
                 "parameters": [
@@ -6956,6 +7454,15 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -6999,7 +7506,7 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@backrefs": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@backrefs": {
             "get": {
                 "description": "View references to content \u301c permission: guillotina.ViewContent",
                 "parameters": [
@@ -7061,6 +7568,15 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
@@ -7112,7 +7628,7 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@behaviors": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@behaviors": {
             "delete": {
                 "description": "Remove behavior from resource",
                 "parameters": [
@@ -7229,6 +7745,15 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "requestBody": {
@@ -7270,7 +7795,7 @@
                 "tags": []
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@behaviors/{behavior}": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@behaviors/{behavior}": {
             "delete": {
                 "description": "Remove behavior from resource",
                 "parameters": [
@@ -7303,6 +7828,15 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -7348,7 +7882,7 @@
                 "tags": []
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@canido": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@canido": {
             "get": {
                 "description": "Check if user has permissions on context",
                 "parameters": [
@@ -7373,6 +7907,15 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -7408,7 +7951,7 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@catalog-reindex": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@catalog-reindex": {
             "post": {
                 "description": "Reindex entire container content",
                 "parameters": [
@@ -7425,6 +7968,15 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -7468,7 +8020,7 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@data": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@data": {
             "get": {
                 "description": "Data API \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -7564,6 +8116,15 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "requestBody": {
@@ -7629,84 +8190,7 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@datasourceAuthCode/{type}": {
-            "get": {
-                "description": "Retrieve an authorization code \u301c permission: guillotina.ModifyContent",
-                "parameters": [
-                    {
-                        "description": "Url where front-end is redirected to after the auth flow is completed",
-                        "example": "https://enterprise.onna.com/foobar/user/datasource/add",
-                        "in": "query",
-                        "name": "redirect_to",
-                        "required": true,
-                        "schema": {
-                            "minLength": 1,
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "in": "path",
-                        "name": "type",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Account ID",
-                        "in": "path",
-                        "name": "account_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Username",
-                        "in": "path",
-                        "name": "username",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "OK"
-                    },
-                    "401": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": [
-                            "permission:guillotina.ModifyContent"
-                        ]
-                    }
-                ],
-                "summary": "",
-                "tags": [
-                    "Auth"
-                ]
-            }
-        },
-        "/CONTAINER/ACCOUNT/{username}/@download/{field_name}": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@download/{field_name}": {
             "head": {
                 "description": "",
                 "parameters": [
@@ -7731,6 +8215,15 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -7781,7 +8274,7 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@download/{field_name}/{field_name}": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@download/{field_name}/{field_name}": {
             "get": {
                 "description": "Download the content of a file",
                 "parameters": [
@@ -7807,6 +8300,15 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -7841,7 +8343,7 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@download/{field_name}/{filename}": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@download/{field_name}/{filename}": {
             "head": {
                 "description": "",
                 "parameters": [
@@ -7874,6 +8376,15 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -7924,7 +8435,7 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@download/{field_name}/{filename}/{field_name}": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@download/{field_name}/{filename}/{field_name}": {
             "get": {
                 "description": "Download the content of a file",
                 "parameters": [
@@ -7962,6 +8473,15 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
@@ -7992,7 +8512,67 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@duplicate": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@downloadUnprocessedCsv": {
+            "get": {
+                "description": "Download CSV report of unprocessed resources of Datasource",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully returned CSV report of unprocessed resources."
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.AccessContent"
+                        ]
+                    }
+                ],
+                "summary": "Download CSV report of unprocessed resources of Datasource",
+                "tags": [
+                    "Content"
+                ]
+            }
+        },
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@duplicate": {
             "post": {
                 "description": "Duplicate resource",
                 "parameters": [
@@ -8009,6 +8589,15 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -8068,7 +8657,7 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@dynamic-fields": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@dynamic-fields": {
             "get": {
                 "description": "Get a list of available fields",
                 "parameters": [
@@ -8085,6 +8674,15 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -8126,181 +8724,7 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@enabledDSTypes": {
-            "get": {
-                "description": "Retrieves a list of Datasource types enabled for this user",
-                "parameters": [
-                    {
-                        "description": "Account ID",
-                        "in": "path",
-                        "name": "account_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Username",
-                        "in": "path",
-                        "name": "username",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "OK"
-                    },
-                    "401": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": [
-                            "permission:guillotina.AccessContent"
-                        ]
-                    }
-                ],
-                "summary": "Gets a list of enabled Datasource types",
-                "tags": [
-                    "Content"
-                ]
-            }
-        },
-        "/CONTAINER/ACCOUNT/{username}/@exportCount": {
-            "get": {
-                "description": "Number of user's exports \u301c permission: guillotina.ViewContent",
-                "parameters": [
-                    {
-                        "description": "Account ID",
-                        "in": "path",
-                        "name": "account_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Username",
-                        "in": "path",
-                        "name": "username",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "OK"
-                    },
-                    "401": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": [
-                            "permission:guillotina.ViewContent"
-                        ]
-                    }
-                ],
-                "summary": "Number of user's exports",
-                "tags": [
-                    "Content"
-                ]
-            }
-        },
-        "/CONTAINER/ACCOUNT/{username}/@exports": {
-            "get": {
-                "description": "Retrieves all exports belonging to a user, including expired.",
-                "parameters": [
-                    {
-                        "description": "Account ID",
-                        "in": "path",
-                        "name": "account_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Username",
-                        "in": "path",
-                        "name": "username",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "OK"
-                    },
-                    "401": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": [
-                            "permission:guillotina.ViewContent"
-                        ]
-                    }
-                ],
-                "summary": "Gets user's exports",
-                "tags": [
-                    "Content"
-                ]
-            }
-        },
-        "/CONTAINER/ACCOUNT/{username}/@favorite": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@favorite": {
             "delete": {
                 "description": "Remove a Resource from your list of favorites",
                 "parameters": [
@@ -8368,6 +8792,15 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "requestBody": {
@@ -8414,7 +8847,7 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@fieldvalue/{dotted_name}": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@fieldvalue/{dotted_name}": {
             "get": {
                 "description": "Get field value",
                 "parameters": [
@@ -8439,6 +8872,15 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -8480,9 +8922,84 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@getAllChildren": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@folders": {
             "get": {
-                "description": "leverages elasticsearch to get all the children of a resource \u301c permission: guillotina.AccessContent",
+                "description": "",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Folders"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.AccessContent"
+                        ]
+                    }
+                ],
+                "summary": "",
+                "tags": [
+                    "Content"
+                ]
+            }
+        },
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@getAllChildren": {
+            "get": {
+                "description": "Leverages [Elasticsearch](https://www.elastic.co/elasticsearch/) to get all the children of a resource \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "in": "query",
@@ -8511,6 +9028,15 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -8557,16 +9083,16 @@
                         ]
                     }
                 ],
-                "summary": "leverages elasticsearch to get all the children of a resource",
+                "summary": "Leverages Elasticsearch to get all the children of a resource",
                 "tags": [
                     "Content",
                     "Search"
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@getAllChildrenData": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@getAllChildrenData": {
             "get": {
-                "description": "leverages elasticsearch to get all the children of a resource, with included data \u301c permission: guillotina.AccessContent",
+                "description": "Leverages [Elasticsearch](https://www.elastic.co/elasticsearch/) to get all the children of a resource, with included data \u301c permission: guillotina.AccessContent",
                 "parameters": [
                     {
                         "in": "query",
@@ -8605,6 +9131,15 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -8651,25 +9186,54 @@
                         ]
                     }
                 ],
-                "summary": "leverages elasticsearch to get all the children of a resource, with included data",
+                "summary": "Leverages Elasticsearch to get all the children of a resource, with included data",
                 "tags": [
                     "Content",
                     "Search"
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@getBoxAuthCode": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@getAuditLogBeats": {
             "get": {
-                "description": "Get the Box OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
+                "description": "Get beats audit log",
                 "parameters": [
                     {
-                        "description": "Url where front-end is redirected to after the auth flow is completed",
-                        "example": "https://enterprise.onna.com/foobar/user/datasource/add",
                         "in": "query",
-                        "name": "redirect_to",
-                        "required": true,
+                        "name": "csv",
+                        "required": false,
                         "schema": {
-                            "minLength": 1,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "epoch_from",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "epoch_to",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "cursor",
+                        "required": false,
+                        "schema": {
                             "type": "string"
                         }
                     },
@@ -8690,6 +9254,93 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "cursor": {
+                                            "type": "string"
+                                        },
+                                        "items": {
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Successfully retrieved log results"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "412": {
+                        "description": "Precondition failed"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:onna.GetAuditLog"
+                        ]
+                    }
+                ],
+                "summary": "Get beats audit log",
+                "tags": [
+                    "Content"
+                ]
+            }
+        },
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@getAuditLogDS": {
+            "get": {
+                "description": "Get Datasource audit log",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
@@ -8701,7 +9352,7 @@
                                 }
                             }
                         },
-                        "description": "OK"
+                        "description": "Retrieved Datasource audit log"
                     },
                     "401": {
                         "content": {
@@ -8717,28 +9368,49 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:guillotina.ModifyContent"
+                            "permission:onna.GetAuditLogDS"
                         ]
                     }
                 ],
-                "summary": "Get the Box OAuth code callback for a user",
+                "summary": "Get Datasource audit log",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@getDOAuthCode": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@getAuditLogSpyder": {
             "get": {
-                "description": "Get the Dropbox OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
+                "description": "Get spyder audit log",
                 "parameters": [
                     {
-                        "description": "Url where front-end is redirected to after the auth flow is completed",
-                        "example": "https://enterprise.onna.com/foobar/user/datasource/add",
                         "in": "query",
-                        "name": "redirect_to",
-                        "required": true,
+                        "name": "epoch_from",
+                        "required": false,
                         "schema": {
-                            "minLength": 1,
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "epoch_to",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "cursor",
+                        "required": false,
+                        "schema": {
                             "type": "string"
                         }
                     },
@@ -8759,6 +9431,15 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
@@ -8766,11 +9447,19 @@
                         "content": {
                             "application/json": {
                                 "schema": {
+                                    "properties": {
+                                        "cursor": {
+                                            "type": "string"
+                                        },
+                                        "items": {
+                                            "type": "array"
+                                        }
+                                    },
                                     "type": "object"
                                 }
                             }
                         },
-                        "description": "OK"
+                        "description": "Successfully retrieved log results"
                     },
                     "401": {
                         "content": {
@@ -8781,22 +9470,25 @@
                             }
                         },
                         "description": "Unauthorized"
+                    },
+                    "412": {
+                        "description": "Precondition failed"
                     }
                 },
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:guillotina.ModifyContent"
+                            "permission:onna.GetAuditLog"
                         ]
                     }
                 ],
-                "summary": "Get the Dropbox OAuth code callback for a user",
+                "summary": "Get spyder audit log",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@getDatasources": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@getSpyderConfig": {
             "get": {
                 "description": "",
                 "parameters": [
@@ -8813,6 +9505,218 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.ModifyContent"
+                        ]
+                    }
+                ],
+                "summary": "",
+                "tags": []
+            }
+        },
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@getSpyderPayload": {
+            "get": {
+                "description": "",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.ModifyContent"
+                        ]
+                    }
+                ],
+                "summary": "",
+                "tags": []
+            }
+        },
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@getWsToken": {
+            "get": {
+                "description": "",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.AccessContent"
+                        ]
+                    }
+                ],
+                "summary": "",
+                "tags": []
+            }
+        },
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@historyId/{key}": {
+            "get": {
+                "description": "Get specific history value",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "key",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -8848,24 +9752,34 @@
                         ]
                     }
                 ],
-                "summary": "",
+                "summary": "Get specific history value",
                 "tags": [
                     "Content"
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@getEBoxAuthCode": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@identityGroups": {
             "get": {
-                "description": "Get the Enterprise Box OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
+                "description": "To list identity groups that are available from a particular datasource",
                 "parameters": [
                     {
-                        "description": "Url where front-end is redirected to after the auth flow is completed",
-                        "example": "https://enterprise.onna.com/foobar/user/datasource/add",
+                        "description": "Result page size",
                         "in": "query",
-                        "name": "redirect_to",
-                        "required": true,
+                        "name": "size",
+                        "required": false,
                         "schema": {
-                            "minLength": 1,
+                            "default": 25,
+                            "maximum": 500,
+                            "minimum": 1,
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "description": "Cursor to get more results pages",
+                        "in": "query",
+                        "name": "cursor",
+                        "required": false,
+                        "schema": {
                             "type": "string"
                         }
                     },
@@ -8886,6 +9800,15 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
@@ -8893,11 +9816,25 @@
                         "content": {
                             "application/json": {
                                 "schema": {
+                                    "properties": {
+                                        "cursor": {
+                                            "type": "string"
+                                        },
+                                        "items": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/IdentityGroup"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "total": {
+                                            "type": "integer"
+                                        }
+                                    },
                                     "type": "object"
                                 }
                             }
                         },
-                        "description": "OK"
+                        "description": "Success."
                     },
                     "401": {
                         "content": {
@@ -8913,28 +9850,136 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:guillotina.ModifyContent"
+                            "permission:onna.permission:ManageSourceAccounts"
                         ]
                     }
                 ],
-                "summary": "Get the Enterprise Box OAuth code callback for a user",
+                "summary": "To list identity groups that are available from a particular datasource",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@getGDriveAuthCode": {
-            "get": {
-                "description": "Get the GDrive OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@identityGroups/{gid}": {
+            "delete": {
+                "description": "To delete an identity group",
                 "parameters": [
                     {
-                        "description": "Url where front-end is redirected to after the auth flow is completed",
-                        "example": "https://enterprise.onna.com/foobar/user/datasource/add",
-                        "in": "query",
-                        "name": "redirect_to",
+                        "in": "path",
+                        "name": "gid",
                         "required": true,
                         "schema": {
-                            "minLength": 1,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
+                        "description": "Success. Object deleted"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:onna.permission:ManageSourceAccounts"
+                        ]
+                    }
+                ],
+                "summary": "To delete an identity group",
+                "tags": [
+                    "Content"
+                ]
+            },
+            "get": {
+                "description": "To get an identity group",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "gid",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IdentityGroup"
+                                }
+                            }
+                        },
+                        "description": "Success."
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Identity group not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:onna.permission:ManageSourceAccounts"
+                        ]
+                    }
+                ],
+                "summary": "To get an identity group",
+                "tags": [
+                    "Content"
+                ]
+            },
+            "put": {
+                "description": "To create or update an identity group",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "gid",
+                        "required": true,
+                        "schema": {
                             "type": "string"
                         }
                     },
@@ -8955,18 +10000,43 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IdentityGroup"
+                            }
+                        }
+                    },
+                    "required": true
+                },
                 "responses": {
                     "200": {
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
+                                "schema": {}
                             }
                         },
-                        "description": "OK"
+                        "description": "Success. Object already existed"
+                    },
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        },
+                        "description": "Success. Object didn't exist before"
                     },
                     "401": {
                         "content": {
@@ -8982,28 +10052,117 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:guillotina.ModifyContent"
+                            "permission:onna.permission:ManageSourceAccounts"
                         ]
                     }
                 ],
-                "summary": "Get the GDrive OAuth code callback for a user",
+                "summary": "To create or update an identity group",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@getGOAuthCode": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@identityGroups/{gid}/@members": {
             "get": {
-                "description": "Get the GMail OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
+                "description": "Get identity group membership",
                 "parameters": [
                     {
-                        "description": "Url where front-end is redirected to after the auth flow is completed",
-                        "example": "https://enterprise.onna.com/foobar/user/datasource/add",
                         "in": "query",
-                        "name": "redirect_to",
+                        "name": "limit",
+                        "schema": {
+                            "default": 1000,
+                            "maximum": 1000,
+                            "minimum": 1,
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "cursor",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "gid",
                         "required": true,
                         "schema": {
-                            "minLength": 1,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "cursor": {
+                                            "type": "string"
+                                        },
+                                        "items": {
+                                            "items": {
+                                                "description": "Onna's unique id of the source account",
+                                                "type": "string"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "required": [
+                                        "cursor",
+                                        "items"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Success."
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Identity group not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:onna.permission:ManageSourceAccounts"
+                        ]
+                    }
+                ],
+                "summary": "Get identity group membership",
+                "tags": [
+                    "Content"
+                ]
+            },
+            "patch": {
+                "description": "To modify identity group membership",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "gid",
+                        "required": true,
+                        "schema": {
                             "type": "string"
                         }
                     },
@@ -9024,18 +10183,69 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "items": {
+                                    "additionalProperties": false,
+                                    "maxProperties": 2,
+                                    "minProperties": 2,
+                                    "properties": {
+                                        "action": {
+                                            "enum": [
+                                                "add",
+                                                "remove"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        "origin_id": {
+                                            "description": "Identifier at the origin",
+                                            "maxLength": 100,
+                                            "minLength": 1,
+                                            "type": "string"
+                                        },
+                                        "uid": {
+                                            "description": "Onna's unique identifier",
+                                            "maxLength": 100,
+                                            "minLength": 1,
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "action"
+                                    ],
+                                    "type": "object"
+                                },
+                                "maxItems": 10000,
+                                "minItems": 1,
+                                "type": "array"
+                            }
+                        }
+                    },
+                    "required": true
+                },
                 "responses": {
                     "200": {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object"
+                                    "$ref": "#/components/schemas/IdentityGroup"
                                 }
                             }
                         },
-                        "description": "OK"
+                        "description": "Success."
                     },
                     "401": {
                         "content": {
@@ -9046,367 +10256,25 @@
                             }
                         },
                         "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Identity group not found"
                     }
                 },
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:guillotina.ModifyContent"
+                            "permission:onna.permission:ManageSourceAccounts"
                         ]
                     }
                 ],
-                "summary": "Get the GMail OAuth code callback for a user",
+                "summary": "To modify identity group membership",
                 "tags": [
-                    "Auth"
+                    "Content"
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@getGithubAuthCode": {
-            "get": {
-                "description": "Get the GitHub OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
-                "parameters": [
-                    {
-                        "description": "Url where front-end is redirected to after the auth flow is completed",
-                        "example": "https://enterprise.onna.com/foobar/user/datasource/add",
-                        "in": "query",
-                        "name": "redirect_to",
-                        "required": true,
-                        "schema": {
-                            "minLength": 1,
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Account ID",
-                        "in": "path",
-                        "name": "account_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Username",
-                        "in": "path",
-                        "name": "username",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "OK"
-                    },
-                    "401": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": [
-                            "permission:guillotina.ModifyContent"
-                        ]
-                    }
-                ],
-                "summary": "Get the GitHub OAuth code callback for a user",
-                "tags": [
-                    "Auth"
-                ]
-            }
-        },
-        "/CONTAINER/ACCOUNT/{username}/@getSalesforceAuthCode": {
-            "get": {
-                "description": "Get the Salesforce OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
-                "parameters": [
-                    {
-                        "description": "Url where front-end is redirected to after the auth flow is completed",
-                        "example": "https://enterprise.onna.com/foobar/user/datasource/add",
-                        "in": "query",
-                        "name": "redirect_to",
-                        "required": true,
-                        "schema": {
-                            "minLength": 1,
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Account ID",
-                        "in": "path",
-                        "name": "account_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Username",
-                        "in": "path",
-                        "name": "username",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "OK"
-                    },
-                    "401": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": [
-                            "permission:guillotina.ModifyContent"
-                        ]
-                    }
-                ],
-                "summary": "Get the Salesforce OAuth code callback for a user",
-                "tags": [
-                    "Auth"
-                ]
-            }
-        },
-        "/CONTAINER/ACCOUNT/{username}/@getSlackAuthCode": {
-            "get": {
-                "description": "Get the Slack OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
-                "parameters": [
-                    {
-                        "description": "Url where front-end is redirected to after the auth flow is completed",
-                        "example": "https://enterprise.onna.com/foobar/user/datasource/add",
-                        "in": "query",
-                        "name": "redirect_to",
-                        "required": true,
-                        "schema": {
-                            "minLength": 1,
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Account ID",
-                        "in": "path",
-                        "name": "account_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Username",
-                        "in": "path",
-                        "name": "username",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "OK"
-                    },
-                    "401": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": [
-                            "permission:guillotina.ModifyContent"
-                        ]
-                    }
-                ],
-                "summary": "Get the Slack OAuth code callback for a user",
-                "tags": [
-                    "Auth"
-                ]
-            }
-        },
-        "/CONTAINER/ACCOUNT/{username}/@getTwitterAuthCode": {
-            "get": {
-                "description": "Get the Twitter OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
-                "parameters": [
-                    {
-                        "description": "Url where front-end is redirected to after the auth flow is completed",
-                        "example": "https://enterprise.onna.com/foobar/user/datasource/add",
-                        "in": "query",
-                        "name": "redirect_to",
-                        "required": true,
-                        "schema": {
-                            "minLength": 1,
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Account ID",
-                        "in": "path",
-                        "name": "account_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Username",
-                        "in": "path",
-                        "name": "username",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "OK"
-                    },
-                    "401": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": [
-                            "permission:guillotina.ModifyContent"
-                        ]
-                    }
-                ],
-                "summary": "Get the Twitter OAuth code callback for a user",
-                "tags": [
-                    "Auth"
-                ]
-            }
-        },
-        "/CONTAINER/ACCOUNT/{username}/@getZendeskAuthCode": {
-            "get": {
-                "description": "Get the Zendesk OAuth code callback for a user \u301c permission: guillotina.ModifyContent",
-                "parameters": [
-                    {
-                        "description": "Url where front-end is redirected to after the auth flow is completed",
-                        "example": "https://enterprise.onna.com/foobar/user/datasource/add",
-                        "in": "query",
-                        "name": "redirect_to",
-                        "required": true,
-                        "schema": {
-                            "minLength": 1,
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Account ID",
-                        "in": "path",
-                        "name": "account_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Username",
-                        "in": "path",
-                        "name": "username",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "OK"
-                    },
-                    "401": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": [
-                            "permission:guillotina.ModifyContent"
-                        ]
-                    }
-                ],
-                "summary": "Get the Zendesk OAuth code callback for a user",
-                "tags": [
-                    "Auth"
-                ]
-            }
-        },
-        "/CONTAINER/ACCOUNT/{username}/@invalidate-cache": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@invalidate-cache": {
             "get": {
                 "description": "Invalidate cache of object",
                 "parameters": [
@@ -9423,6 +10291,15 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -9455,7 +10332,7 @@
                 "tags": []
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@keys": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@keys": {
             "get": {
                 "description": "Get a list of unique keys in a Datasource \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -9494,6 +10371,15 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -9540,7 +10426,7 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@move": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@move": {
             "post": {
                 "description": "Move resource \u301c permission: guillotina.MoveContent",
                 "parameters": [
@@ -9557,6 +10443,15 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -9611,7 +10506,81 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@refs": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@refreshServiceCredentials": {
+            "post": {
+                "description": "Refresh credentials on a datasource or wallet",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.ModifyContent"
+                        ]
+                    }
+                ],
+                "summary": "Refresh credentials on a datasource or wallet",
+                "tags": []
+            }
+        },
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@refs": {
             "delete": {
                 "description": "Delete reference to content \u301c permission: guillotina.ModifyContent",
                 "parameters": [
@@ -9812,6 +10781,15 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "requestBody": {
@@ -9956,65 +10934,7 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@rules": {
-            "get": {
-                "description": "Get user's rules \u301c permission: guillotina.ViewContent",
-                "parameters": [
-                    {
-                        "description": "Account ID",
-                        "in": "path",
-                        "name": "account_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Username",
-                        "in": "path",
-                        "name": "username",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "OK"
-                    },
-                    "401": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": [
-                            "permission:guillotina.ViewContent"
-                        ]
-                    }
-                ],
-                "summary": "",
-                "tags": [
-                    "Content"
-                ]
-            }
-        },
-        "/CONTAINER/ACCOUNT/{username}/@search": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@search": {
             "get": {
                 "description": "Make search request",
                 "parameters": [
@@ -10154,6 +11074,15 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
@@ -10192,9 +11121,9 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@searchTemplate": {
-            "post": {
-                "description": "Upload an Excel like file with search fields \u301c permission: guillotina.AccessContent",
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@sendToComputeMissing": {
+            "get": {
+                "description": "Send Datasource to compute engine",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -10209,6 +11138,151 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully sent to compute engine"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:onna.SendToCompute"
+                        ]
+                    }
+                ],
+                "summary": "Send Datasource to compute engine",
+                "tags": [
+                    "Content"
+                ]
+            }
+        },
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@sendToSpyder": {
+            "get": {
+                "description": "Send Datasource to spyder",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "force",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "delayed",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully sent to spyder"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:onna.SendToSpyder"
+                        ]
+                    }
+                ],
+                "summary": "Send Datasource to spyder",
+                "tags": [
+                    "Content"
+                ]
+            }
+        },
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@sendUnprocessedToCompute": {
+            "post": {
+                "description": "Send unprocessed resources of Datasource to compute engine",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -10226,14 +11300,7 @@
                 },
                 "responses": {
                     "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "OK"
+                        "description": "Successfully sent unprocessed resources to compute engine"
                     },
                     "401": {
                         "content": {
@@ -10249,17 +11316,17 @@
                 "security": [
                     {
                         "bearerAuth": [
-                            "permission:guillotina.AccessContent"
+                            "permission:onna.SendToCompute"
                         ]
                     }
                 ],
-                "summary": "",
+                "summary": "Send unprocessed resources of Datasource to compute engine",
                 "tags": [
                     "Content"
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@sharing": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@sharing": {
             "get": {
                 "description": "Get sharing settings for this resource",
                 "parameters": [
@@ -10276,6 +11343,15 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -10420,7 +11496,7 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@size": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@size": {
             "get": {
                 "description": "Get size of all children \u301c permission: guillotina.ViewContent",
                 "parameters": [
@@ -10437,6 +11513,15 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -10487,7 +11572,7 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@sourceAccountRefs": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@sourceAccountRefs": {
             "post": {
                 "description": "Add references to content, create source account if it does not exist \u301c permission: onna.permission:ManageSourceAccounts",
                 "parameters": [
@@ -10504,6 +11589,15 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -10598,7 +11692,619 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@tusupload/{field_name}/{field_name}": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@sourceAccounts": {
+            "get": {
+                "description": "List source accounts \u301c permission: onna.permission:ManageSourceAccounts",
+                "parameters": [
+                    {
+                        "description": "Result page size",
+                        "in": "query",
+                        "name": "size",
+                        "required": false,
+                        "schema": {
+                            "default": 25,
+                            "maximum": 500,
+                            "minimum": 1,
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "description": "Cursor to get more results pages",
+                        "in": "query",
+                        "name": "cursor",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "SourceAccount fields to include in response",
+                        "in": "query",
+                        "name": "include",
+                        "required": false,
+                        "schema": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "maxItems": 50,
+                            "type": "array"
+                        }
+                    },
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:onna.permission:ManageSourceAccounts"
+                        ]
+                    }
+                ],
+                "summary": "List source accounts",
+                "tags": [
+                    "Content"
+                ]
+            }
+        },
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@sourceAccounts/{id}": {
+            "get": {
+                "description": "Source account data \u301c permission: onna.permission:ManageSourceAccounts",
+                "parameters": [
+                    {
+                        "description": "SourceAccount fields to include in response",
+                        "in": "query",
+                        "name": "include",
+                        "required": false,
+                        "schema": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "maxItems": 50,
+                            "type": "array"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SourceAccount"
+                                }
+                            }
+                        },
+                        "description": "Source account data"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Source account not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:onna.permission:ManageSourceAccounts"
+                        ]
+                    }
+                ],
+                "summary": "Source account data",
+                "tags": [
+                    "Content"
+                ]
+            },
+            "put": {
+                "description": "Create a source account or replace if it already exists \u301c permission: onna.permission:ManageSourceAccounts",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SourceAccount"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Source account correctly added"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "412": {
+                        "description": "Provided payload not valid"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:onna.permission:ManageSourceAccounts"
+                        ]
+                    }
+                ],
+                "summary": "Create a source account or replace if it already exists",
+                "tags": [
+                    "Content"
+                ]
+            }
+        },
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@sourceAccounts/{id}/@identityGroups": {
+            "get": {
+                "description": "Get a list of groups associated with the source account \u301c permission: onna.permission:ManageSourceAccounts",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "default": 1000,
+                            "maximum": 1000,
+                            "minimum": 1,
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "cursor",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "cursor": {
+                                            "type": "string"
+                                        },
+                                        "items": {
+                                            "items": {
+                                                "description": "Onna's unique id of the group",
+                                                "type": "string"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "required": [
+                                        "cursor",
+                                        "items"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Success."
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Source account not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:onna.permission:ManageSourceAccounts"
+                        ]
+                    }
+                ],
+                "summary": "To get identity groups for a particular source account",
+                "tags": [
+                    "Auth",
+                    "Content"
+                ]
+            },
+            "patch": {
+                "description": "To modify identity groups for a particular source account \u301c permission: onna.permission:ManageSourceAccounts",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "items": {
+                                    "additionalProperties": false,
+                                    "maxProperties": 2,
+                                    "minProperties": 2,
+                                    "properties": {
+                                        "action": {
+                                            "enum": [
+                                                "add",
+                                                "remove"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        "origin_id": {
+                                            "description": "Identifier at the origin",
+                                            "maxLength": 100,
+                                            "minLength": 1,
+                                            "type": "string"
+                                        },
+                                        "uid": {
+                                            "description": "Onna's unique identifier",
+                                            "maxLength": 100,
+                                            "minLength": 1,
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "action"
+                                    ],
+                                    "type": "object"
+                                },
+                                "maxItems": 10000,
+                                "minItems": 1,
+                                "type": "array"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success. Groups modified."
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Source account not found."
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:onna.permission:ManageSourceAccounts"
+                        ]
+                    }
+                ],
+                "summary": "To modify identity groups for a particular source account",
+                "tags": [
+                    "Auth",
+                    "Content"
+                ]
+            }
+        },
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@tokensExpire": {
+            "patch": {
+                "description": "",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:onna.Public"
+                        ]
+                    }
+                ],
+                "summary": "",
+                "tags": [
+                    "Account"
+                ]
+            }
+        },
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@tusPOST": {
+            "post": {
+                "description": "TUS upload files to a static datasource \u301c permission: guillotina.AddContent",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.AddContent"
+                        ]
+                    }
+                ],
+                "summary": "",
+                "tags": [
+                    "Content"
+                ]
+            }
+        },
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@tusupload/{field_name}/{field_name}": {
             "head": {
                 "description": "TUS endpoint",
                 "parameters": [
@@ -10794,6 +12500,15 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "requestBody": {
@@ -10860,7 +12575,7 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@tusupload/{field_name}/{filename}/{field_name}": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@tusupload/{field_name}/{filename}/{field_name}": {
             "head": {
                 "description": "TUS endpoint",
                 "parameters": [
@@ -11138,6 +12853,15 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "requestBody": {
@@ -11204,7 +12928,95 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@upload/{field_name}/{field_name}": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@updateServiceCredentials": {
+            "post": {
+                "description": "Given an auth code, get related auth token and update datasource credentials",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "auth_code",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "204": {
+                        "description": "Correctly updated"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "412": {
+                        "description": "Invalid auth_code"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:onna.RenewCredentials"
+                        ]
+                    }
+                ],
+                "summary": "Given an auth code, get related auth token and update datasource credentials",
+                "tags": []
+            }
+        },
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@upload/{field_name}/{field_name}": {
             "patch": {
                 "description": "Update the content of a file",
                 "parameters": [
@@ -11230,6 +13042,15 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -11273,7 +13094,7 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@upload/{field_name}/{filename}/{field_name}": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@upload/{field_name}/{filename}/{field_name}": {
             "patch": {
                 "description": "Update the content of a file",
                 "parameters": [
@@ -11311,6 +13132,15 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "requestBody": {
@@ -11350,7 +13180,7 @@
                 ]
             }
         },
-        "/CONTAINER/ACCOUNT/{username}/@userRoles": {
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@userRoles": {
             "get": {
                 "description": "Get a list of user roles for this context \u301c permission: guillotina.AccessContent",
                 "parameters": [
@@ -11367,6 +13197,15 @@
                         "description": "Username",
                         "in": "path",
                         "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -11410,6 +13249,73 @@
                     "Auth"
                 ]
             }
+        },
+        "/CONTAINER/ACCOUNT/{username}/{datasource_name}/@usersInfo": {
+            "get": {
+                "description": "Returns the currently stored data in the users infoconfig object. Used by the front-end to display the list of synced users. \u301c permission: guillotina.ModifyContent",
+                "parameters": [
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:guillotina.ModifyContent"
+                        ]
+                    }
+                ],
+                "summary": "",
+                "tags": [
+                    "Content"
+                ]
+            }
         }
     },
     "security": [
@@ -11440,7 +13346,7 @@
             "name": "Search"
         },
         {
-            "description": "Manage and share workspaces.\n\nWorkspaces are collaboration spaces in Onna.\nRead the [reference documentation](https://support.onna.com/en/articles/1151536-how-to-create-a-workspace) to learn more.",
+            "description": "### Manage and share workspaces\n\nWorkspaces are collaboration spaces in Onna.\nRead the [reference documentation](https://support.onna.com/en/articles/1151536-how-to-create-a-workspace) to learn more.",
             "name": "Workspace"
         }
     ]
