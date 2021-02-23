@@ -1,4 +1,8 @@
 # Changelog
+## [1.0.13]
+
+- add datasource endpoints
+
 ## [1.0.12]
 
 - disambiguate container and account
