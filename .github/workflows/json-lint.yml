@@ -1,0 +1,22 @@
+name: Lint OAS
+on: [pull_request]
+
+jobs:
+  build:
+    name: Checkout
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14'
+
+    - name: Install Linter
+      working-directory: .
+      run: npm install jsonlint -g
+
+    - name: Lint OpenAPI File
+      working-directory: .
+      run: jsonlint openapi.json
