@@ -1,4 +1,9 @@
 # Changelog
+
+## [1.0.14]
+
+- Add JSON linter as GH Action
+
 ## [1.0.13]
 
 - add datasource endpoints
