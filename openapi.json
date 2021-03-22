@@ -3410,7 +3410,7 @@
         },
         "/CONTAINER/ACCOUNT/@frontsearch": {
             "post": {
-                "description": "Run a search.\n\nSee the [reference documentation](https://developers.onna.com/tutorial/primer/search-and-triggers.html#search). \u301c permission: guillotina.SearchContent",
+                "description": "Run a search.\n\nSee the [reference documentation](https://developers.onna.com/tutorial/search-and-triggers.html#search). \u301c permission: guillotina.SearchContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -13334,7 +13334,7 @@
             "name": "Account"
         },
         {
-            "description": "### User And Group Authentication\n\nAuthentication requires that you have an Onna account.\n\nPlease consult the [developer documentation](https://developers.onna.com/tutorial/primer/authentication.html) for more information.",
+            "description": "### User And Group Authentication\n\nAuthentication requires that you have an Onna account.\n\nPlease consult the [developer documentation](https://developers.onna.com/tutorial/authentication.html) for more information.",
             "name": "Auth"
         },
         {
