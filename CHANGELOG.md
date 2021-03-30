@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.15]
+
+- Update links to new structure of developers.onna.com
+
 ## [1.0.14]
 
 - Add JSON linter as GH Action

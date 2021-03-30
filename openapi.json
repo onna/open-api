@@ -3410,7 +3410,7 @@
         },
         "/CONTAINER/ACCOUNT/@frontsearch": {
             "post": {
-                "description": "Run a search.\n\nSee the [reference documentation](https://developers.onna.com/tutorial/search-and-triggers.html#search). \u301c permission: guillotina.SearchContent",
+                "description": "Run a search.\n\nSee the [reference documentation](https://developers.onna.com/tutorials/search-filter/search-and-triggers.html#search). \u301c permission: guillotina.SearchContent",
                 "parameters": [
                     {
                         "description": "Account ID",
@@ -13330,7 +13330,7 @@
     ],
     "tags": [
         {
-            "description": "### Manage User And Groups\n\nPlease read [Roles and permissions](https://developers.onna.com/roles-and-permissions.html) for more information.",
+            "description": "### Manage User And Groups\n\nPlease read [Roles and permissions](https://developers.onna.com/overview/roles-and-permissions.html) for more information.",
             "name": "Account"
         },
         {
@@ -13342,7 +13342,7 @@
             "name": "Content"
         },
         {
-            "description": "### Search and related operations\n\nPlease consult the [reference documentation](https://developers.onna.com/formulas/search.html) for more information.",
+            "description": "### Search and related operations\n\nPlease consult the [reference documentation](https://developers.onna.com/tutorials/search-filter/search.html) for more information.",
             "name": "Search"
         },
         {
