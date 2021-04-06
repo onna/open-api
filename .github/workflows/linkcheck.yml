@@ -10,9 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Link Checker
-        uses: lycheeverse/lychee-action@v1
+        uses: lycheeverse/lychee-action@v1.0.6
         with:
-          args: -v --config .github/lychee.toml openapi.json
+          args: -c .github/lychee.toml openapi.json --verbose
       # - name: Create Issue From File
       #   uses: peter-evans/create-issue-from-file@v2
       #   with:
