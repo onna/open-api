@@ -13334,7 +13334,7 @@
             "name": "Account"
         },
         {
-            "description": "### User And Group Authentication\n\nAuthentication requires that you have an Onna account.\n\nPlease consult the [developer documentation](https://developers.onna.com/tutorial/authentication.html) for more information.",
+            "description": "### User And Group Authentication\n\nAuthentication requires that you have an Onna account.\n\nPlease consult the [developer documentation](https://developers.onna.com/get-started/authentication.html) for more information.",
             "name": "Auth"
         },
         {

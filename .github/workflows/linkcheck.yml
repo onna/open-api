@@ -13,10 +13,10 @@ jobs:
         uses: lycheeverse/lychee-action@v1
         with:
           args: -v --config .github/lychee.toml openapi.json
-      - name: Create Issue From File
-        uses: peter-evans/create-issue-from-file@v2
-        with:
-          title: Link Checker Report
-          content-filepath: ./lychee/out.md
-          labels: report, automated issue
-          assignees: svx, ableeb
+      # - name: Create Issue From File
+      #   uses: peter-evans/create-issue-from-file@v2
+      #   with:
+      #     title: Link Checker Report
+      #     content-filepath: ./lychee/out.md
+      #     labels: report, automated issue
+      #     assignees: svx, ableeb
