@@ -1,8 +1,6 @@
-name: Check Links in OpenAPI spec
+name: Check links in OpenAPI spec
 
-on:
-  schedule:
-    - cron: "0 0 * * 0" # Once a week on Sunday
+on: [push]
 
 jobs:
   linkChecker:
@@ -10,13 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Link Checker
-        uses: lycheeverse/lychee-action@v1
+        uses: lycheeverse/lychee-action@v1.0.6
         with:
-          args: -v --config .github/lychee.toml openapi.json
-      - name: Create Issue From File
-        uses: peter-evans/create-issue-from-file@v2
-        with:
-          title: Link Checker Report
-          content-filepath: ./lychee/out.md
-          labels: report, automated issue
-          assignees: svx, ableeb
+          args: -c .github/lychee.toml openapi.json --verbose
