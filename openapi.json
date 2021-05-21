@@ -3712,7 +3712,7 @@
                 ]
             }
         },
-        "/{account_id}/{username}/{datasource_name}/{resource_name}": {
+        "/{account_id}/{username}/{datasource_name}/ed024e9224aa438f802b234d7b0bf057/{resource_name}": {
             "get": {
                 "description": "permission: guillotina.SeePermissions",
                 "parameters": [
