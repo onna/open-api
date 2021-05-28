@@ -2676,7 +2676,7 @@
                         ]
                     }
                 ],
-                "summary": "retrieves the size of the datasource",
+                "summary": "Get size of all children",
                 "tags": [
                     "Workspace",
                     "Content"
@@ -3570,6 +3570,82 @@
                     }
                 ],
                 "summary": "",
+                "tags": [
+                    "Content"
+                ]
+            }
+        },
+        "/{account_id}/{username}/{datasource_name}/@sendToSpyder": {
+            "get": {
+                "description": "permission: onna.SendToSpyder",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "force",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "delayed",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Account ID",
+                        "in": "path",
+                        "name": "account_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Username",
+                        "in": "path",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Datasource",
+                        "in": "path",
+                        "name": "datasource_name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully sent to spyder"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            "permission:onna.SendToSpyder"
+                        ]
+                    }
+                ],
+                "summary": "Send Datasource to spyder",
                 "tags": [
                     "Content"
                 ]
