@@ -1700,83 +1700,6 @@
     },
     "openapi": "3.0.2",
     "paths": {
-        "/{account_id}/@data": {
-            "get": {
-                "description": "Data API \u301c permission: guillotina.AccessContent",
-                "parameters": [
-                    {
-                        "description": "Date string",
-                        "in": "query",
-                        "name": "since",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Comma separated list of types",
-                        "example": "Rule, Workspace, User, WalletEntry, WebhookEntry, Export, SeverityLevel, _datasources_",
-                        "in": "query",
-                        "name": "types",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Comma separated list of parent_uids",
-                        "in": "query",
-                        "name": "parent_uids",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Account ID",
-                        "in": "path",
-                        "name": "account_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/DataAPIResult"
-                                }
-                            }
-                        },
-                        "description": "Result set"
-                    },
-                    "401": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": [
-                            "permission:guillotina.AccessContent"
-                        ]
-                    }
-                ],
-                "summary": "Data API",
-                "tags": [
-                    "Content"
-                ]
-            }
-        },
         "/{account_id}/@frontsearch": {
             "post": {
                 "description": "Run a search.\n\nSee the [reference documentation](https://developers.onna.com/tutorials/search-filter/search-and-triggers.html#search). \u301c permission: guillotina.SearchContent",
@@ -2753,7 +2676,7 @@
                         ]
                     }
                 ],
-                "summary": "Get size of all children",
+                "summary": "retrieves the size of the datasource",
                 "tags": [
                     "Workspace",
                     "Content"
@@ -3647,82 +3570,6 @@
                     }
                 ],
                 "summary": "",
-                "tags": [
-                    "Content"
-                ]
-            }
-        },
-        "/{account_id}/{username}/{datasource_name}/@sendToSpyder": {
-            "get": {
-                "description": "permission: onna.SendToSpyder",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "force",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "in": "query",
-                        "name": "delayed",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Account ID",
-                        "in": "path",
-                        "name": "account_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Username",
-                        "in": "path",
-                        "name": "username",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Datasource",
-                        "in": "path",
-                        "name": "datasource_name",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfully sent to spyder"
-                    },
-                    "401": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object"
-                                }
-                            }
-                        },
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": [
-                            "permission:onna.SendToSpyder"
-                        ]
-                    }
-                ],
-                "summary": "Send Datasource to spyder",
                 "tags": [
                     "Content"
                 ]
