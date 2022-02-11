@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.16]
+
+- Adjust README.md to use new style
+
 ## [1.0.15]
 
 - Update links to new structure of developers.onna.com

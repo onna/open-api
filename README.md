@@ -1,24 +1,27 @@
-<!-- Here build and CI badges -->
+<div align="center">
 
----
-<!-- PROJECT LOGO -->
-<h1 align="center">
-  <br>
-  <img src="https://onna.com/wp-content/uploads/2020/03/h-onna-solid.png" alt="Onna Logo"></a>
-</h1>
+# Onna - OpenAPI
 
-<h2 align="center">Onna - OpenAPI</h2>
+[Overview](#overview "Anchor link to overview")
+•
+[Developer docs](https://developers.onna.com "Link to developer docs")
+</div>
 
-<!-- TABLE OF CONTENTS -->
-## Table Of Contents
+## Table of contents
 
-- [About the Project](#about-the-project)
-- [Documentation](#documentation)
+- [Overview](#overview "Anchor link to overview")
+- [Requirements](#requirements "Anchor link to requirements")
+- [Usage](#usage "Anchor link to usage")
 
-## About The Project
+## Overview
 
-Onna API based on the [OpenAPI initiative](https://www.openapis.org/ "Link to OAS initiative").
+[Onna API](https://onna.com) based on the [OpenAPI initiative](https://www.openapis.org/ "Link to OAS initiative").
 
-## Documentation
+## Requirements
 
-Please visit our [technical documentation](https://developers.onna.com "Link to developers.onna.com").
+- [Onna account](https://onna.com/ "Link to onna.com")
+
+## Usage
+
+Visit our [developer documentation](https://developers.onna.com "Link to onna developer docs") to learn about key concepts,
+features and [how to get started](https://developers.onna.com/get-started/ "Link to how to get started docs").
