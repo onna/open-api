@@ -8,11 +8,11 @@ on:
 jobs:
   build:
     name: Changelog
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v1
       - name: Check Changelog
-        uses: Zomzog/changelog-checker@v1.0.0
+        uses: Zomzog/changelog-checker@v1.2.0
         with:
           fileName: CHANGELOG.md
           noChangelogLabel: my custom label # default `no changelog`

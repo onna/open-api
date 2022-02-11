@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.17]
+
+- Update GitHub Actions and pin ubuntu versions
+
 ## [1.0.16]
 
 - Adjust README.md to use new style
