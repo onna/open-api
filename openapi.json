@@ -1692,7 +1692,7 @@
         "contact": {
             "email": "support@onna.com",
             "name": "Onna Support",
-            "url": "https://support.onna.com"
+            "url": "https://help.onna.com"
         },
         "description": "REST API for Onna\n\n# Introduction\nThe API is the central hub for access and updating data related to Onna.\n\n## Requirements\nAccess to the Onna API requires that you have an active account.\n\nYou can sign up for an Onna account by filling out the [registration form](https://register.onna.com/signup?trial=true).",
         "title": "Onna API",

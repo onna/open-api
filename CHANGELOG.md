@@ -1,8 +1,12 @@
 # Changelog
 
+## [1.0.18]
+
+- Update support link
+
 ## [1.0.17]
 
-- Update GitHub Actions and pin ubuntu versions
+- Update GitHub Actions and pin Ubuntu versions
 
 ## [1.0.16]
 

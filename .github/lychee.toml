@@ -52,7 +52,8 @@ headers = []
 # Exclude URLs from checking (supports regex)
 exclude = [
     "https://my.onprem.quip.server.com/",
-    "https://platform.quip.com/"
+    "https://platform.quip.com/",
+    "https://help.onna.com/",
 ]
 
 include = []
