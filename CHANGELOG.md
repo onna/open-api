@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.19]
+
+- Add legacy note
+
 ## [1.0.18]
 
 - Update support link
