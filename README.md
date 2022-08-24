@@ -1,5 +1,9 @@
 <div align="center">
 
+We're in the process of sunsetting our [legacy API](https://dev.onna.com/legacy-api).
+
+If you are still using our legacy API, you don't need to worry. Everything will continue working as expected.
+
 # Onna - OpenAPI
 
 [Overview](#overview "Anchor link to overview")
